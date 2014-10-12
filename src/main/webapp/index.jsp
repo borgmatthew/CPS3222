@@ -5,11 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
 <title>The Online Betting Company</title>
 </head>
 <body>
 <%@ include file="header.jsp" %> 
-<h2>Hello World!!!</h2>
+<div id="main_content">Login</div>
 
 </body>
 </html>
