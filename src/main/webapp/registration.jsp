@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/registration.css">
+<script src="javascript/registrationpage_validation.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -13,7 +14,7 @@
 	<div id="middle_container">
 		<div id="main_content">
 			<div id="reg_form">
-				<form>
+				<form name="registrationform" onsubmit="return validateForm()">
 					First name: <input class="fields" type="text" name="firstname"><br>
 					Last name: <input  class="fields" type="text" name="lastname"><br>
 					Username:<input  class="fields" type="text" name="username"><br>
