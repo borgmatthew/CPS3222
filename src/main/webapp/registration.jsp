@@ -6,28 +6,59 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/registration.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="javascript/registrationpage_validation.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
+
+
 	<%@ include file="headerLoggedOut.jsp"%>
 	<div id="middle_container">
 		<div id="main_content">
 			<div id="reg_form">
 				<form name="registrationform" onsubmit="return validateForm()">
-					<label id="firstNameLabel">First name</label><input class="fields" type="text" name="firstname"><br>
-					<label id="lastNameLabel">Last name</label><input  class="fields" type="text" name="lastname"><br>
-					<label id="usernameLabel">Username</label><input  class="fields" type="text" name="username"><br>
-					<label id="userPasswordLabel">Password</label><input  class="fields" type="password" name="password" onblur="validatePassword();">
-					 <br>
-					<label id="dobLabel">Date of Birth</label><input  class="fields" type="date" name="dob"><br>
-					<label id="accountTypeLabel">Account Type</label><br>
-						<!-- <input type="radio" name="account" value="free">Free<br>
-						<input type="radio" name="account" value="premium">Premium<br> -->
-					<label id="creditLabel">Credit card number</label><input  class="fields" type="text" value="card"><br>
-					<label id="creditExpiryLabel">Credit card Expiry date</label><input class="fields" type="date" value="cardexp"><br>
-					<label id="cvvLabelCVV">CVV</label><input  class="fields" type="text" value="cvv"><br>
-						<input type="submit" value="Submit">
+					<div class="prompt">
+						<label id="firstNameLabel">First name</label> 
+						<input id="firstName" class="fields" type="text" name="firstname" /> 
+						<span id="name_error" class="errors"></span>
+					</div>
+					<div class="prompt">
+						<label id="lastNameLabel">Last name</label>
+						<input id="lastName" class="fields" type="text" name="lastname" />
+						<span id="surname_error" class="errors"></span>
+					</div>
+					<div class="prompt">
+						<label id="usernameLabel">Username</label><input class="fields"
+							type="text" name="username">
+					</div>
+					<div class="prompt">
+						<label id="userPasswordLabel">Password</label><input
+							class="fields" id="password" type="password" name="password"><span
+							id="password_error" class="errors"></span>
+					</div>
+					<div class="prompt">
+						<label id="dobLabel">Date of Birth</label><input class="fields"
+							type="date" name="dob">
+					</div>
+					<div class="prompt">
+						<label id="accountTypeLabel">Account Type</label> <input
+							type="radio" name="account" value="free">Free <input
+							type="radio" name="account" value="premium">Premium
+					</div>
+					<div class="prompt">
+						<label id="creditLabel">Credit card number</label><input
+							class="fields" type="text" value="card">
+					</div>
+					<div class="prompt">
+						<label id="creditExpiryLabel">Credit card Expiry date</label><input
+							class="fields" type="date" value="cardexp">
+					</div>
+					<div class="prompt">
+						<label id="cvvLabelCVV">CVV</label><input class="fields"
+							type="text" value="cvv">
+					</div>
+					<input type="submit" value="Submit">
 				</form>
 			</div>
 		</div>
