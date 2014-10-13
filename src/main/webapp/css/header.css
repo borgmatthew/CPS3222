@@ -36,3 +36,8 @@ body {
 	float: right;
 	line-height: 25px;
 }
+
+a:visited, a:link, a:active {
+	color: #FFFFFF;
+	text-decoration: none;
+}

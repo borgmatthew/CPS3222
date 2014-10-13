@@ -2,6 +2,6 @@
 <div id="menu_bar">
 	<div id="menu_wrapper">
 		<div id="logo">OBC - The Online Betting Company</div>
-		<div id="links">Login | Register</div>
+		<div id="links"><a href="index.jsp">Login</a> | <a href="registration.jsp">Register</a></div>
 	</div>
 </div>
