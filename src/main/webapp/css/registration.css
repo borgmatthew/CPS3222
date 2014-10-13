@@ -1,8 +1,10 @@
 @CHARSET "ISO-8859-1";
 #reg_form{
-	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
 }
 .fields{
+	
 	margin-top: 6px;
 	width: 150px;
 	height: 25px;
@@ -11,4 +13,12 @@
 	padding: 5px;
 	border-width: 1px;
 	border-color: #E1E1E1;
+	margin-right: 0px;
+	margin-left: auto;
+}
+
+label{
+	display: inline;
+	margin-left: 10px;
+	margin-right: auto;
 }
