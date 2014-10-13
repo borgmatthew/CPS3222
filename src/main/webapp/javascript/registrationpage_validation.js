@@ -9,4 +9,11 @@ function validateForm() {
         alert("First name must be filled out");
         return false;
     }
+    //int i=0;
+    for( i=0;i<x.length;i++){
+    	if(!isNaN(x[i])){
+    		 alert("First name must be letters");
+    	        return false;
+    	}
+    }
 }
