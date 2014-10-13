@@ -18,7 +18,8 @@
 					<label id="firstNameLabel">First name</label><input class="fields" type="text" name="firstname"><br>
 					<label id="lastNameLabel">Last name</label><input  class="fields" type="text" name="lastname"><br>
 					<label id="usernameLabel">Username</label><input  class="fields" type="text" name="username"><br>
-					<label id="userPasswordLabel">Password</label><input  class="fields" type="password" name="password"><br>
+					<label id="userPasswordLabel">Password</label><input  class="fields" type="password" name="password" onblur="validatePassword();">
+					 <br>
 					<label id="dobLabel">Date of Birth</label><input  class="fields" type="date" name="dob"><br>
 					<label id="accountTypeLabel">Account Type</label><br>
 						<!-- <input type="radio" name="account" value="free">Free<br>
