@@ -9,7 +9,7 @@
 <title>The Online Betting Company</title>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="headerLoggedOut.jsp"%>
 	<div id="middle_container">
 		<div id="main_content">
 			<div id="welcome_section">
