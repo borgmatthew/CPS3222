@@ -1,19 +1,21 @@
 @CHARSET "UTF-8";
 
-
-
 #login_section{
-	display: inline;
 	font-size: 20px;
 	width: 30%;
 	float: left;
 }
 
 #welcome_section{
-	display: inline;
 	width: 70%;
-	float: left;
 	text-align: justify;
+	float: left;
+}
+
+#content_holder{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 }
 
 #username, #password{
@@ -25,6 +27,8 @@
 	padding: 5px;
 	border-width: 1px;
 	border-color: #E1E1E1;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #login_button{
@@ -36,6 +40,8 @@
 	border-radius: 5px;
 	border-width: 1px;
 	border-color: #000022;
+	margin-left: auto;
+	margin-right: auto;	
 }
 
 #username:focus, #password:focus{

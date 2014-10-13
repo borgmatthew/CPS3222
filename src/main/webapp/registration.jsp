@@ -20,9 +20,9 @@
 					<label id="usernameLabel">Username</label><input  class="fields" type="text" name="username"><br>
 					<label id="userPasswordLabel">Password</label><input  class="fields" type="password" name="password"><br>
 					<label id="dobLabel">Date of Birth</label><input  class="fields" type="date" name="dob"><br>
-					<label id="accountTypeLabel">Account Type</label>
-						<input type="radio" name="account" value="free">Free<br>
-						<input type="radio" name="account" value="premium">Premium<br>
+					<label id="accountTypeLabel">Account Type</label><br>
+						<!-- <input type="radio" name="account" value="free">Free<br>
+						<input type="radio" name="account" value="premium">Premium<br> -->
 					<label id="creditLabel">Credit card number</label><input  class="fields" type="text" value="card"><br>
 					<label id="creditExpiryLabel">Credit card Expiry date</label><input class="fields" type="date" value="cardexp"><br>
 					<label id="cvvLabelCVV">CVV</label><input  class="fields" type="text" value="cvv"><br>
