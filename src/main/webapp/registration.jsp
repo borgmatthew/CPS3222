@@ -17,7 +17,7 @@
 	<div id="middle_container">
 		<div id="main_content">
 			<div id="reg_form">
-				<form name="registrationform" onsubmit="return validateForm()">
+				<form id="registrationForm" name="registrationform">
 					<div class="prompt">
 						<label id="firstNameLabel">First name</label> 
 						<input id="firstName" class="fields" type="text" name="firstname" /> 
@@ -58,7 +58,7 @@
 						<label id="cvvLabelCVV">CVV</label>
 						<input class="fields" type="text" placeholder="cvv" />
 					</div>
-					<input type="submit" value="Submit">
+					<input id="submitButton" type="submit" value="Register">
 				</form>
 			</div>
 		</div>

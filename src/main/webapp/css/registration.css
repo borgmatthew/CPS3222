@@ -51,3 +51,18 @@ label{
 	padding-right: 10px;
 	width: 200px;
 }
+
+#submitButton{
+	display: block;
+	position: relative;
+	color: #FFFFFF;
+	background-color: #222233;
+	width: 75px;
+	height: 25px;
+	margin-top: 6px;
+	border-radius: 5px;
+	border-width: 1px;
+	border-color: #000022;
+	margin-left: auto;
+	margin-right: auto;	
+}
