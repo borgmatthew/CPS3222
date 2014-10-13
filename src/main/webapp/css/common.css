@@ -5,3 +5,33 @@ body {
 	margin: 0px;
 	padding: 0px;
 }
+#middle_container{
+	position: relative;
+	background-color: #f9f9f9;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
+	margin-bottom: 30px;
+	padding: 20px;
+	width: 60%;
+	height: auto;
+	border-left-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-width: 2px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-color: #000033;
+	box-shadow: 0px 0px 10px #222233;
+	overflow: hidden;
+}
+
+#main_content{
+	display: block;
+	width: auto;
+	height: auto;
+	margin: 20px;
+	text-align: center;
+}
