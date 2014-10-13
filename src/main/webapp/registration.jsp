@@ -21,25 +21,25 @@
 					<div class="prompt">
 						<label id="firstNameLabel">First name</label> 
 						<input id="firstName" class="fields" type="text" name="firstname" /> 
-						<span id="name_error" class="errors"></span>
+						<span id="name_error" class="status"></span>
 					</div>
 					<div class="prompt">
 						<label id="lastNameLabel">Last name</label>
 						<input id="lastName" class="fields" type="text" name="lastname" />
-						<span id="surname_error" class="errors"></span>
+						<span id="surname_error" class="status"></span>
 					</div>
 					<div class="prompt">
-						<label id="usernameLabel">Username</label><input class="fields"
-							type="text" name="username">
+						<label id="usernameLabel">Username</label>
+						<input class="fields" type="text" name="username">
 					</div>
 					<div class="prompt">
-						<label id="userPasswordLabel">Password</label><input
-							class="fields" id="password" type="password" name="password"><span
-							id="password_error" class="errors"></span>
+						<label id="userPasswordLabel">Password</label>
+						<input class="fields" id="password" type="password" name="password" />
+						<span id="password_error" class="status"></span>
 					</div>
 					<div class="prompt">
-						<label id="dobLabel">Date of Birth</label><input class="fields"
-							type="date" name="dob">
+						<label id="dobLabel">Date of Birth</label>
+						<input class="fields" type="date" name="dob" />
 					</div>
 					<div class="prompt">
 						<label id="accountTypeLabel">Account Type</label> <input
@@ -47,16 +47,16 @@
 							type="radio" name="account" value="premium">Premium
 					</div>
 					<div class="prompt">
-						<label id="creditLabel">Credit card number</label><input
-							class="fields" type="text" value="card">
+						<label id="creditLabel">Credit card number</label>
+						<input class="fields" type="text" placeholder="card number" />
 					</div>
 					<div class="prompt">
-						<label id="creditExpiryLabel">Credit card Expiry date</label><input
-							class="fields" type="date" value="cardexp">
+						<label id="creditExpiryLabel">Expiry date</label>
+						<input class="fields" type="date" placeholder="card expiry date" />
 					</div>
 					<div class="prompt">
-						<label id="cvvLabelCVV">CVV</label><input class="fields"
-							type="text" value="cvv">
+						<label id="cvvLabelCVV">CVV</label>
+						<input class="fields" type="text" placeholder="cvv" />
 					</div>
 					<input type="submit" value="Submit">
 				</form>

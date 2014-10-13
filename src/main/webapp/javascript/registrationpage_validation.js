@@ -42,8 +42,12 @@ $(document).ready(function(){
 function validatePassword(password){
 	if(password.length < 8){
 		$('#password_error').html(PASSWORD_ERROR_STRING);
+		$('#password').removeClass("good");
+		$('#password').addClass("error");
 	}else{
 		$('#password_error').html(PASSWORD_APPROVED_STRING);
+		$('#password').removeClass("error");
+		$('#password').addClass("good");
 	}
 }
 
@@ -51,17 +55,25 @@ function validateName(name){
 	var regex = /[^A-Za-z\s]/g
 	if(name == "" || name.match(regex)){
 		$('#name_error').html(NAME_ERROR_STRING);
+		$('#firstName').removeClass("good");
+		$('#firstName').addClass("error");
 	}else{
 		$('#name_error').html(NAME_APPROVED_STRING);
+		$('#firstName').removeClass("error");
+		$('#firstName').addClass("good");
 	}
 }
 
 function validateSurname(surname){
-	var regex = /[^A-Za-z\s]/g
+	var regex = /[^A-Za-z\s]/g;
 	if(surname == "" || surname.match(regex)){
 		$('#surname_error').html(SURNAME_ERROR_STRING);
+		$('#lastName').removeClass("good");
+		$('#lastName').addClass("error");
 	}else{
 		$('#surname_error').html(SURNAME_APPROVED_STRING);
+		$('#lastName').removeClass("error");
+		$('#lastName').addClass("good");
 	}
 }
 
