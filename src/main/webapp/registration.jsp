@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/registration.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="javascript/registrationpage_validation.js"></script>
+<script src="javascript/registrationPage.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
