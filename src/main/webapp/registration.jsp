@@ -39,12 +39,14 @@
 					</div>
 					<div class="prompt">
 						<label id="dobLabel">Date of Birth</label>
-						<input class="fields" type="date" name="dob" />
+						<input  class="fields" id='dob' type="date" name="dob" />
+						<span id="dob_error" class="status"></span>
 					</div>
 					<div class="prompt">
 						<label id="accountTypeLabel">Account Type</label> <input
-							type="radio" name="account" value="free">Free <input
-							type="radio" name="account" value="premium">Premium
+							type="radio"  id="account" checked="true" name="account" value="free">Free <input
+							type="radio" id="account1" name="account" value="premium">Premium
+							<span id="account_error" class="status"></span>
 					</div>
 					<div class="prompt">
 						<label id="creditLabel">Credit card number</label>

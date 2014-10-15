@@ -4,6 +4,8 @@ var NAME_ERROR_STRING = "Invalid characters";
 var NAME_APPROVED_STRING = "";
 var SURNAME_ERROR_STRING = "Invalid characters";
 var SURNAME_APPROVED_STRING = "";
+var DOB_ERROR_STRING=	"Under age";
+var DOB_APPROVED_STRING="";
 
 /*
 function validateForm() {
@@ -25,6 +27,16 @@ function validateForm() {
     
 }*/
 $(document).ready(function(){
+	
+	$('#account').blur(function(){
+		validateAccount($('#account').val());
+	});
+	$('#account1').blur(function(){
+		validateAccount($('#account1').val());
+	});
+	$('#dob').blur(function(){
+		validateDob($('#dob').val());
+	});
 	$('#password').blur(function(){
 		validatePassword($('#password').val());
 	});
@@ -41,11 +53,37 @@ $(document).ready(function(){
 		var validName = validateName($('#firstName').val());
 		var validSurname = validateSurname($('#lastName').val());
 		var validPassword = validatePassword($('#password').val());
-		var result = validName && validSurname && validPassword;
+		var validDob= validateDob($('#dob').val());
+		var result = validName && validSurname && validPassword && validDob;
 		event.preventDefault();
 	})
 });
 
+function validateAccount(account){
+	var result=false;
+	$('#account_error').html(account);
+	
+}
+function validateDob(dob){
+	var result = false;
+	var current_date=new Date();
+	var db= new Date(dob);
+	var test_age=current_date.getFullYear() - db.getFullYear();
+	//$('#dob_error').html(test_age);
+	if(test_age<18){
+		$('#dob_error').html(DOB_ERROR_STRING);
+		$('#dob').removeClass("good");
+		$('#dob').addClass("error");
+	}
+	else{
+		$('#dob_error').html(DOB_APPROVED_STRING);
+		$('#dob').removeClass("error");
+		$('#dob').addClass("good");
+		result= true;
+	}
+	
+	return result;
+}
 
 function validatePassword(password){
 	var result = false;
