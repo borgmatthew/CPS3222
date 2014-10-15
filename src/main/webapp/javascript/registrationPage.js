@@ -28,12 +28,7 @@ function validateForm() {
 }*/
 $(document).ready(function(){
 	
-	$('#account').blur(function(){
-		validateAccount($('#account').val());
-	});
-	$('#account1').blur(function(){
-		validateAccount($('#account1').val());
-	});
+	
 	$('#dob').blur(function(){
 		validateDob($('#dob').val());
 	});
@@ -59,11 +54,19 @@ $(document).ready(function(){
 	})
 });
 
-function validateAccount(account){
-	var result=false;
-	$('#account_error').html(account);
+function isAmericanExpress(cardno){
 	
 }
+function isMasterCard(cardno){
+	
+}
+function isVisa(cardno){
+	
+}
+function Luhn(cardno){
+	
+}
+
 function validateDob(dob){
 	var result = false;
 	var current_date=new Date();
