@@ -8,6 +8,8 @@ var DOB_ERROR_STRING=	"Under age";
 var DOB_APPROVED_STRING="";
 var CC_ERROR_STRING=	"Invalid card";
 var CC_APPROVED_STRING="";
+var EXP_ERROR_STRING=	"Invalid Expirary date";
+var EXP_APPROVED_STRING="";
 
 /*
 function validateForm() {
@@ -29,6 +31,10 @@ function validateForm() {
     
 }*/
 $(document).ready(function(){
+	$('#Exp').blur(function(){
+		ValidExp($('#Exp').val());
+	});
+	
 	$('#creditcard').blur(function(){
 		isValidCard($('#creditcard').val());
 	});
@@ -58,6 +64,22 @@ $(document).ready(function(){
 		event.preventDefault();
 	})
 });
+
+function ValidExp(exp){
+	var current_date=new Date();
+	var db= new Date(exp);
+	if(db>current_date){
+		$('#exp_error').html(EXP_APPROVED_STRING);
+		$('#Exp').removeClass("error");
+		$('#Exp').addClass("good");
+		result= true;
+	}
+	else{
+		$('#exp_error').html(EXP_ERROR_STRING);
+		$('#Exp').removeClass("good");
+		$('#Exp').addClass("error");
+	}
+}
 
 function isValidCard(cardno){
 	var result=false;
