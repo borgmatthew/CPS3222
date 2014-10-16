@@ -6,6 +6,8 @@ var SURNAME_ERROR_STRING = "Invalid characters";
 var SURNAME_APPROVED_STRING = "";
 var DOB_ERROR_STRING=	"Under age";
 var DOB_APPROVED_STRING="";
+var CC_ERROR_STRING=	"Invalid card";
+var CC_APPROVED_STRING="";
 
 /*
 function validateForm() {
@@ -28,7 +30,7 @@ function validateForm() {
 }*/
 $(document).ready(function(){
 	$('#creditcard').blur(function(){
-		Luhn($('#creditcard').val());
+		isValidCard($('#creditcard').val());
 	});
 	
 	
@@ -57,11 +59,47 @@ $(document).ready(function(){
 	})
 });
 
-function isAmericanExpress(cardno){
+function isValidCard(cardno){
+	var result=false;
+	if(isMasterCard(cardno)){
+			
+		$('#creditcard_error').html(CC_APPROVED_STRING);
+		$('#creditcard').removeClass("error");
+		$('#creditcard').addClass("good");
+		result= true;
+	}
+	else{
+		$('#creditcard_error').html(CC_ERROR_STRING);
+		$('#creditcard').removeClass("good");
+		$('#creditcard').addClass("error");
+	}
+	return result;
 	
 }
-function isMasterCard(cardno){
+
+
+function isAmericanExpress(cardno){
+	if((cardno[0]=="3" && cardno[1]=="4")|| (cardno[0]=="3"&&cardno[1]=="7")){
+		if(cardno.length==15){
+			return Luhn(cardno);
+		}
+	}
+	else{
+		return false;
+	}
 	
+	
+	//$('#test').html(test);
+}
+function isMasterCard(cardno){
+	if((cardno[0]=="5" && cardno[1]=="1") || (cardno[0]=="5"&&cardno[1]=="2") || (cardno[0]=="5"&&cardno[1]=="3") || (cardno[0]=="5"&&cardno[1]=="4") || (cardno[0]=="5"&&cardno[1]=="5")){
+		if(cardno.length==16){
+			return Luhn(cardno);
+		}
+	}
+	else{
+		return false;
+	}
 }
 function isVisa(cardno){
 	

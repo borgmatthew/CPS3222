@@ -51,7 +51,7 @@
 					<div class="prompt">
 						<label id="creditLabel">Credit card number</label>
 						<input class="fields" id="creditcard" type="text" placeholder="card number" />
-						<span id="test" class="status"></span>
+						<span id="creditcard_error" class="status"></span>
 						
 					</div>
 					<div class="prompt">
