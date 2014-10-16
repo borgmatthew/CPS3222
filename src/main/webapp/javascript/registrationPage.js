@@ -106,8 +106,15 @@ function Luhn(cardno){
 	}
 	var result=s1+s2;
 	var out=result.toString();
+	//var d;
+	if(out[1]=="0"){
+		return true;
+	}
+	else{
+		return false;
+	}
 	
-	$('#test').html(out);
+	//$('#test').html(d);
 	//$('#test1').html(test1);
 }
 
