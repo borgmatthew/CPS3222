@@ -44,7 +44,7 @@
 					</div>
 					<div class="prompt">
 						<label id="accountTypeLabel">Account Type</label> <input
-							type="radio"  id="account" checked="true" name="account" value="free">Free <input
+							type="radio"  id="account" checked="checked" name="account" value="free">Free <input
 							type="radio" id="account1" name="account" value="premium">Premium
 							<span id="account_error" class="status"></span>
 					</div>

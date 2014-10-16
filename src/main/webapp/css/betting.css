@@ -1,15 +1,42 @@
 @CHARSET "ISO-8859-1";
 
-#reg_form{
+#betting_form_placeholder{
+	margin-left: auto;
+	margin-right: auto;
+	width: 600px;
 	text-align: left;
 }
+
 .fields{
-	margin-top: 6px;
+	display: inline-block;
 	width: 150px;
-	height: 25px;
-	font-size: 15px;
+	height: 20px;
 	border-radius: 5px;
 	padding: 5px;
 	border-width: 1px;
 	border-color: #E1E1E1;
+}
+
+#submitButton{
+	display: block;
+	position: relative;
+	color: #FFFFFF;
+	background-color: #222233;
+	width: 75px;
+	height: 25px;
+	margin-top: 6px;
+	border-radius: 5px;
+	border-width: 1px;
+	border-color: #000022;
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+label{
+	width: 200px;
+	display: inline-block;
+}
+
+h1{
+	font-size: 20px;
 }
