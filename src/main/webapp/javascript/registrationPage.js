@@ -61,7 +61,7 @@ $(document).ready(function(){
 
 function isValidCard(cardno){
 	var result=false;
-	if(isMasterCard(cardno)){
+	if(isMasterCard(cardno)||isVisa(cardno)){
 			
 		$('#creditcard_error').html(CC_APPROVED_STRING);
 		$('#creditcard').removeClass("error");
@@ -102,7 +102,14 @@ function isMasterCard(cardno){
 	}
 }
 function isVisa(cardno){
-	
+	if(cardno[0]=="4"){
+		if((cardno.length==16)||(cardno.length=13)){
+			return Luhn(cardno);
+		}
+	}
+	else{
+		return false;
+	}
 }
 function Luhn(cardno){
 	var odds=[];
