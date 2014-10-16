@@ -50,11 +50,14 @@
 					</div>
 					<div class="prompt">
 						<label id="creditLabel">Credit card number</label>
-						<input class="fields" type="text" placeholder="card number" />
+						<input class="fields" id="creditcard" type="text" placeholder="card number" />
+						<span id="test" class="status"></span>
+						
 					</div>
 					<div class="prompt">
 						<label id="creditExpiryLabel">Expiry date</label>
 						<input class="fields" type="date" placeholder="card expiry date" />
+						<span id="test1" class="status"></span>
 					</div>
 					<div class="prompt">
 						<label id="cvvLabelCVV">CVV</label>

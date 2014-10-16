@@ -27,6 +27,9 @@ function validateForm() {
     
 }*/
 $(document).ready(function(){
+	$('#creditcard').blur(function(){
+		Luhn($('#creditcard').val());
+	});
 	
 	
 	$('#dob').blur(function(){
@@ -64,7 +67,48 @@ function isVisa(cardno){
 	
 }
 function Luhn(cardno){
+	var odds=[];
+	var test="";
+	var test1="";
+	var evens=[];
+	var inverted;
+	for(k=(cardno.length);k>-1;k--){
+		inverted+=cardno[k];
+	}
+	for( i=3;i<inverted.length;i++){
+    	if(i%2==0){
+    		 evens[evens.length]=parseInt(inverted[i],10);
+    		 test+=evens[evens.length-1].toString();
+    	}else{
+    		odds[odds.length]=parseInt(inverted[i],10);
+    		test1+=odds[odds.length-1].toString();
+    		}
+    	}
+	var s1=0;
+	for(j=0;j<odds.length;j++){
+		s1=s1+odds[j];
+	}
 	
+	var s2=0;
+	
+	for(q=0;q<evens.length;q++){
+		
+		var temp=evens[q]*2;
+		if(temp<10){
+			s2=s2+temp;
+		}else{
+			var stringtemp=temp.toString();
+			var n1=parseInt(stringtemp[0]);
+			var n2=parseInt(stringtemp[1]);
+			var tempsum=n1+n2;
+			s2=s2+tempsum;
+		}
+	}
+	var result=s1+s2;
+	var out=result.toString();
+	
+	$('#test').html(out);
+	//$('#test1').html(test1);
 }
 
 function validateDob(dob){
