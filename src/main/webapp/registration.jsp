@@ -56,8 +56,8 @@
 					</div>
 					<div class="prompt">
 						<label id="creditExpiryLabel">Expiry date</label>
-						<input class="fields" id="Exp" type="date" placeholder="card expiry date" />
-						<span id="exp_error" class="status"></span>
+						<input class="fields" id="expiry_date" type="date" placeholder="card expiry date" />
+						<span id="expiry_error" class="status"></span>
 					</div>
 					<div class="prompt">
 						<label id="cvvLabelCVV">CVV</label>

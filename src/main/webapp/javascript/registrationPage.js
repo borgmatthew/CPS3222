@@ -11,28 +11,9 @@ var CC_APPROVED_STRING="";
 var EXP_ERROR_STRING=	"Invalid Expirary date";
 var EXP_APPROVED_STRING="";
 
-/*
-function validateForm() {
-	//Validating First name
-    var x = document.forms["registrationform"]["firstname"].value;
-    if (x==null || x=="") {
-        alert("First name must be filled out");
-        return false;
-    }
-    //int i=0;
-    for( i=0;i<x.length;i++){funct
-    	if(!isNaN(x[i])){
-    		 alert("First name must be letters");
-    	        return false;
-    	}
-    }
-    //Validating password
-    
-    
-}*/
 $(document).ready(function(){
-	$('#Exp').blur(function(){
-		ValidExp($('#Exp').val());
+	$('#expiry_date').blur(function(){
+		validExp($('#expiry_date').val());
 	});
 	
 	$('#creditcard').blur(function(){
@@ -43,6 +24,7 @@ $(document).ready(function(){
 	$('#dob').blur(function(){
 		validateDob($('#dob').val());
 	});
+	
 	$('#password').blur(function(){
 		validatePassword($('#password').val());
 	});
@@ -65,26 +47,25 @@ $(document).ready(function(){
 	})
 });
 
-function ValidExp(exp){
+function validExp(exp){
 	var current_date=new Date();
 	var db= new Date(exp);
 	if(db>current_date){
-		$('#exp_error').html(EXP_APPROVED_STRING);
-		$('#Exp').removeClass("error");
-		$('#Exp').addClass("good");
+		$('#expiry_error').html(EXP_APPROVED_STRING);
+		$('#expiry_date').removeClass("error");
+		$('#expiry_date').addClass("good");
 		result= true;
 	}
 	else{
-		$('#exp_error').html(EXP_ERROR_STRING);
-		$('#Exp').removeClass("good");
-		$('#Exp').addClass("error");
+		$('#expiry_error').html(EXP_ERROR_STRING);
+		$('#expiry_date').removeClass("good");
+		$('#expiry_date').addClass("error");
 	}
 }
 
 function isValidCard(cardno){
 	var result=false;
-	if(isMasterCard(cardno)||isVisa(cardno)){
-			
+	if(isAmericanExpress() || isMasterCard(cardno) || isVisa(cardno)){
 		$('#creditcard_error').html(CC_APPROVED_STRING);
 		$('#creditcard').removeClass("error");
 		$('#creditcard').addClass("good");
@@ -133,6 +114,7 @@ function isVisa(cardno){
 		return false;
 	}
 }
+
 function Luhn(cardno){
 	var odds=[];
 	var test="";
