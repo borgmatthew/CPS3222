@@ -16,15 +16,15 @@ var CVV_APPROVED_STRING="";
 
 $(document).ready(function(){
 	$('#cvv').blur(function(){
-		validCvv($('#cvv').val());
+		validateCvv($('#cvv').val());
 	});
 	
 	$('#expiry_date').blur(function(){
-		validExp($('#expiry_date').val());
+		validateExp($('#expiry_date').val());
 	});
 	
 	$('#creditcard').blur(function(){
-		isValidCard($('#creditcard').val());
+		ValidateCard($('#creditcard').val());
 	});
 	
 	
@@ -49,9 +49,10 @@ $(document).ready(function(){
 		var validSurname = validateSurname($('#lastName').val());
 		var validPassword = validatePassword($('#password').val());
 		var validDob= validateDob($('#dob').val());
-		var validCvv= validCvv($('#cvv').val());
-		var validexp=validExp($('#expiry_date').val());
-		var result = validName && validSurname && validPassword && validDob && validCvv && validexp;
+		var validCvv= validateCvv($('#cvv').val());
+		var validexp=validateExp($('#expiry_date').val());
+		//var validCard= ValidateCard($('#creditcard').val());
+		var result = validName && validSurname && validPassword && validDob && validCvv && validexp;// && validCard;
 		event.preventDefault();
 		 /*var $form = $( this ),
 		    term = $form.find( "input[name='firstName']" ).val();
@@ -61,7 +62,7 @@ $(document).ready(function(){
 });
 
 
-function validCvv(cvv){
+function validateCvv(cvv){
 	var result= false;
 	if(cvv.length<3){
 		$('#cvv_error').html(CVV_ERROR_STRING);
@@ -76,7 +77,7 @@ function validCvv(cvv){
 	}
 	return result;
 }
-function validExp(exp){
+function validateExp(exp){
 	var current_date=new Date();
 	var db= new Date(exp);
 	if(db>current_date){
@@ -92,7 +93,7 @@ function validExp(exp){
 	}
 }
 
-function isValidCard(cardno){
+function ValidateCard(cardno){
 	var result=false;
 	if(isAmericanExpress() || isMasterCard(cardno) || isVisa(cardno)){
 		$('#creditcard_error').html(CC_APPROVED_STRING);
