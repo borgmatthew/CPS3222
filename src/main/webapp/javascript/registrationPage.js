@@ -5,13 +5,20 @@ var NAME_APPROVED_STRING = "";
 var SURNAME_ERROR_STRING = "Invalid characters";
 var SURNAME_APPROVED_STRING = "";
 var DOB_ERROR_STRING=	"Under age";
+var DOB_EMPTY_STRING="Please enter date of birth";
 var DOB_APPROVED_STRING="";
 var CC_ERROR_STRING=	"Invalid card";
 var CC_APPROVED_STRING="";
 var EXP_ERROR_STRING=	"Invalid Expirary date";
 var EXP_APPROVED_STRING="";
+var CVV_ERROR_STRING=	"Invalid CVV number";
+var CVV_APPROVED_STRING="";
 
 $(document).ready(function(){
+	$('#cvv').blur(function(){
+		validCvv($('#cvv').val());
+	});
+	
 	$('#expiry_date').blur(function(){
 		validExp($('#expiry_date').val());
 	});
@@ -42,11 +49,33 @@ $(document).ready(function(){
 		var validSurname = validateSurname($('#lastName').val());
 		var validPassword = validatePassword($('#password').val());
 		var validDob= validateDob($('#dob').val());
-		var result = validName && validSurname && validPassword && validDob;
+		var validCvv= validCvv($('#cvv').val());
+		var validexp=validExp($('#expiry_date').val());
+		var result = validName && validSurname && validPassword && validDob && validCvv && validexp;
 		event.preventDefault();
+		 /*var $form = $( this ),
+		    term = $form.find( "input[name='firstName']" ).val();
+		 var posting = $.post( "betting.jsp", { s: term } );*/
+		
 	})
 });
 
+
+function validCvv(cvv){
+	var result= false;
+	if(cvv.length<3){
+		$('#cvv_error').html(CVV_ERROR_STRING);
+		$('#cvv').removeClass("good");
+		$('#cvv').addClass("error");
+	}
+	else{
+		$('#cvv_error').html(CVV_APPROVED_STRING);
+		$('#cvv').removeClass("error");
+		$('#cvv').addClass("good");
+		result= true;
+	}
+	return result;
+}
 function validExp(exp){
 	var current_date=new Date();
 	var db= new Date(exp);
@@ -171,6 +200,13 @@ function validateDob(dob){
 	var result = false;
 	var current_date=new Date();
 	var db= new Date(dob);
+	if(db=="Invalid Date"){
+		$('#dob_error').html(DOB_EMPTY_STRING);
+		$('#dob').removeClass("good");
+		$('#dob').addClass("error");
+		return false;
+	}
+	
 	var test_age=current_date.getFullYear() - db.getFullYear();
 	//$('#dob_error').html(test_age);
 	if(test_age<18){

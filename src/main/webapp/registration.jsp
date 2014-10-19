@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/registration.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="javascript/registrationPage.js"></script>
 <title>OBD - The Online Betting Company</title>
 </head>
@@ -61,9 +62,10 @@
 					</div>
 					<div class="prompt">
 						<label id="cvvLabelCVV">CVV</label>
-						<input class="fields" type="text" placeholder="cvv" />
+						<input class="fields" id="cvv" type="text" placeholder="cvv" />
+						<span id="cvv_error" class="status"></span>
 					</div>
-					<input id="submitButton" type="submit" value="Register">
+					<input id="submitButton" type="submit"  value="Register">
 				</form>
 			</div>
 		</div>
