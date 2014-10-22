@@ -95,7 +95,7 @@ function validateExp(exp){
 
 function ValidateCard(cardno){
 	var result=false;
-	if(isAmericanExpress() || isMasterCard(cardno) || isVisa(cardno)){
+	if(isAmericanExpress(cardno) || isMasterCard(cardno) || isVisa(cardno)){
 		$('#creditcard_error').html(CC_APPROVED_STRING);
 		$('#creditcard').removeClass("error");
 		$('#creditcard').addClass("good");
@@ -150,17 +150,17 @@ function Luhn(cardno){
 	var test="";
 	var test1="";
 	var evens=[];
-	var inverted;
-	for(k=(cardno.length);k>-1;k--){
+	var inverted="";
+	for(k=(cardno.length)-1;k>-1;k--){
 		inverted+=cardno[k];
 	}
-	for( i=3;i<inverted.length;i++){
+	for( i=0;i<inverted.length;i++){
     	if(i%2==0){
-    		 evens[evens.length]=parseInt(inverted[i],10);
-    		 test+=evens[evens.length-1].toString();
+    		 odds[odds.length]=parseInt(inverted[i],10);
+    		test+=odds[odds.length-1].toString();
     	}else{
-    		odds[odds.length]=parseInt(inverted[i],10);
-    		test1+=odds[odds.length-1].toString();
+    		evens[evens.length]=parseInt(inverted[i],10);
+    		test1+=evens[evens.length-1].toString();
     		}
     	}
 	var s1=0;
@@ -193,8 +193,8 @@ function Luhn(cardno){
 		return false;
 	}
 	
-	//$('#test').html(d);
-	//$('#test1').html(test1);
+/*	$('#cvv_error').html(test);
+	$('#expiry_error').html(test1);*/
 }
 
 function validateDob(dob){
