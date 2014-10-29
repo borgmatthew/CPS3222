@@ -51,9 +51,11 @@ $(document).ready(function(){
 		var validDob= validateDob($('#dob').val());
 		var validCvv= validateCvv($('#cvv').val());
 		var validexp=validateExp($('#expiry_date').val());
-		//var validCard= ValidateCard($('#creditcard').val());
-		var result = validName && validSurname && validPassword && validDob && validCvv && validexp;// && validCard;
-		event.preventDefault();
+		var validCard= ValidateCard($('#creditcard').val());
+		var result = validName && validSurname && validPassword && validDob && validCvv && validexp && validCard;
+		if(!result){
+			event.preventDefault();
+		}
 		 /*var $form = $( this ),
 		    term = $form.find( "input[name='firstName']" ).val();
 		 var posting = $.post( "betting.jsp", { s: term } );*/
@@ -77,9 +79,11 @@ function validateCvv(cvv){
 	}
 	return result;
 }
+
 function validateExp(exp){
 	var current_date=new Date();
 	var db= new Date(exp);
+	var result = false;
 	if(db>current_date){
 		$('#expiry_error').html(EXP_APPROVED_STRING);
 		$('#expiry_date').removeClass("error");
@@ -90,7 +94,9 @@ function validateExp(exp){
 		$('#expiry_error').html(EXP_ERROR_STRING);
 		$('#expiry_date').removeClass("good");
 		$('#expiry_date').addClass("error");
+		result = false;
 	}
+	return result;
 }
 
 function ValidateCard(cardno){
