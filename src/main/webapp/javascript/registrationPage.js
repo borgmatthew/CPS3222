@@ -54,9 +54,9 @@ $(document).ready(function(){
 		//var validCard= ValidateCard($('#creditcard').val());
 		var result = validName && validSurname && validPassword && validDob && validCvv && validexp;// && validCard;
 		event.preventDefault();
-		 /*var $form = $( this ),
+		 var $form = $( this ),
 		    term = $form.find( "input[name='firstName']" ).val();
-		 var posting = $.post( "betting.jsp", { s: term } );*/
+		 var posting = $.post( "betting.jsp", function(){ alert("posted");/*s: term;*/} );
 		
 	})
 });
