@@ -18,7 +18,7 @@
 	<div id="middle_container">
 		<div id="main_content">
 			<div id="reg_form">
-				<form id="registrationForm" name="registrationform" method="POST" action="successfulRegistration.jsp">
+				<form id="registrationForm" name="registrationform" method="POST" action="succesfulRegistration.jsp">
 					<div class="prompt">
 						<label id="firstNameLabel">First name</label> 
 						<input id="firstName" class="fields" type="text" name="firstname" /> 
