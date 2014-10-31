@@ -16,12 +16,18 @@ public class Filling {
 
 	@After
 	public void tearDown() throws Exception {
+		browser.quit();
 	}
 
 	@Test
 	public void test() {
 		browser .get("http://localhost:8080/Assignment/registration.jsp");
-		browser.findElement(By.id("firstName")).sendKeys("Alastair");;
+		browser.findElement(By.id("firstName")).sendKeys("Alastair");
+		browser.findElement(By.id("lastName")).sendKeys("Vella");
+		browser.findElement(By.id("userName")).sendKeys("ali.speed6@gmail.com");
+		browser.findElement(By.id("password")).sendKeys("Assignment");
+		browser.findElement(By.id("dob")).sendKeys("01/08/1991");
+		
 	}
 
 }

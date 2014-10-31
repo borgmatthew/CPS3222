@@ -31,7 +31,7 @@
 					</div>
 					<div class="prompt">
 						<label id="usernameLabel">Username</label>
-						<input class="fields" type="text" name="username">
+						<input id="userName" class="fields" type="text" name="username">
 					</div>
 					<div class="prompt">
 						<label id="userPasswordLabel">Password</label>
