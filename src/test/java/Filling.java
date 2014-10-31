@@ -12,8 +12,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Filling {
 	WebDriver browser;
+	
 	@Before
 	public void setUp() throws Exception {
+		
+
 		browser = new FirefoxDriver();
 	}
 
