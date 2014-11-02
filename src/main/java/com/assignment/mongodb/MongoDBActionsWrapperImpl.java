@@ -1,4 +1,4 @@
-package mongodb;
+package com.assignment.mongodb;
 
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;

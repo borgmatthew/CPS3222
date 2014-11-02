@@ -1,9 +1,12 @@
-package mongodb;
+package com.assignment.mongodb;
 
 import static org.junit.Assert.assertNull;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.assignment.mongodb.MongoDBConnectionWrapper;
+import com.assignment.mongodb.MongoDBConnectionWrapperImpl;
 
 public class MongoDBConnectionWrapperTest {
 

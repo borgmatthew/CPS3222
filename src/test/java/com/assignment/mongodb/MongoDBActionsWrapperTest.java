@@ -1,4 +1,4 @@
-package mongodb;
+package com.assignment.mongodb;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -12,6 +12,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.assignment.mongodb.MongoDBActionsWrapperImpl;
+import com.assignment.mongodb.MongoDBAtionsWrapper;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
