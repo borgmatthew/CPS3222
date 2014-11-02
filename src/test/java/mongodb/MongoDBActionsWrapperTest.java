@@ -17,6 +17,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
 import com.mongodb.WriteResult;
 
 public class MongoDBActionsWrapperTest {
@@ -48,7 +49,7 @@ public class MongoDBActionsWrapperTest {
 		// when
 		doReturn(db).when(client).getDB(anyString());
 		doReturn(collection).when(db).getCollection(anyString());
-		doReturn(writeResult).when(collection).insert(object);
+		doReturn(writeResult).when(collection).insert(WriteConcern.SAFE, object);
 		doReturn(1).when(writeResult).getN();
 		// then
 		assertTrue(database.insert("databaseName", "tableName", object));
@@ -61,7 +62,7 @@ public class MongoDBActionsWrapperTest {
 		// when
 		doReturn(db).when(client).getDB(anyString());
 		doReturn(collection).when(db).getCollection(anyString());
-		doThrow(new MongoException("test")).when(collection).insert(object);
+		doThrow(new MongoException("test")).when(collection).insert(WriteConcern.SAFE, object);
 		// then
 		assertFalse(database.insert("databaseName", "tableName", object));
 	}
@@ -73,7 +74,7 @@ public class MongoDBActionsWrapperTest {
 		// when
 		doReturn(db).when(client).getDB(anyString());
 		doReturn(collection).when(db).getCollection(anyString());
-		doReturn(writeResult).when(collection).insert(object);
+		doReturn(writeResult).when(collection).insert(WriteConcern.SAFE, object);
 		doReturn(0).when(writeResult).getN();
 		// then
 		assertFalse(database.insert("databaseName", "tableName", object));
