@@ -1,6 +1,6 @@
 package mongodb;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,5 +29,4 @@ public class MongoDBConnectionWrapperTest {
 		//then
 		assertNull(connectionWrapper.connect("", -27017));
 	}
-
 }
