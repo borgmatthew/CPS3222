@@ -15,7 +15,7 @@
 	<div id="middle_container">
 		<div id="main_content">
 		<div class="style">
-			<p><font size="6">Succesfully Registered. Please Log In</font></p>
+			<p><font size="6">Successfully Registered. Please Log In</font></p>
 		</div>
 		
 		
