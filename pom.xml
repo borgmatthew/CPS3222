@@ -12,6 +12,7 @@
 		<junit.version>4.11</junit.version>
 		<mockito.version>1.9.5</mockito.version>
 		<selenium.version>2.44.0</selenium.version>
+		<mongo.java.driver.version>2.12.4</mongo.java.driver.version>
 	</properties>
 
 	<dependencies>
@@ -30,6 +31,11 @@
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>${mongo.java.driver.version}</version>
 		</dependency>
 	</dependencies>
 
