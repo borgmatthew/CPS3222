@@ -18,7 +18,7 @@
 	<div id="middle_container">
 		<div id="main_content">
 			<div id="reg_form">
-				<form id="registrationForm" name="registrationform" method="POST" action="successfulRegistration.jsp">
+				<form id="registrationForm" name="registrationform" method="POST" action="successfullRegistration.jsp">
 					<div class="prompt">
 						<label id="firstNameLabel">First name</label> 
 						<input id="firstName" class="fields" type="text" name="firstname" /> 
@@ -31,7 +31,7 @@
 					</div>
 					<div class="prompt">
 						<label id="usernameLabel">Username</label>
-						<input class="fields" type="text" name="username">
+						<input id="userName" class="fields" type="text" name="username">
 					</div>
 					<div class="prompt">
 						<label id="userPasswordLabel">Password</label>
