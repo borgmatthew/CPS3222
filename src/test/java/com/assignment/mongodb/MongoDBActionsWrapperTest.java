@@ -13,7 +13,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.assignment.mongodb.MongoDBActionsWrapperImpl;
-import com.assignment.mongodb.MongoDBAtionsWrapper;
+import com.assignment.mongodb.MongoDBActionsWrapper;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
@@ -24,7 +24,7 @@ import com.mongodb.WriteResult;
 
 public class MongoDBActionsWrapperTest {
 
-	MongoDBAtionsWrapper database;
+	MongoDBActionsWrapper database;
 
 	@Mock
 	MongoClient client;
@@ -41,7 +41,7 @@ public class MongoDBActionsWrapperTest {
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		database = new MongoDBActionsWrapperImpl(client);
+		database = new MongoDBActionsWrapperImpl();
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class MongoDBActionsWrapperTest {
 		doReturn(writeResult).when(collection).insert(WriteConcern.SAFE, object);
 		doReturn(1).when(writeResult).getN();
 		// then
-		assertTrue(database.insert("databaseName", "tableName", object));
+		assertTrue(database.insert(client, "databaseName", "tableName", object));
 	}
 
 	@Test
@@ -66,7 +66,7 @@ public class MongoDBActionsWrapperTest {
 		doReturn(collection).when(db).getCollection(anyString());
 		doThrow(new MongoException("test")).when(collection).insert(WriteConcern.SAFE, object);
 		// then
-		assertFalse(database.insert("databaseName", "tableName", object));
+		assertFalse(database.insert(client, "databaseName", "tableName", object));
 	}
 
 	@Test
@@ -79,6 +79,6 @@ public class MongoDBActionsWrapperTest {
 		doReturn(writeResult).when(collection).insert(WriteConcern.SAFE, object);
 		doReturn(0).when(writeResult).getN();
 		// then
-		assertFalse(database.insert("databaseName", "tableName", object));
+		assertFalse(database.insert(client, "databaseName", "tableName", object));
 	}
 }
