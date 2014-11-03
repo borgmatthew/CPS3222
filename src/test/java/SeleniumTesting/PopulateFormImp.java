@@ -16,6 +16,9 @@ public class PopulateFormImp implements PopulateForm {
 	public void visit(){
 		browser .get("http://localhost:8080/Assignment/registration.jsp");
 	}
+	public void close(){
+		browser.quit();
+	}
 	public void populate(){
 		browser.findElement(By.id("firstName")).sendKeys("Alastair");
 		browser.findElement(By.id("lastName")).sendKeys("Vella");
@@ -28,9 +31,13 @@ public class PopulateFormImp implements PopulateForm {
 		browser.findElement(By.id("submitButton")).submit();
 	}
 	
-	public List<WebElement> find(String name){
+	public List<WebElement> findById(String name){
 		List<WebElement> paragraph=browser.findElements(By.id(name));
 		return paragraph;
+	}
+	public void populateName(String name){
+		browser.findElement(By.id("firstName")).sendKeys(name+="\t");
+
 	}
 
 }
