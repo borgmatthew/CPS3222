@@ -39,5 +39,52 @@ public class PopulateFormImp implements PopulateForm {
 		browser.findElement(By.id("firstName")).sendKeys(name+="\t");
 
 	}
+	public void populateEmptyName(){
+		browser.findElement(By.id("firstName")).sendKeys("\t");
 
+	}
+	public void populateEmptySName(){
+		browser.findElement(By.id("lastName")).sendKeys("\t");
+
+	}
+	public void populateSName(String sname){
+		browser.findElement(By.id("lastName")).sendKeys(sname+="\t");
+
+	}
+	
+	public void populatePassword(String pass){
+		browser.findElement(By.id("password")).sendKeys(pass+="\t");
+	}
+	
+	public void populateDOB(String dob){
+		browser.findElement(By.id("dob")).sendKeys(dob+="\t");
+
+	}
+	
+	public void populateEmptyDOB(){
+		browser.findElement(By.id("dob")).sendKeys("\t");
+	}
+	
+	public void populateCard(String card){
+		browser.findElement(By.id("creditcard")).sendKeys(card+="\t");
+
+	}
+	
+	public void populateEmptyCard(){
+		browser.findElement(By.id("creditcard")).sendKeys("\t");
+	}
+	
+	public void populateExpDate(String exp){
+		browser.findElement(By.id("expiry_date")).sendKeys(exp+="\t");
+
+	}
+	public void populateCvv(String cvv){
+		browser.findElement(By.id("cvv")).sendKeys(cvv+="\t");
+
+	}
+	public void populateEmptyCvv(){
+		browser.findElement(By.id("cvv")).sendKeys("\t");
+
+	}
+	
 }

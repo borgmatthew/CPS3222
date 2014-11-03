@@ -66,7 +66,8 @@ $(document).ready(function(){
 
 function validateCvv(cvv){
 	var result= false;
-	if(cvv.length<3){
+	var regx=/[^0-9\s]/g;
+	if(cvv.length<3||cvv.match(regx) || cvv.length>3){
 		$('#cvv_error').html(CVV_ERROR_STRING);
 		$('#cvv').removeClass("good");
 		$('#cvv').addClass("error");
