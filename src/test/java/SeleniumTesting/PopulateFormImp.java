@@ -31,10 +31,16 @@ public class PopulateFormImp implements PopulateForm {
 		browser.findElement(By.id("submitButton")).submit();
 	}
 	
+	
+	
 	public List<WebElement> findById(String name){
 		List<WebElement> paragraph=browser.findElements(By.id(name));
 		return paragraph;
 	}
+	public List<WebElement> findByClass(String classname){
+		return browser.findElements(By.className("status"));
+	}
+	
 	public void populateName(String name){
 		browser.findElement(By.id("firstName")).sendKeys(name+="\t");
 
@@ -85,6 +91,10 @@ public class PopulateFormImp implements PopulateForm {
 	public void populateEmptyCvv(){
 		browser.findElement(By.id("cvv")).sendKeys("\t");
 
+	}
+	
+	public void submitForm(){
+		browser.findElement(By.id("submitButton")).submit();
 	}
 	
 }
