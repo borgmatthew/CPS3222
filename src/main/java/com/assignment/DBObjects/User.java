@@ -1,7 +1,8 @@
-package com.assignment.userandBets;
+package com.assignment.DBObjects;
 
-public class User {
-	private int id;
+import com.mongodb.BasicDBObject;
+
+public class User extends BasicDBObject{
 	private String name;
 	private String sname;
 	private String username;
@@ -13,7 +14,6 @@ public class User {
 	private String cvv;
 	
 	public User(){
-		id=0;
 		name="";
 		sname="";
 		username="";
@@ -25,9 +25,7 @@ public class User {
 		cvv="";
 	}
 	
-	public User(int id,String name,String sname,String username,String pass,String dob,String  accounttyp,String card,String exp,String cvv){
-		
-		this.id=id;
+	public User(String name,String sname,String username,String pass,String dob,String  accounttyp,String card,String exp,String cvv){
 		this.name=name;
 		this.sname=sname;
 		this.username=username;
@@ -37,14 +35,6 @@ public class User {
 		this.creditcard=card;
 		this.expdate=exp;
 		this.cvv=cvv;
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getName() {

@@ -1,4 +1,4 @@
-package com.assignment.userandBets;
+package com.assignment.DBObjects;
 
 public class Bets {
 	
