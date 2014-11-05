@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/betting.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="javascript/bettingPage.js"></script>
 </head>
 <body>
 	<%@ include file="headerLoggedIn.jsp"%>
@@ -17,13 +20,14 @@
 				<form id="betting_form">
 					<div id="risk_level">
 						<label>Risk level</label> 
-						<input type="radio" name="betrisk" value="Low">low
+						<input type="radio" name="betrisk" checked="checked" value="Low">low
 						<input type="radio"	name="betrisk" value="Medium">medium
 						<input type="radio" name="betrisk" value="High">high
 					</div>
 					<div id="amount">
 						<label>Amount:</label>
-						<input class="fields" type="text" placeholder="amount">
+						<input id="ammount" class="fields" type="text" placeholder="amount">
+						<span id="ammount_error" class="status"></span>
 					</div>
 					<div id="submit_button_wrapper">
 						<input id="submitButton" type="submit" value="Submit">

@@ -10,6 +10,16 @@
 </head>
 <body>
 		<%@ include file="headerLoggedOut.jsp"%>
+		<%@ page import="com.assignment.validations.RegistrationValidation" %>
+		
+		<%-- Java code to validate form --%>
+		<%		
+		RegistrationValidation validation=new RegistrationValidation();
+		String name=request.getParameter("firstName");
+		System.out.println(name);
+		%>
+		
+		
 	<div id="middle_container">
 		<div id="main_content">
 		<div class="style">
