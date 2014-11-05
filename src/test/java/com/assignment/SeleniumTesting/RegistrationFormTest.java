@@ -1,3 +1,4 @@
+package com.assignment.SeleniumTesting;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -10,10 +11,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import SeleniumTesting.PopulateForm;
-import SeleniumTesting.PopulateFormImp;
+import com.assignment.SeleniumTesting.PopulateForm;
+import com.assignment.SeleniumTesting.PopulateFormImp;
 
-public class Filling {
+public class RegistrationFormTest {
 	WebDriver browser;
 	PopulateForm form;
 	@Before

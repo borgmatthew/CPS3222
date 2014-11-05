@@ -1,4 +1,4 @@
-package SeleniumTesting;
+package com.assignment.SeleniumTesting;
 
 import java.util.List;
 
