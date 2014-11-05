@@ -75,7 +75,7 @@ public class MongoDBWrapperTest {
 	}
 
 	@Test
-	public void testInsertConnectionIsTerminated() {
+	public void testInsertVerifyConnectionIsTerminated() {
 		// given
 		MongoClient mockClient = mock(MongoClient.class);
 		MongoDBConnectionWrapper testspy = spy(new MongoDBConnectionWrapperImpl());
@@ -103,5 +103,21 @@ public class MongoDBWrapperTest {
 		doReturn(mockCursor).when(actionsWrapper).find(any(MongoClient.class), anyString(),	anyString(), any(DBObject.class));
 		// then
 		assertNotNull(mongoDBwrapper.find("", "", object));
+	}
+	
+	@Test
+	public void testFindVerifyConnectionIsTerminated() {
+		// given
+		MongoClient mockClient = mock(MongoClient.class);
+		MongoDBConnectionWrapper testspy = spy(new MongoDBConnectionWrapperImpl());
+		DBCursor mockCursor = mock(DBCursor.class);
+		mongoDBwrapper.setConnectionWrapper(testspy);
+		// when
+		doReturn(mockClient).when(testspy).connect(anyString(),
+				anyInt());
+		doReturn(mockCursor).when(actionsWrapper).find(any(MongoClient.class), anyString(),	anyString(), any(DBObject.class));
+		mongoDBwrapper.find("", "", object);
+		// then
+		verify(testspy).disconnect(mockClient);
 	}
 }
