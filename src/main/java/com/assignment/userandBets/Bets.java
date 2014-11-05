@@ -1,13 +1,13 @@
 package com.assignment.userandBets;
 
-public class Betts {
+public class Bets {
 	
 	private int betId;
 	private String risk;
 	private String ammount;
+	private int userId;
 	
-	public Betts(int betId, String risk, String ammount) {
-		super();
+	public Bets(int betId, int userId, String risk, String ammount) {
 		this.betId = betId;
 		this.risk = risk;
 		this.ammount = ammount;
@@ -37,6 +37,12 @@ public class Betts {
 		this.ammount = ammount;
 	}
 	
+	public void setUserId(int userId){
+		this.userId = userId;
+	}
 	
+	public int getUserId(){
+		return userId;
+	}
 
 }
