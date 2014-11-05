@@ -10,20 +10,58 @@
 </head>
 <body>
 		<%@ include file="headerLoggedOut.jsp"%>
-		<%@ page import="com.assignment.validations.RegistrationValidation" %>
+		<%@ page import="com.assignment.validations.RegistrationValidationImp" %>
+		<%@ page import="com.assignment.DBObjects.User" %>
+		<%@ page import="javax.script.*;" %>
 		
 		<%-- Java code to validate form --%>
-		<%		
-		RegistrationValidation validation=new RegistrationValidation();
-		String name=request.getParameter("firstName");
-		System.out.println(name);
+		<%
+			RegistrationValidationImp validation=new RegistrationValidationImp();
+				
+				String name=request.getParameter("firstname");
+				String sname=request.getParameter("lastname");
+				String username=request.getParameter("username");
+				String password=request.getParameter("password");
+				String dob=request.getParameter("dob");
+				String account=request.getParameter("account");
+				String card=request.getParameter("card");
+				String expdate=request.getParameter("expirydate");
+				String cvv=request.getParameter("cvv");
+				
+				System.out.println(validation.validateName("6"));
+				
+				String message="";
+				if(validation.validateName(name)==false){
+					/*ScriptEngineManager factory = new ScriptEngineManager();
+			        // create a JavaScript engine
+			        ScriptEngine engine = factory.getEngineByName("JavaScript");
+			        // evaluate JavaScript code from String
+			        engine.eval("('#Error').html(\"Something went wrong\");");*/
+			        message ="Something went wrong";
+					//out.println( );
+				}
+				else{
+					message="Succesful registration";
+				}
+				//User user=new User(name,sname,username,password,dob,account,card,expdate,cvv);
+				
+				/*System.out.println(name);
+				System.out.println(sname);
+				System.out.println(username);
+				System.out.println(password);
+				System.out.println(dob);
+				System.out.println(account);
+				System.out.println(card);
+				System.out.println(expdate);
+				System.out.println(cvv);*/
 		%>
 		
 		
 	<div id="middle_container">
 		<div id="main_content">
 		<div class="style">
-			<p id="parag"><font size="6">Successfully Registered. Please Log In</font></p>
+			<p id="parag"><font size="6"><% out.println(message); %></font></p>
+			
 		</div>
 		</div>
 	</div>

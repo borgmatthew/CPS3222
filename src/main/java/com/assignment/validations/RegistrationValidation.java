@@ -1,5 +1,5 @@
 package com.assignment.validations;
 
-public class RegistrationValidation {
-
+public interface RegistrationValidation {
+	public boolean validateName(String name);
 }
