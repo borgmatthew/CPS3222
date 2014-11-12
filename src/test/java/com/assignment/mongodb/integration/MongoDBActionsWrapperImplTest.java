@@ -1,4 +1,4 @@
-package com.assignment.integration.mongodb;
+package com.assignment.mongodb.integration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

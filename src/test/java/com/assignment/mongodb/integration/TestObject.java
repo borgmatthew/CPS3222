@@ -1,4 +1,4 @@
-package com.assignment.integration.mongodb;
+package com.assignment.mongodb.integration;
 
 import com.mongodb.BasicDBObject;
 
