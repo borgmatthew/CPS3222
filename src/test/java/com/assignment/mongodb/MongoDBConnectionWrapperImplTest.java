@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.assignment.mongodb.MongoDBConnectionWrapper;
 import com.assignment.mongodb.MongoDBConnectionWrapperImpl;
 
-public class MongoDBConnectionWrapperTest {
+public class MongoDBConnectionWrapperImplTest {
 
 	MongoDBConnectionWrapper connectionWrapper;
 	

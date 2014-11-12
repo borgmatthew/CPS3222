@@ -52,7 +52,6 @@ public class MongoDBActionsWrapperTest {
 		doReturn(db).when(client).getDB(anyString());
 		doReturn(collection).when(db).getCollection(anyString());
 		doReturn(writeResult).when(collection).insert(WriteConcern.SAFE, object);
-		doReturn(1).when(writeResult).getN();
 		// then
 		assertTrue(database.insert(client, "databaseName", "tableName", object));
 	}
@@ -65,19 +64,6 @@ public class MongoDBActionsWrapperTest {
 		doReturn(db).when(client).getDB(anyString());
 		doReturn(collection).when(db).getCollection(anyString());
 		doThrow(new MongoException("test")).when(collection).insert(WriteConcern.SAFE, object);
-		// then
-		assertFalse(database.insert(client, "databaseName", "tableName", object));
-	}
-
-	@Test
-	public void testInsertNotAllElementsInserted() {
-		// given
-		WriteResult writeResult = mock(WriteResult.class);
-		// when
-		doReturn(db).when(client).getDB(anyString());
-		doReturn(collection).when(db).getCollection(anyString());
-		doReturn(writeResult).when(collection).insert(WriteConcern.SAFE, object);
-		doReturn(0).when(writeResult).getN();
 		// then
 		assertFalse(database.insert(client, "databaseName", "tableName", object));
 	}
