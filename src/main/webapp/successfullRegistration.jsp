@@ -31,17 +31,13 @@
 				System.out.println(validation.validateName("6"));
 				
 				String message="";
-				if(validation.validateName(name)==false){
-					/*ScriptEngineManager factory = new ScriptEngineManager();
-			        // create a JavaScript engine
-			        ScriptEngine engine = factory.getEngineByName("JavaScript");
-			        // evaluate JavaScript code from String
-			        engine.eval("('#Error').html(\"Something went wrong\");");*/
-			        message ="Something went wrong";
-					//out.println( );
+				if(validation.validateName(name)==false){					
+			        message ="Something went wrong";					
 				}
 				else{
-					message="Succesful registration";
+					//need to continue from here
+					message="Succesful registration. Please Login.";
+					
 				}
 				//User user=new User(name,sname,username,password,dob,account,card,expdate,cvv);
 				
