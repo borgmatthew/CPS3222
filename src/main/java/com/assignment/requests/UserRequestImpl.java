@@ -6,25 +6,19 @@ import com.assignment.DBObjects.User;
 import com.assignment.mongodb.MongoDBWrapper;
 import com.assignment.mongodb.MongoDBWrapperImpl;
 
-public class UserRequestImpl implements UserRequest{
+public class UserRequestImpl implements UserRequest {
 
 	MongoDBWrapper dbWrapper;
-	
-	public UserRequestImpl(){
+
+	public UserRequestImpl() {
 		dbWrapper = new MongoDBWrapperImpl("localhost", 27017);
-		//TODO load properties from properties file
-	}
-	
-	public boolean createUser(User toCreate){
-		//TODO implementation
-		dbWrapper.insert("SoftwareTesting", "Users", null);
-		return false;
+		// TODO load properties from properties file
 	}
 
 	@Override
-	public boolean createUser() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean createUser(User toCreate) {
+		toCreate.populateMap();
+		return dbWrapper.insert("SoftwareTesting", "Users", toCreate);
 	}
 
 	@Override

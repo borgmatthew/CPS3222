@@ -1,9 +1,11 @@
 package com.assignment.requests;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.assignment.DBObjects.User;
 
 public class UserRequestImplTest {
 
@@ -16,7 +18,8 @@ public class UserRequestImplTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		User testuser = new User("joe", "borg", "username", "password", "1/1/94", "free", "123456", "1/1/15", "313");
+		assertTrue(userRequest.createUser(testuser));
 	}
 
 }

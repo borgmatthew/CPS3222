@@ -3,26 +3,22 @@ package com.assignment.DBObjects;
 import com.mongodb.BasicDBObject;
 
 public class User extends BasicDBObject{
-	private String name;
-	private String sname;
-	private String username;
-	private  String password;
-	private String dob;
-	private String accounttype;
-	private String creditcard;
-	private String expdate;
-	private String cvv;
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String name = "";
+	private String sname = "";
+	private String username = "";
+	private String password = "";
+	private String dob = "";
+	private String accounttype = "";
+	private String creditcard = "";
+	private String expdate = "";
+	private String cvv = "";
+	private int attempts = 0;
+
 	public User(){
-		name="";
-		sname="";
-		username="";
-		password="";
-		dob="";
-		accounttype="";
-		creditcard="";
-		expdate="";
-		cvv="";
 	}
 	
 	public User(String name,String sname,String username,String pass,String dob,String  accounttyp,String card,String exp,String cvv){
@@ -35,6 +31,18 @@ public class User extends BasicDBObject{
 		this.creditcard=card;
 		this.expdate=exp;
 		this.cvv=cvv;
+	}
+	
+	public void populateMap(){
+		this.put("name", name);
+		this.put("surname", sname);
+		this.put("username", username);
+		this.put("password", password);
+		this.put("dob", dob);
+		this.put("type", accounttype);
+		this.put("card_no", creditcard);
+		this.put("expiry", expdate);
+		this.put("cvv", cvv);
 	}
 
 	public String getName() {
@@ -109,4 +117,11 @@ public class User extends BasicDBObject{
 		this.cvv = cvv;
 	}
 	
+	public int getAttempts() {
+		return attempts;
+	}
+
+	public void setAttempts(int attempts) {
+		this.attempts = attempts;
+	}
 }
