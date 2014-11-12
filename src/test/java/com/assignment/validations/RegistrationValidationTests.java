@@ -1,4 +1,4 @@
-package com.assignment.RegistrationValidation;
+package com.assignment.validations;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
