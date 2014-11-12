@@ -40,7 +40,7 @@
 				}
 				//User user=new User(name,sname,username,password,dob,account,card,expdate,cvv);
 				
-				/*System.out.println(name);
+				System.out.println(name);
 				System.out.println(sname);
 				System.out.println(username);
 				System.out.println(password);
@@ -48,7 +48,7 @@
 				System.out.println(account);
 				System.out.println(card);
 				System.out.println(expdate);
-				System.out.println(cvv);*/
+				System.out.println(cvv);
 		%>
 		
 		
