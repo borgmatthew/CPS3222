@@ -55,7 +55,7 @@ public class RegistrationValidationTests {
 		//given
 		//when
 		//then
-		assertTrue(regval.validateSName("test"));
+		assertTrue(regval.validateSName("Alastair"));
 	}
 	
 	@Test
@@ -104,7 +104,7 @@ public class RegistrationValidationTests {
 		//given
 		//when
 		//then
-		assertTrue(regval.validateName("test"));
+		assertTrue(regval.validateName("Vella"));
 	}
 	
 	@Test
@@ -127,7 +127,7 @@ public class RegistrationValidationTests {
 		//given
 		//when
 		//then
-		assertTrue(regval.validatePassword("TEST123456"));
+		assertTrue(regval.validatePassword("Assignment"));
 	}
 	
 	@Test
@@ -142,14 +142,124 @@ public class RegistrationValidationTests {
 		//given
 		//when
 		//then
-		assertTrue(regval.validatePassword("11/13/1991"));
+		assertTrue(regval.validateDOB("01/08/1991"));
 	}
 	
 	@Test
-	public void testValidateCardAcceptsAValidCard(){
+	public void testValidateCardShortVisaCard(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateCard("456882024160"));
+	}
+	@Test
+	public void testValidateCardLongVisaCard(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateCard("4568820241600813234"));
+	}
+	@Test
+	public void testValidateCardAcceptsAValidVisaCard(){
 		//given
 		//when
 		//then
 		assertTrue(regval.validateCard("4568820241600813"));
+	}
+	
+	@Test
+	public void testValidateCardInValidVisaCard(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateCard("45688202455600813"));
+	}
+	@Test
+	public void testValidateCardInvalidAmericanCard(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateCard("123456789123456"));
+	}
+	@Test
+	public void testValidateCardAcceptsAValidAmericanCard(){
+		//given
+		//when
+		//then
+		assertTrue(regval.validateCard("371449635398431"));
+	}
+	
+	@Test
+	public void testValidateCardLongAmericanCard(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateCard("371449635398431234"));
+	}
+	
+	@Test
+	public void testValidateCardShortAmericanCard(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateCard("3714496353"));
+	}
+	
+	@Test
+	public void testValidateCardAcceptsAValidMasterCard(){
+		//given
+		//when
+		//then
+		assertTrue(regval.validateCard("5555555555554444"));
+	}
+	@Test
+	public void testValidateCardAcceptsAShortMasterCard(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateCard("555555555555"));
+	}
+	@Test
+	public void testValidateCardAcceptsALongMasterCard(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateCard("5555555555554444444"));
+	}
+	
+	@Test
+	public void testValidateCardAcceptsInvalidMasterCard(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateCard("5555555465554444"));
+	}
+	@Test
+	public void testEXPDateAcceptsvalidDate(){
+		//given
+		//when
+		//then
+		assertTrue(regval.validateEXP("01/08/2017"));
+	}
+	@Test
+	public void testEXPDateInvalidDate(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateEXP("11/12/2013"));
+	}
+	@Test
+	public void testCvvvalidCvv(){
+		//given
+		//when
+		//then
+		assertTrue(regval.validateCvv("123"));
+	}
+	@Test
+	public void testCvvInvalidCvv(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateCvv("1a3"));
 	}
 }

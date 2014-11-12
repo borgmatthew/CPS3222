@@ -8,4 +8,6 @@ public interface RegistrationValidation {
 	public boolean validatePassword(String password);
 	public boolean validateDOB(String dob);
 	public boolean validateCard(String account);
+	public boolean validateEXP(String date);
+	public boolean validateCvv(String cvv);
 }
