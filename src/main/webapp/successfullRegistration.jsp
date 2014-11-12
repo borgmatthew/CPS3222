@@ -28,14 +28,13 @@
 				String expdate=request.getParameter("expirydate");
 				String cvv=request.getParameter("cvv");
 				
-				System.out.println(validation.validateName("6"));
+				
 				
 				String message="";
-				if(validation.validateName(name)==false){					
+				if(validation.validateForm(name,sname,username,password,dob,account,card,expdate,cvv)==false){					
 			        message ="Something went wrong";					
 				}
 				else{
-					//need to continue from here
 					message="Succesful registration. Please Login.";
 					
 				}
