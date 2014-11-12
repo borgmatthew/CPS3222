@@ -1,10 +1,12 @@
 package com.assignment.requests;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.assignment.DBObjects.User;
 import com.assignment.mongodb.MongoDBWrapper;
 import com.assignment.mongodb.MongoDBWrapperImpl;
+import com.mongodb.DBObject;
 
 public class UserRequestImpl implements UserRequest {
 
@@ -17,13 +19,16 @@ public class UserRequestImpl implements UserRequest {
 
 	@Override
 	public boolean createUser(User toCreate) {
-		toCreate.populateMap();
 		return dbWrapper.insert("SoftwareTesting", "Users", toCreate);
 	}
 
 	@Override
-	public List<User> getUser(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> getUser(User toFind) {
+		List<DBObject> query = dbWrapper.find("SoftwareTesting", "Users", toFind);
+		List<User> result = new ArrayList<User>(query.size());
+		for(DBObject o : query){
+			result.add(new User(o));
+		}
+		return result;
 	}
 }

@@ -6,5 +6,5 @@ import com.assignment.DBObjects.User;
 
 public interface UserRequest {
 	public boolean createUser(User user);
-	public List<User> getUser(int userId);
+	public List<User> getUser(User toFind);
 }
