@@ -144,7 +144,20 @@ public class RegistrationValidationTests {
 		//then
 		assertTrue(regval.validateDOB("01/08/1991"));
 	}
-	
+	@Test
+	public void testValidateDOBDoesnotacceptletters(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateDOB("a"));
+	}
+	@Test
+	public void testValidateCardletters(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateCard("4568820B41600813"));
+	}
 	@Test
 	public void testValidateCardShortVisaCard(){
 		//given
@@ -242,6 +255,20 @@ public class RegistrationValidationTests {
 		assertTrue(regval.validateEXP("01/08/2017"));
 	}
 	@Test
+	public void testEXPDateDoesnotAcceptletters(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateEXP("01/0f/2017"));
+	}
+	@Test
+	public void testEXPDatedoesnotAcceptslettersonly(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateEXP("asdf"));
+	}
+	@Test
 	public void testEXPDateInvalidDate(){
 		//given
 		//when
@@ -261,5 +288,12 @@ public class RegistrationValidationTests {
 		//when
 		//then
 		assertFalse(regval.validateCvv("1a3"));
+	}
+	@Test
+	public void testCvvLongCvv(){
+		//given
+		//when
+		//then
+		assertFalse(regval.validateCvv("123456789"));
 	}
 }

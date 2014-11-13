@@ -146,6 +146,7 @@ private String message="";
 	
 	
 	public boolean validateCard(String number) {
+		
 		if(isAmerican(number) || isVisa(number) || isMaster(number)){
 			return true;
 		}
@@ -186,7 +187,11 @@ private String message="";
 	   ArrayList<Integer> evendoubles=new ArrayList<Integer>();
 	   
 	   for(int k=0;k<numbers.length;k++){
+		   try{
 		   numbers[k]=Integer.parseInt(""+reverse.charAt(k));
+		   }catch(Exception e){
+			   return false;
+		   }
 		  
 	   }
 	   int totalOdds=0;
@@ -209,11 +214,21 @@ private String message="";
 		   if(strtemp.length()==2){
 			   char tempchar=strtemp.charAt(0);
 			   char tempchar1=strtemp.charAt(1);
-			   int temptotal=Integer.parseInt(""+tempchar)+Integer.parseInt(""+tempchar1);
+			   int temptotal;
+			   try{
+			   temptotal=Integer.parseInt(""+tempchar)+Integer.parseInt(""+tempchar1);
+			   }catch(Exception e){
+				   return false;
+			   }
 			   totalEvens+=temptotal;
 		   }
 		   else{
+			   try{		   
+			   
 			   totalEvens+=Integer.parseInt(strtemp);
+			   }catch(Exception e){
+				   return false;
+			   }
 		   }
 	   }
 	   

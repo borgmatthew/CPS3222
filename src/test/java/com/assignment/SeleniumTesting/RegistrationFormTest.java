@@ -37,18 +37,26 @@ public class RegistrationFormTest {
 		
 	}
 	@Test
-	public void InvalidNameTest(){
+	public void TestFormDoesNotAcceptNumbers(){
 		form.populateName("6");
 		assertEquals("Invalid characters",form.findById("name_error").get(0).getText());
-		form.visit();
+		
+	}
+	@Test
+	public void TestFormDoesNotAcceptEmpty(){
+		
 		form.populateEmptyName();
 		assertEquals("Invalid characters",form.findById("name_error").get(0).getText());
 	}
 	@Test
-	public void InvalidSNameTest(){
+	public void TestDoesNotAcceptNumberForSnamemeTest(){
 		form.populateSName("6");
 		assertEquals("Invalid characters",form.findById("surname_error").get(0).getText());
-		form.visit();
+		
+		
+	}
+	@Test
+	public void TestFormDoesNotAcceptEmptysname(){
 		form.populateEmptySName();
 		assertEquals("Invalid characters",form.findById("surname_error").get(0).getText());
 	}
@@ -58,43 +66,64 @@ public class RegistrationFormTest {
 		assertEquals("Password is too short",form.findById("password_error").get(0).getText());
 	}
 	@Test
-	public void InvalidDOBTest(){
+	public void TestFormUnderage(){
 		form.populateDOB("11/12/2013");
 		assertEquals("Under age",form.findById("dob_error").get(0).getText());
-		form.visit();
+		
+	}
+	@Test
+	public void TestFormemptyage(){
+		
 		form.populateEmptyDOB();
 		assertEquals("Please enter date of birth",form.findById("dob_error").get(0).getText());
-		form.visit();
+		
+	}
+	@Test
+	public void TestForminvalidrage(){
+		
 		form.populateDOB("aaaa");
 		assertEquals("Please enter date of birth",form.findById("dob_error").get(0).getText());
 	}
+	
 	
 	@Test
 	public void InvalidcardTest(){
 		form.populateCard("4568820251600813");
 		assertEquals("Invalid card",form.findById("creditcard_error").get(0).getText());
-		form.visit();
+		}
+	@Test
+	public void EmptycardTest(){
+		
 		form.populateEmptyCard();
 		assertEquals("Invalid card",form.findById("creditcard_error").get(0).getText());
 	}
 	
 	@Test
 	public void InvalidexpiryTest(){
-		form.populateExpDate("11/12/2013");
-		assertEquals("Invalid Expirary date",form.findById("expiry_error").get(0).getText());	
-		form.visit();
 		form.populateExpDate("aaaa");
 		assertEquals("Invalid Expirary date",form.findById("expiry_error").get(0).getText());	
 	}
+	@Test
+	public void IncorrectexpiryTest(){
+		form.populateExpDate("11/12/2013");
+		assertEquals("Invalid Expirary date",form.findById("expiry_error").get(0).getText());	
+		}
 	
 	@Test
 	public void InvalidxtcvvTest(){
 		form.populateCvv("aaa");
 		assertEquals("Invalid CVV number",form.findById("cvv_error").get(0).getText());	
-		form.visit();
+		
+	}
+	@Test
+	public void EmptycvvTest(){
+		
 		form.populateEmptyCvv();
 		assertEquals("Invalid CVV number",form.findById("cvv_error").get(0).getText());	
-		form.visit();
+		}
+	@Test
+	public void LongcvvTest(){
+		
 		form.populateCvv("123456");
 		assertEquals("Invalid CVV number",form.findById("cvv_error").get(0).getText());	
 	}
