@@ -46,6 +46,19 @@ public class User extends BasicDBObject{
 		this.attempts = attempts;
 		populateMap();
 	}
+	public User(String name,String sname,String username,String pass,String dob,String  accounttyp,String card,String exp,String cvv){
+		this.name=name;
+		this.sname=sname;
+		this.username=username;
+		this.password=pass;
+		this.dob=dob;
+		this.accounttype=accounttyp;
+		this.creditcard=card;
+		this.expdate=exp;
+		this.cvv=cvv;
+		this.attempts = attempts;
+		
+	}
 	
 	public void populateMap(){
 		this.put("name", name);

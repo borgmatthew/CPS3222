@@ -31,6 +31,7 @@
 				
 				
 				String message="";
+				
 				if(validation.validateForm(name,sname,username,password,dob,account,card,expdate,cvv)==false){					
 			        message ="Something went wrong";					
 				}

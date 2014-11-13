@@ -4,10 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.assignment.DBObjects.User;
+import com.assignment.requests.UserRequest;
+import com.assignment.requests.UserRequestImpl;
+
 public class RegistrationValidationImp implements RegistrationValidation {
-	
+private String message="";
 	
 	public boolean validateForm(String name,String sname,String username,String password,String dob,String account,String card,String expdate,String cvv){
+		UserRequest request=new UserRequestImpl();
 		if(validateName(name)==false){					
 	        return false;					
 		}
@@ -25,7 +30,7 @@ public class RegistrationValidationImp implements RegistrationValidation {
 					}
 					else{
 						if(validateDOB(dob)==false){
-							return true;
+							return false;
 						}
 						else{
 							if(validateCard(card)==false){	
@@ -40,6 +45,8 @@ public class RegistrationValidationImp implements RegistrationValidation {
 										return false;
 									}
 									else{
+										User newUser=new User(name,sname,username,password,dob,account,card,expdate,cvv,0);
+										request.createUser(newUser);
 										return true;
 									}
 								}
@@ -73,7 +80,14 @@ public class RegistrationValidationImp implements RegistrationValidation {
 		}
 	}
 	public boolean validateUsername(String user){
-		return true;
+		UserRequest request=new UserRequestImpl();
+		User tempUser=new User();
+		tempUser.setUsername(user);
+		if(request.getUser(tempUser).size()==0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	public boolean validatePassword(String pass){
 		if(pass.length()<8){
