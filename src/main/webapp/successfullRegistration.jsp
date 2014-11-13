@@ -33,7 +33,7 @@
 				String message="";
 				
 				if(validation.validateForm(name,sname,username,password,dob,account,card,expdate,cvv)==false){					
-			        message ="Something went wrong";					
+			        message =validation.getMessage();				
 				}
 				else{
 					message="Succesful registration. Please Login.";
