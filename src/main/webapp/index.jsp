@@ -67,9 +67,10 @@
 				</div>
 				<div id="login_section">
 					Login to OBC!<br>
-					<form name="login_form" id="login_form">
-						<input type="text" id="username" placeholder="username" /><br>
-						<input type="password" id="password" placeholder="password" /><br>
+					<form name="login_form" id="login_form" method="POST" action="validateLogin.jsp">
+						<input type="text" id="username" placeholder="username"  name="user" /><br>
+						
+						<input type="password" id="password" placeholder="password" name="pass" /><br>
 						<input type="submit" id="login_button" value="Login">
 					</form>
 				</div>
