@@ -19,8 +19,10 @@
 	
 	System.out.println(username);
 	System.out.println(password);
+	
 	LoginImp userlogin=new LoginImp();
 	 if (userlogin.validate(username,password)) {
+		 session.setAttribute("user", username);
 %>
     <jsp:forward page="betting.jsp"/>
 <%

@@ -12,7 +12,30 @@
 <script src="javascript/bettingPage.js"></script>
 </head>
 <body>
-	<%@ include file="headerLoggedIn.jsp"%>
+
+<% 
+    
+	 if ((session.getAttribute("user") == null) || (session.getAttribute("user") == "")) {
+		/* session.setAttribute("user","");
+		 session.invalidate();*/
+		 
+%>
+	<div id="middle_container">
+		<div id="main_content">
+	You are not logged in<br/>
+    <a href="index.jsp">Please Login</a>
+    </div>
+    </div>
+    
+    
+<%
+}  else {
+	   //session.setAttribute( "theName", "Wrong username" );
+%>
+
+    
+    
+    <%@ include file="headerLoggedIn.jsp"%>
 	<div id="middle_container">
 		<div id="main_content">
 			<div id="betting_form_placeholder">
@@ -27,7 +50,7 @@
 					<div id="amount">
 						<label>Amount:</label>
 						<input id="ammount" class="fields" type="text" placeholder="amount">
-						<span id="ammount_error" class="status"></span>
+						<span id="ammount_error" class="status"><%=session.getAttribute("user") %></span>
 					</div>
 					<div id="submit_button_wrapper">
 						<input id="submitButton" type="submit" value="Submit">
@@ -36,6 +59,11 @@
 			</div>
 		</div>
 	</div>
+	
+  
+<%
+}
+%>
 
 </body>
 </html>
