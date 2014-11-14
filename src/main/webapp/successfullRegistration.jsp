@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,7 +16,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<%@ include file="headerLoggedOut.jsp"%>
+
+
+<% 
+    
+	 if(request.getSession().getAttribute("reg")=="Registering") {
+		
+%>
+
+<%@ include file="headerLoggedOut.jsp"%>
 		<%@ page import="com.assignment.validations.RegistrationValidationImp" %>
 		<%@ page import="com.assignment.DBObjects.User" %>
 		<%@ page import="javax.script.*;" %>
@@ -28,7 +43,7 @@
 				String expdate=request.getParameter("expirydate");
 				String cvv=request.getParameter("cvv");
 				
-				
+				System.out.println(session.getAttribute("reg"));
 				
 				String message="";
 				
@@ -50,16 +65,38 @@
 				System.out.println(card);
 				System.out.println(expdate);
 				System.out.println(cvv);
-		%>
+
+
+				%>
+				
+				
+				<div id="middle_container">
+					<div id="main_content">
+					<div class="style">
+						<p id="parag"><font size="6"><% out.println(message); %></font></p>
+						
+					</div>
+					</div>
+				</div>
+				
+	<%
+	session.setAttribute("user", null);
+	session.invalidate(); }  else {
+	
+	   //session.setAttribute( "theName", "Wrong username" );
+%>
 		
-		
+<%@ include file="headerLoggedOut.jsp"%>
 	<div id="middle_container">
 		<div id="main_content">
-		<div class="style">
-			<p id="parag"><font size="6"><% out.println(message); %></font></p>
 			
-		</div>
+				You are not logged in. Please login <br />
+		
 		</div>
 	</div>
+
+	<%
+}
+%>
 </body>
 </html>

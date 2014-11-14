@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,8 +9,8 @@
 </head>
 
 
-<%@ page import="com.assignment.validations.LoginImp" %>
-<%@ page import="javax.script.*;" %>
+<%@ page import="com.assignment.validations.LoginImp"%>
+<%@ page import="javax.script.*;"%>
 <% 
     //boolean flag=true;;
   
@@ -24,19 +24,19 @@
 	 if (userlogin.validate(username,password)) {
 		 session.setAttribute("user", username);
 %>
-    <jsp:forward page="betting.jsp"/>
+<jsp:forward page="betting.jsp" />
 <%
    }  else {
 	   //session.setAttribute( "theName", "Wrong username" );
 %>
-
+<%@ include file="headerLoggedOut.jsp"%>
 <div id="middle_container">
-		<div id="main_content">
-		 Wrong username or password Please Try again Here <a href='index.jsp'>Go to Login</a>
-		</div>
-		</div>
-	
-  
+	<div id="main_content">
+		<div class="style">Wrong username or password Please Try again</div>
+	</div>
+</div>
+
+
 <%
    }
 %>

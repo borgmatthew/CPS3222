@@ -25,6 +25,7 @@ $(document).ready(function(){
 	
 	$('#creditcard').blur(function(){
 		ValidateCard($('#creditcard').val());
+	
 	});
 	
 	
