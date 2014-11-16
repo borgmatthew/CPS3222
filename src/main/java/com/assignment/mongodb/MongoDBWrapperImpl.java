@@ -57,4 +57,15 @@ public class MongoDBWrapperImpl implements MongoDBWrapper {
 	public void setConnectionWrapper(MongoDBConnectionWrapper connectionWrapper){
 		this.connectionWrapper = connectionWrapper;
 	}
+
+	@Override
+	public boolean save(String dbName, String tblName, DBObject object) {
+		boolean result = false;
+		MongoClient client = connectionWrapper.connect(host, port);
+		if(client != null){
+			result = actionsWrapper.save(client, dbName, tblName, object);
+			connectionWrapper.disconnect(client);
+		}
+		return result;
+	}
 }
