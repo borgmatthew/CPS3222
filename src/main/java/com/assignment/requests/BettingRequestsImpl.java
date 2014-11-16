@@ -17,6 +17,10 @@ public class BettingRequestsImpl implements BettingRequests {
 		// TODO load properties from properties file
 	}
 	
+	public BettingRequestsImpl(MongoDBWrapper wrapper){
+		dbWrapper = wrapper;
+	}
+	
 	@Override
 	public boolean createBet(Bets bet) {
 		return dbWrapper.insert("SoftwareTesting", "Bets", bet);
