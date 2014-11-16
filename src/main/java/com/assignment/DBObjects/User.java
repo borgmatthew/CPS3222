@@ -30,6 +30,7 @@ public class User extends BasicDBObject{
 		this.creditcard = (String) fromObject.get("card_no");
 		this.cvv = (String) fromObject.get("cvv");
 		this.attempts = (Integer) fromObject.get("attempts");
+		this.put("_id", fromObject.get("_id"));
 		populateMap();
 	}
 	
@@ -45,19 +46,6 @@ public class User extends BasicDBObject{
 		this.cvv=cvv;
 		this.attempts = attempts;
 		populateMap();
-	}
-	public User(String name,String sname,String username,String pass,String dob,String  accounttyp,String card,String exp,String cvv){
-		this.name=name;
-		this.sname=sname;
-		this.username=username;
-		this.password=pass;
-		this.dob=dob;
-		this.accounttype=accounttyp;
-		this.creditcard=card;
-		this.expdate=exp;
-		this.cvv=cvv;
-		this.attempts = attempts;
-		
 	}
 	
 	public void populateMap(){
