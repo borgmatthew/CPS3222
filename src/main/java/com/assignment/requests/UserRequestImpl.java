@@ -31,4 +31,9 @@ public class UserRequestImpl implements UserRequest {
 		}
 		return result;
 	}
+
+	@Override
+	public boolean save(User toUpdate) {
+		return dbWrapper.insert("SoftwareTesting", "Users", toUpdate);
+	}
 }

@@ -31,4 +31,9 @@ public class BettingRequestsImpl implements BettingRequests {
 		}
 		return result;
 	}
+
+	@Override
+	public boolean saveBet(Bets toSave) {
+		return dbWrapper.insert("SoftwareTesting", "Bets", toSave);
+	}
 }
