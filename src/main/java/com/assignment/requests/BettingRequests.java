@@ -2,10 +2,10 @@ package com.assignment.requests;
 
 import java.util.List;
 
-import com.assignment.DBObjects.Bets;
+import com.assignment.DBObjects.Bet;
 
 public interface BettingRequests {
-	public boolean createBet(Bets bet);
-	public List<Bets> findBet(Bets toFind);
-	public boolean saveBet(Bets toSave);
+	public boolean createBet(Bet bet);
+	public List<Bet> findBet(Bet toFind);
+	public boolean saveBet(Bet toSave);
 }

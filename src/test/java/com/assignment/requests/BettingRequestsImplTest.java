@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.assignment.DBObjects.Bets;
+import com.assignment.DBObjects.Bet;
 import com.assignment.mongodb.MongoDBWrapperImpl;
 import com.mongodb.DBObject;
 
@@ -34,14 +34,14 @@ public class BettingRequestsImplTest {
 	public void testFindBet() {
 		// given
 		List<DBObject> query = new ArrayList<DBObject>();
-		Bets bet1 = new Bets(1,1, "", "");
-		Bets bet2 = new Bets(1,1, "", "");
+		Bet bet1 = new Bet(1,1, "", "");
+		Bet bet2 = new Bet(1,1, "", "");
 		query.add(bet1);
 		query.add(bet2);
 		doReturn(query).when(wrapper).find(anyString(), anyString(),
 				any(DBObject.class));
 		// when
-		List<Bets> fromDb = bettingRequest.findBet(new Bets());
+		List<Bet> fromDb = bettingRequest.findBet(new Bet());
 		// then
 		assertEquals(2, fromDb.size());
 	}

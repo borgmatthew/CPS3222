@@ -3,7 +3,7 @@ package com.assignment.DBObjects;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
-public class Bets extends BasicDBObject{
+public class Bet extends BasicDBObject{
 	
 	private static final long serialVersionUID = 1L;
 	private int betId;
@@ -11,10 +11,10 @@ public class Bets extends BasicDBObject{
 	private String amount;
 	private int userId;
 	
-	public Bets(){
+	public Bet(){
 	}
 	
-	public Bets(DBObject fromObject){
+	public Bet(DBObject fromObject){
 		this.amount = (String) fromObject.get("amount");
 		this.betId = (Integer) fromObject.get("betId");
 		this.risk = (String) fromObject.get("risk");
@@ -22,7 +22,7 @@ public class Bets extends BasicDBObject{
 		populateMap();
 	}
 	
-	public Bets(int betId, int userId, String risk, String ammount) {
+	public Bet(int betId, int userId, String risk, String ammount) {
 		this.betId = betId;
 		this.risk = risk;
 		this.amount = ammount;
