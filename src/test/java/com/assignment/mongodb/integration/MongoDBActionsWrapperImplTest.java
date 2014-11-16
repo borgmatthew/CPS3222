@@ -34,7 +34,7 @@ public class MongoDBActionsWrapperImplTest {
 		client.getDB(dbName).getCollection(tblName).remove(new BasicDBObject());
 		connectionsWrapper.disconnect(client);
 	}
-
+	
 	@Test
 	public void testInsertSuccessfull() {
 		// given
