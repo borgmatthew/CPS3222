@@ -1,13 +1,14 @@
 package com.assignment.mongodb.integration;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.assignment.mongodb.MongoDBConnectionWrapper;
 import com.assignment.mongodb.MongoDBConnectionWrapperImpl;
-import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 
 public class MongoDBConnectionWrapperImplTest {
@@ -24,9 +25,24 @@ public class MongoDBConnectionWrapperImplTest {
 		// given
 		// when
 		MongoClient client = connectionWrapper.connect("localhost", 27017);
+		int collectionSize = client.getDB("Tests").getCollection("tests").find().size();
 		connectionWrapper.disconnect(client);
 		// then
-		assertNotNull(client);
+		assertTrue(collectionSize >= 0);
+	}
+	
+	@Test
+	public void verifyConnectionIsTerminated(){
+		//given
+		String host = "localhost";
+		int port = 27017;
+		MongoClient client = connectionWrapper.connect(host, port);
+		MongoClient clientSpy = spy(client);
+		//when
+		connectionWrapper.disconnect(clientSpy);
+		//then
+		client.close();
+		verify(clientSpy).close();
 	}
 
 	@Test(expected = IllegalStateException.class)
@@ -38,8 +54,7 @@ public class MongoDBConnectionWrapperImplTest {
 		MongoClient client = connectionWrapper.connect(host, port);
 		connectionWrapper.disconnect(client);
 		// then
-		DBCursor cursor = client.getDB("Tests").getCollection("tests").find();
-		cursor.size();
+		client.getDB("Tests").getCollection("tests").find().size();
 	}
 
 }
