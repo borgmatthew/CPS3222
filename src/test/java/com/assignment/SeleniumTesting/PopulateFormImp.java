@@ -22,7 +22,7 @@ public class PopulateFormImp implements PopulateForm {
 	public void populate(){
 		browser.findElement(By.id("firstName")).sendKeys("Alastair");
 		browser.findElement(By.id("lastName")).sendKeys("Vella");
-		browser.findElement(By.id("userName")).sendKeys("als.speed6@gmail.com");
+		browser.findElement(By.id("userName")).sendKeys("alz.speed6@gmail.com");
 		browser.findElement(By.id("password")).sendKeys("Assignment");
 		browser.findElement(By.id("dob")).sendKeys("01/08/1991");
 		browser.findElement(By.id("creditcard")).sendKeys("4568820241600813");
