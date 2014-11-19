@@ -18,11 +18,7 @@
 <body>
 
 
-<% 
-    
-	 if(request.getSession().getAttribute("reg")=="Registering") {
-		
-%>
+
 
 <%@ include file="headerLoggedOut.jsp"%>
 		<%@ page import="com.assignment.validations.RegistrationValidationImp" %>
@@ -79,24 +75,6 @@
 					</div>
 				</div>
 				
-	<%
-	session.setAttribute("user", null);
-	session.invalidate(); }  else {
-	
-	   //session.setAttribute( "theName", "Wrong username" );
-%>
-		
-<%@ include file="headerLoggedOut.jsp"%>
-	<div id="middle_container">
-		<div id="main_content">
-			
-				You are not logged in. Please login <br />
-		
-		</div>
-	</div>
 
-	<%
-}
-%>
 </body>
 </html>
