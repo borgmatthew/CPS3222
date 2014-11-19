@@ -9,7 +9,7 @@
 </head>
 
 
-<%@ page import="com.assignment.validations.LoginImp"%>
+<%@ page import="com.assignment.functionalities.LoginImp"%>
 <%@ page import="javax.script.*;"%>
 <% 
     //boolean flag=true;;
