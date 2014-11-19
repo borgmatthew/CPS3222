@@ -19,6 +19,7 @@ public class Bet extends BasicDBObject{
 		this.betId = (Integer) fromObject.get("betId");
 		this.risk = (String) fromObject.get("risk");
 		this.userId = (Integer) fromObject.get("userId");
+		this.put("_id", fromObject.get("_id"));
 		populateMap();
 	}
 	
