@@ -1,5 +1,6 @@
 package com.assignment.functionalities;
 
+import java.util.Date;
 import java.util.List;
 
 import com.assignment.DBObjects.User;
@@ -15,6 +16,7 @@ public class LoginImp implements Login {
 	public LoginImp(){
 		loginValidation = new LoginValidationsImpl();
 	}
+	
 	@Override
 	public boolean validate(String username, String password) {
 		User user = new User();
@@ -23,11 +25,17 @@ public class LoginImp implements Login {
 		List<User> query = request.getUser(user);
 		if (loginValidation.userExists(query)) {
 			user = query.get(0);
-			if (loginValidation.canLogin(user)) {
+			if (loginValidation.canAttemptLogin(user)) {
 				if (loginValidation.validatePassword(user, password)) {
+					user.setAttempts(0);
+					request.save(user);
 					return true;
 				} else {
 					user.setAttempts(user.getAttempts() + 1);
+					if(user.getAttempts() == 3){
+						user.setLockTime(new Date().getTime());
+						user.setAttempts(0);
+					}
 					request.save(user);
 				}
 			}
