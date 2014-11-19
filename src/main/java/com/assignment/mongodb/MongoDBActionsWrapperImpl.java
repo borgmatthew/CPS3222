@@ -28,4 +28,19 @@ public class MongoDBActionsWrapperImpl implements MongoDBActionsWrapper {
 		result = client.getDB(dbName).getCollection(tblName).find(toFind);
 		return result;
 	}
+
+	@Override
+	public boolean save(MongoClient client, String dbName, String tblName,
+			DBObject toUpdate) {
+		boolean result;
+		try {
+			client.getDB(dbName)
+					.getCollection(tblName)
+					.save(toUpdate, WriteConcern.SAFE);
+			result = true;
+		} catch (MongoException error) {
+			result = false;
+		}
+		return result;
+	}
 }

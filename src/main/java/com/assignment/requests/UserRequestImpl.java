@@ -16,6 +16,10 @@ public class UserRequestImpl implements UserRequest {
 		dbWrapper = new MongoDBWrapperImpl("localhost", 27017);
 		// TODO load properties from properties file
 	}
+	
+	public UserRequestImpl(MongoDBWrapper wrapper){
+		dbWrapper = wrapper;
+	}
 
 	@Override
 	public boolean createUser(User toCreate) {
@@ -30,5 +34,10 @@ public class UserRequestImpl implements UserRequest {
 			result.add(new User(o));
 		}
 		return result;
+	}
+
+	@Override
+	public boolean save(User toUpdate) {
+		return dbWrapper.save("SoftwareTesting", "Users", toUpdate);
 	}
 }

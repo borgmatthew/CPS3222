@@ -1,18 +1,13 @@
 
-
-
-
-
-
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/common.css">
-<link rel="stylesheet" type="text/css" href="css/succesfulRegistration.css">
+<link rel="stylesheet" type="text/css"
+	href="css/succesfulRegistration.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -20,13 +15,15 @@
 
 
 
-<%@ include file="headerLoggedOut.jsp"%>
-		<%@ page import="com.assignment.validations.RegistrationValidationImp" %>
-		<%@ page import="com.assignment.DBObjects.User" %>
-		<%@ page import="javax.script.*;" %>
-		
-		<%-- Java code to validate form --%>
-		<%
+
+
+	<%@ include file="headerLoggedOut.jsp"%>
+	<%@ page import="com.assignment.validations.RegistrationValidationImp"%>
+	<%@ page import="com.assignment.DBObjects.User"%>
+	<%@ page import="javax.script.*;"%>
+
+	<%-- Java code to validate form --%>
+	<%
 			RegistrationValidationImp validation=new RegistrationValidationImp();
 				
 				String name=request.getParameter("firstname");
@@ -50,7 +47,7 @@
 					message="Succesful registration. Please Login.";
 					
 				}
-				//User user=new User(name,sname,username,password,dob,account,card,expdate,cvv);
+				//User user=new User(name,sname,username,password,dob,account,card,expdate,cvv,0);
 				
 				System.out.println(name);
 				System.out.println(sname);
@@ -64,17 +61,25 @@
 
 
 				%>
+
 				
 				
 				<div id="middle_container">
 					<div id="main_content">
 					<div class="style">
-						<p id="parag"><font size="6"><% out.println(message); %></font></p>
+						<p id="parag"><font size="6"><%out.println(message); %></font></p>
 						
 					</div>
 					</div>
 				</div>
 				
+
+
+
+	
+
+
+
 
 </body>
 </html>

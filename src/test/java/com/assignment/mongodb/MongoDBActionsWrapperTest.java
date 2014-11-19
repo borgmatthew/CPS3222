@@ -67,4 +67,28 @@ public class MongoDBActionsWrapperTest {
 		// then
 		assertFalse(database.insert(client, "databaseName", "tableName", object));
 	}
+	
+	@Test
+	public void testSaveSuccessfull() {
+		// given
+		WriteResult writeResult = mock(WriteResult.class);
+		// when
+		doReturn(db).when(client).getDB(anyString());
+		doReturn(collection).when(db).getCollection(anyString());
+		doReturn(writeResult).when(collection).save(object, WriteConcern.SAFE);
+		// then
+		assertTrue(database.save(client, "databaseName", "tableName", object));
+	}
+
+	@Test
+	public void testSaveMongoExceptionOccurs() {
+		// given
+		DBObject object = mock(DBObject.class);
+		// when
+		doReturn(db).when(client).getDB(anyString());
+		doReturn(collection).when(db).getCollection(anyString());
+		doThrow(new MongoException("test")).when(collection).save(object, WriteConcern.SAFE);
+		// then
+		assertFalse(database.save(client, "databaseName", "tableName", object));
+	}
 }

@@ -7,4 +7,5 @@ import com.mongodb.MongoClient;
 public interface MongoDBActionsWrapper {
 	public boolean insert(MongoClient client, String dbName, String tblName, DBObject ... objects);
 	public DBCursor find(MongoClient client, String dbName, String tblName, DBObject toFind);
+	public boolean save(MongoClient client, String dbName, String tblName, DBObject toUpdate);
 }
