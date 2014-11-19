@@ -9,67 +9,7 @@ import com.assignment.requests.UserRequest;
 import com.assignment.requests.UserRequestImpl;
 
 public class RegistrationValidationImp implements RegistrationValidation {
-private String message="";
-	
-	public boolean validateForm(String name,String sname,String username,String password,String dob,String account,String card,String expdate,String cvv){
-		UserRequest request=new UserRequestImpl();
-		if(validateName(name)==false){	
-			message="Invalid name";
-	        return false;					
-		}
-		else{
-			if(validateSName(sname)==false){
-				message="Invalid surname";
-				return false;
-			}
-			else{
-				if(validateUsername(username)==false){
-					message="Username already exists";
-					return false;
-				}
-				else{
-					if(validatePassword(password)==false){
-						message="Invalid password";
-						return false;
-					}
-					else{
-						if(validateDOB(dob)==false){
-							message="invalid Date of Birth";
-							return false;
-						}
-						else{
-							if(validateCard(card)==false){	
-								message="Invalid Card number";
-								return false;
-							}
-							else{
-								if(validateEXP(expdate)==false){
-									message="Invalid Expiry date";
-									return false;
-								}
-								else{
-									if(validateCvv(cvv)==false){
-										message="Invalid CVV number";
-										return false;
-									}
-									else{
-										
-										User newUser=new User(name,sname,username,password,dob,account,card,expdate,cvv,0);
-										//request.createUser(newUser);
-										return true;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			
-		}
-	}
-	public String getMessage(){
-		return message;
-	}
+
 	public boolean validateName(String name){
 		
 		//int len=name.length();

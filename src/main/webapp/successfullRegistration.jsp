@@ -11,21 +11,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-
-
-
-
 	<%@ include file="headerLoggedOut.jsp"%>
-	<%@ page import="com.assignment.validations.RegistrationValidationImp"%>
+	<%@ page import="com.assignment.functionalities.RegistrationImp"%>
+	<%@ page import="com.assignment.requests.UserRequestImpl"%>
 	<%@ page import="com.assignment.DBObjects.User"%>
 	<%@ page import="javax.script.*;"%>
 
 	<%-- Java code to validate form --%>
 	<%
-			RegistrationValidationImp validation=new RegistrationValidationImp();
-				
+			RegistrationImp registration=new RegistrationImp();
+	        
 				String name=request.getParameter("firstname");
 				String sname=request.getParameter("lastname");
 				String username=request.getParameter("username");
@@ -40,16 +35,17 @@
 				
 				String message="";
 				
-				if(validation.validateForm(name,sname,username,password,dob,account,card,expdate,cvv)==false){					
-			        message =validation.getMessage();				
+				if(registration.validateForm(name,sname,username,password,dob,account,card,expdate,cvv)==false){					
+			        message =registration.getMessage();	
+			       
 				}
 				else{
 					message="Succesful registration. Please Login.";
-					
+					 registration.addUser(name,sname,username,password,dob,account,card,expdate,cvv);
 				}
-				//User user=new User(name,sname,username,password,dob,account,card,expdate,cvv,0);
 				
-				System.out.println(name);
+				
+				/*System.out.println(name);
 				System.out.println(sname);
 				System.out.println(username);
 				System.out.println(password);
@@ -57,29 +53,21 @@
 				System.out.println(account);
 				System.out.println(card);
 				System.out.println(expdate);
-				System.out.println(cvv);
+				System.out.println(cvv);*/
 
 
 				%>
+	<div id="middle_container">
+		<div id="main_content">
+			<div class="style">
+				<p id="parag">
+					<font size="6">
+						<%out.println(message); %>
+					</font>
+				</p>
 
-				
-				
-				<div id="middle_container">
-					<div id="main_content">
-					<div class="style">
-						<p id="parag"><font size="6"><%out.println(message); %></font></p>
-						
-					</div>
-					</div>
-				</div>
-				
-
-
-
-	
-
-
-
-
+			</div>
+		</div>
+	</div>
 </body>
 </html>
