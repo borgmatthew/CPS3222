@@ -17,8 +17,8 @@
 	   String username=request.getParameter("user");
 	String password=request.getParameter("pass");
 	
-	System.out.println(username);
-	System.out.println(password);
+	//System.out.println(username);
+	//System.out.println(password);
 	
 	LoginImp userlogin=new LoginImp();
 	 if (userlogin.validate(username,password)) {
