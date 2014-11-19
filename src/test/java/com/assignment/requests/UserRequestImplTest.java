@@ -34,8 +34,8 @@ public class UserRequestImplTest {
 	public void testGetUser() {
 		//given
 		List<DBObject> query = new ArrayList<DBObject>();
-		User usr1 = new User("", "","", "","", "","", "","", 0);
-		User usr2 = new User("", "","", "","", "","", "","", 0);
+		User usr1 = new User("", "","", "","", "","", "","", 0,0);
+		User usr2 = new User("", "","", "","", "","", "","", 0,0);
 		query.add(usr1);
 		query.add(usr2);
 		doReturn(query).when(wrapper).find(anyString(), anyString(), any(DBObject.class));
