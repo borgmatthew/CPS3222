@@ -12,7 +12,9 @@
 <script src="javascript/bettingPage.js"></script>
 </head>
 <body>
-
+	<%@ page import="com.assignment.DBObjects.User"%>
+	<%@ page import="com.assignment.requests.UserRequestImpl"%>
+	<%@ page import="java.util.*"%>
 	<% 
     
 	 if ((session.getAttribute("user") == null) || (session.getAttribute("user") == "")) {
@@ -23,18 +25,19 @@
 	<%@ include file="headerLoggedOut.jsp"%>
 	<div id="middle_container">
 		<div id="main_content">
-			
-				You are not logged in<br />
-		
+
+			You are not logged in<br />
+
 		</div>
 	</div>
 
 
 	<%
 }  else {
-	   //session.setAttribute( "theName", "Wrong username" );
+	
 %>
 
+	
 
 
 	<%@ include file="headerLoggedIn.jsp"%>
@@ -42,15 +45,15 @@
 		<div id="main_content">
 			<div id="betting_form_placeholder">
 				<h1>Place your bet</h1>
-				<form id="betting_form">
+				<form id="betting_form" method="POST" action="successfullBetting.jsp">
 					<div id="risk_level">
 						<label>Risk level</label> <input type="radio" name="betrisk"
-							checked="checked" value="Low">low <input type="radio"
-							name="betrisk" value="Medium">medium <input type="radio"
-							name="betrisk" value="High">high
+							checked="checked" value="Low">low <input id="medium"
+							type="radio" name="betrisk" value="Medium">medium <input
+							id="High" type="radio" name="betrisk" value="High">high
 					</div>
 					<div id="amount">
-						<label>Amount:</label> <input id="ammount" class="fields"
+						<label>Amount:</label> <input id="ammount" name="amm" class="fields"
 							type="text" placeholder="amount"> <span
 							id="ammount_error" class="status"></span>
 					</div>
@@ -58,6 +61,7 @@
 						<input id="submitButton" type="submit" value="Submit">
 					</div>
 				</form>
+				<div id="past_ids"></div>
 			</div>
 		</div>
 	</div>

@@ -31,7 +31,7 @@
 				String expdate=request.getParameter("expirydate");
 				String cvv=request.getParameter("cvv");
 				
-				System.out.println(session.getAttribute("reg"));
+				//System.out.println(session.getAttribute("reg"));
 				
 				String message="";
 				
