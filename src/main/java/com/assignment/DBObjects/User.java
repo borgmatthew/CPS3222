@@ -16,6 +16,7 @@ public class User extends BasicDBObject{
 	private String expdate = "";
 	private String cvv = "";
 	private int attempts = 0;
+	private long lockTime;
 
 	public User(){
 	}
@@ -30,11 +31,12 @@ public class User extends BasicDBObject{
 		this.creditcard = (String) fromObject.get("card_no");
 		this.cvv = (String) fromObject.get("cvv");
 		this.attempts = (Integer) fromObject.get("attempts");
+		this.lockTime = (Long) fromObject.get("lockTime");
 		this.put("_id", fromObject.get("_id"));
 		populateMap();
 	}
 	
-	public User(String name,String sname,String username,String pass,String dob,String  accounttyp,String card,String exp,String cvv, int attempts){
+	public User(String name,String sname,String username,String pass,String dob,String  accounttyp,String card,String exp,String cvv, int attempts, long lockTime){
 		this.name=name;
 		this.sname=sname;
 		this.username=username;
@@ -45,6 +47,7 @@ public class User extends BasicDBObject{
 		this.expdate=exp;
 		this.cvv=cvv;
 		this.attempts = attempts;
+		this.lockTime = lockTime;
 		populateMap();
 	}
 	
@@ -59,6 +62,7 @@ public class User extends BasicDBObject{
 		this.put("expiry", expdate);
 		this.put("cvv", cvv);
 		this.put("attempts", attempts);
+		this.put("lockTime", lockTime);
 	}
 
 	public String getName() {
@@ -105,7 +109,7 @@ public class User extends BasicDBObject{
 		this.dob = dob;
 		this.put("dob", dob);
 	}
-
+	
 	public String getAccounttype() {
 		return accounttype;
 	}
@@ -149,5 +153,14 @@ public class User extends BasicDBObject{
 	public void setAttempts(int attempts) {
 		this.attempts = attempts;
 		this.put("attempts", attempts);
+	}
+
+	public long getLockTime() {
+		return lockTime;
+	}
+
+	public void setLockTime(long lockTime) {
+		this.lockTime = lockTime;
+		this.put("lockTime", lockTime);
 	}
 }
