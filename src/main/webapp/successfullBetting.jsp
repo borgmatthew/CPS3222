@@ -21,28 +21,24 @@
 	String message="";
 	BettingImp betval=new BettingImp();
 	if(betval.validateBets(session.getAttribute("user").toString(),risk,ammount)==false){					
-        message =betval.getMessage();	
+        message =betval.getMessage();
+        session.setAttribute("bet", message);
+        %>	
+       <script type="text/javascript">
+       	$document.getElementById("Bett_error").html(message);
+       </script>
        
-	}
-	else{ %>
-		//message="Bet Succesful to make another bet click here.";
-		//need to add bet here.
-		 alert("Bet succesful");
+       <jsp:forward page="betting.jsp" />
 	<%}
+	else{ 
+		session.setAttribute("bet", "Bet Succesful");
+		betval.addBet(risk, ammount, session.getAttribute("user").toString());
+		%>
+		
+		//need to add bet here.
+		
+		 <jsp:forward page="betting.jsp" />
+<%	} %>
 
-%>
-<%@ include file="headerLoggedIn.jsp"%>
-<div id="middle_container">
-		<div id="main_content">
-			<div class="style">
-				<p id="parag">
-					<font size="6">
-						<%out.println(message); %>
-					</font>
-				</p>
-
-			</div>
-		</div>
-	</div>
 </body>
 </html>

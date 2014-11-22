@@ -23,6 +23,7 @@
 	LoginImp userlogin=new LoginImp();
 	 if (userlogin.validate(username,password)) {
 		 session.setAttribute("user", username);
+		 session.setAttribute("bet","");
 %>
 <jsp:forward page="betting.jsp" />
 <%

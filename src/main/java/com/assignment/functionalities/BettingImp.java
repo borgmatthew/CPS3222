@@ -1,5 +1,7 @@
 package com.assignment.functionalities;
 
+import com.assignment.DBObjects.Bet;
+import com.assignment.requests.BettingRequestsImpl;
 import com.assignment.validations.BettingValidationsImp;
 
 public class BettingImp implements Betting {
@@ -22,5 +24,10 @@ public class BettingImp implements Betting {
 	
 	public String getMessage(){
 		return message;
+	}
+	public void addBet(String risk, String ammount,String user) {
+		BettingRequestsImpl userRequest = new BettingRequestsImpl();
+		Bet newBet =new Bet(risk,ammount,user);
+		userRequest.createBet(newBet);
 	}
 }

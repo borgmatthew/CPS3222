@@ -12,8 +12,8 @@
 <script src="javascript/bettingPage.js"></script>
 </head>
 <body>
-	<%@ page import="com.assignment.DBObjects.User"%>
-	<%@ page import="com.assignment.requests.UserRequestImpl"%>
+	<%@ page import="com.assignment.DBObjects.Bet"%>
+	<%@ page import="com.assignment.requests.BettingRequestsImpl"%>
 	<%@ page import="java.util.*"%>
 	<% 
     
@@ -34,7 +34,34 @@
 
 	<%
 }  else {
-	
+	//session.setAttribute("bet", "");
+	//System.out.println(session.getAttribute("bet"));
+	String code;
+	StringBuilder builder = new StringBuilder();
+	builder.append("<ul>");
+	BettingRequestsImpl Betrequest=new BettingRequestsImpl();
+	Bet tempbet=new Bet();
+	tempbet.setUser(session.getAttribute("user").toString());
+	List<Bet> bets=Betrequest.findBet(tempbet);
+	System.out.println(bets.get(1).getAmmount());
+	for(int i=0;i<bets.size();i++){
+		//code.concat("<li>");
+		builder.append("<li>");
+		//code.concat(bets.get(i).getRisk());
+		builder.append(bets.get(i).getRisk());
+
+		//code.concat(",");
+		builder.append(",");
+		//code.concat(bets.get(i).getAmmount());
+		builder.append(bets.get(i).getAmmount());
+		//code.concat("</li>");
+		builder.append("</li>");
+		
+	}
+	//code.concat("</ul>");
+	builder.append("</ul>");
+	code=builder.toString();
+	//String code="<ul><li>Test1</li></ul>";
 %>
 
 	
@@ -61,14 +88,18 @@
 						<input id="submitButton" type="submit" value="Submit">
 					</div>
 				</form>
-				<div id="past_ids"></div>
+				<span id="Bett_error" ><%=session.getAttribute("bet") %></span>
+				<div id="past_bets" class="status">
+				<%out.println(code); %>
+				</div>
 			</div>
 		</div>
 	</div>
 
 
 	<%
-}
+//session.setAttribute("bet","");
+	}
 %>
 
 </body>

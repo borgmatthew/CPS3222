@@ -10,6 +10,7 @@ public class Bet extends BasicDBObject{
 	private String risk;
 	private String amount;
 	private int userId;
+	private String user;
 	
 	public Bet(){
 	}
@@ -30,18 +31,29 @@ public class Bet extends BasicDBObject{
 		this.userId = userId;
 		populateMap();
 	}
+	public Bet(String risk, String ammount,String user) {
+		
+		this.risk = risk;
+		this.amount = ammount;
+		
+		this.user=user;
+		populateMap();
+	}
 	
 	public void populateMap(){
 		this.put("betId", betId);
 		this.put("risk", risk);
 		this.put("amount", amount);
 		this.put("userId", userId);
+		this.put("user", user);
 	}
 
 	public int getBetId() {
 		return betId;
 	}
-
+public void setUser(String user){
+	this.user=user;
+}
 	public void setBetId(int betId) {
 		this.betId = betId;
 		this.put("betId", betId);
