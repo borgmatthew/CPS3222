@@ -34,8 +34,8 @@ public class BettingRequestsImplTest {
 	public void testFindBet() {
 		// given
 		List<DBObject> query = new ArrayList<DBObject>();
-		Bet bet1 = new Bet(1,1, "", "");
-		Bet bet2 = new Bet(1,1, "", "");
+		Bet bet1 = new Bet(1,1, "", 1.1);
+		Bet bet2 = new Bet(1,1, "", 2);
 		query.add(bet1);
 		query.add(bet2);
 		doReturn(query).when(wrapper).find(anyString(), anyString(),

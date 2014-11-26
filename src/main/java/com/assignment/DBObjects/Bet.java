@@ -8,7 +8,7 @@ public class Bet extends BasicDBObject{
 	private static final long serialVersionUID = 1L;
 	private int betId;
 	private String risk;
-	private String amount;
+	private double amount;
 	private int userId;
 	private String user;
 	
@@ -16,7 +16,7 @@ public class Bet extends BasicDBObject{
 	}
 	
 	public Bet(DBObject fromObject){
-		this.amount = (String) fromObject.get("amount");
+		this.amount = (Double) fromObject.get("amount");
 		this.betId = (Integer) fromObject.get("betId");
 		this.risk = (String) fromObject.get("risk");
 		this.userId = (Integer) fromObject.get("userId");
@@ -24,17 +24,17 @@ public class Bet extends BasicDBObject{
 		populateMap();
 	}
 	
-	public Bet(int betId, int userId, String risk, String ammount) {
+	public Bet(int betId, int userId, String risk, double amount) {
 		this.betId = betId;
 		this.risk = risk;
-		this.amount = ammount;
+		this.amount = amount;
 		this.userId = userId;
 		populateMap();
 	}
-	public Bet(String risk, String ammount,String user) {
+	public Bet(String risk, double amount,String user) {
 		
 		this.risk = risk;
-		this.amount = ammount;
+		this.amount = amount;
 		
 		this.user=user;
 		populateMap();
@@ -68,11 +68,11 @@ public void setUser(String user){
 		this.put("risk", risk);
 	}
 
-	public String getAmmount() {
+	public double getAmmount() {
 		return amount;
 	}
 
-	public void setAmmount(String amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 		this.put("amount", amount);
 	}
