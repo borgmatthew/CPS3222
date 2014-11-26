@@ -1,44 +1,39 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="css/common.css">
-<title>Insert title here</title>
-</head>
-<body>
 <%@ page import="com.assignment.functionalities.BettingImp"%>
 <%
+	if (session.getAttribute("user") == null) {
+		response.sendRedirect("index.jsp");
+	}
 
-	String ammount=request.getParameter("amm");
-	String risk=request.getParameter("betrisk");
-	
-	System.out.println(ammount);
-	System.out.println(risk);
-	System.out.println(session.getAttribute("user"));
-	
-	String message="";
-	BettingImp betval=new BettingImp();
-	if(betval.validateBets(session.getAttribute("user").toString(),risk,ammount)==false){					
-        message =betval.getMessage();
-        session.setAttribute("bet", message);
-        %>	
-       <script type="text/javascript">
-       	$document.getElementById("Bett_error").html(message);
-       </script>
-       
-       <jsp:forward page="betting.jsp" />
-	<%}
-	else{ 
-		session.setAttribute("bet", "Bet Succesful");
-		betval.addBet(risk, ammount, session.getAttribute("user").toString());
-		%>
-		
-		//need to add bet here.
-		
-		 <jsp:forward page="betting.jsp" />
-<%	} %>
+	String message = "";
+	boolean success = false;
 
-</body>
-</html>
+	Double amount = -1.0;
+	try {
+		amount = Double.parseDouble(request.getParameter("amm"));
+	} catch (NumberFormatException nfe) {
+		message = "Invalid amount";
+		amount = -1.0;
+	} catch (NullPointerException npe) {
+		message = "Invalid amount";
+		amount = -1.0;
+	}
+
+	String risk = request.getParameter("betrisk");
+	if(risk == null){
+		risk = "";
+	}
+
+	//validate
+	BettingImp betval = new BettingImp();
+	if (!betval.validateBets(session.getAttribute("user").toString(),
+			risk, amount)) {
+		message = "An error occured. Please try again.";
+	} else {
+		betval.addBet(risk, amount, session.getAttribute("user")
+				.toString());
+		message = "Bet placed successfully";
+		success = true;
+	}
+	out.println("{ \"success\" : \"" + success
+			+ "\" , \"message\" : \"" + message + "\"}");
+%>

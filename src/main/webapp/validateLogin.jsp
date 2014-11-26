@@ -11,34 +11,22 @@
 
 <%@ page import="com.assignment.functionalities.LoginImp"%>
 <%@ page import="javax.script.*;"%>
-<% 
-    //boolean flag=true;;
-  
-	   String username=request.getParameter("user");
-	String password=request.getParameter("pass");
-	
-	//System.out.println(username);
-	//System.out.println(password);
-	
-	LoginImp userlogin=new LoginImp();
-	 if (userlogin.validate(username,password)) {
-		 session.setAttribute("user", username);
-		 session.setAttribute("bet","");
-%>
-<jsp:forward page="betting.jsp" />
 <%
-   }  else {
-	   //session.setAttribute( "theName", "Wrong username" );
+	String username = request.getParameter("user");
+	String password = request.getParameter("pass");
+
+	LoginImp userlogin = new LoginImp();
+	if (userlogin.validate(username, password)) {
+		session.setAttribute("user", username);
+		session.setAttribute("bet", "");
+		response.sendRedirect("betting.jsp");
+	}
 %>
 <%@ include file="headerLoggedOut.jsp"%>
+
 <div id="middle_container">
 	<div id="main_content">
 		<div class="style">Wrong username or password Please Try again</div>
 	</div>
 </div>
-
-
-<%
-   }
-%>
 </html>
