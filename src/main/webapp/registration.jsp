@@ -11,8 +11,6 @@
 <title>OBD - The Online Betting Company</title>
 </head>
 <body>
-<% 
-String reg="Registering";								 %>
 
 	<%@ include file="headerLoggedOut.jsp"%>
 	<div id="middle_container">
@@ -65,7 +63,7 @@ String reg="Registering";								 %>
 						<input class="fields" id="cvv" type="text" name="cvv" placeholder="cvv" />
 						<span id="cvv_error" class="status"></span>
 					</div>
-					<input id="submitButton" type="submit"  name="submit" onClick=<% session.setAttribute("reg",reg); %> value="Register"  />
+					<input id="submitButton" type="submit"  name="submit" value="Register"  />
 				</form>
 			</div>
 		</div>
