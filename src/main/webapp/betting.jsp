@@ -14,8 +14,9 @@
 	<%@ page
 		import="com.assignment.DBObjects.Bet,com.assignment.requests.BettingRequestsImpl, com.assignment.functionalities.BettingImp, com.assignment.functionalities.Betting"%>
 	<%
-		if (session.getAttribute("user") == null) {
+		if (request.getSession(false).getAttribute("user") == null) {
 			response.sendRedirect("index.jsp");
+			return;
 		}
 	%>
 
