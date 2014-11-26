@@ -6,8 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/registration.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
- <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="javascript/jquery-2.1.1.min.js"></script>
 <script src="javascript/registrationPage.js"></script>
 <title>OBD - The Online Betting Company</title>
 </head>
