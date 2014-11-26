@@ -26,7 +26,7 @@ public class RegistrationFormTest {
 
 	@After
 	public void tearDown() throws Exception {
-		//form.close();
+		form.close();
 	}
 
 	@Test

@@ -14,7 +14,7 @@ public class PopulateFormImp implements PopulateForm {
 	}
 	
 	public void visit(){
-		browser .get("http://localhost:8080/Assignment/registration.jsp");
+		browser.get("http://localhost:8080/Assignment/registration.jsp");
 	}
 	public void close(){
 		browser.quit();
