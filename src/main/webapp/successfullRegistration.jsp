@@ -33,21 +33,19 @@
 				
 				String message="";
 				
-				if(registration.validateForm(name,sname,username,password,dob,account,card,expdate,cvv)==false){					
+				if(!registration.validateForm(name,sname,username,password,dob,account,card,expdate,cvv)){					
 			        message =registration.getMessage();	
-			       
 				}
 				else{
 					message="Succesful registration. Please Login.";
-					 registration.addUser(name,sname,username,password,dob,account,card,expdate,cvv);
+					registration.addUser(name,sname,username,password,dob,account,card,expdate,cvv);
 				}
 				%>
 	<div id="middle_container">
 		<div id="main_content">
 			<div class="style">
 				<p id="parag">
-					<font size="6">
-						<%out.println(message); %>
+					<font size="6"> <%out.println(message); %>
 					</font>
 				</p>
 
