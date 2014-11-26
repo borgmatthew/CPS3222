@@ -13,8 +13,9 @@ import com.assignment.requests.UserRequestImpl;
 public class RegistrationValidationImp implements RegistrationValidation {
 
 	public boolean validateName(String name) {
-
-		// int len=name.length();
+		if(name == null){
+			return false;
+		}
 		String regex = "^[A-Za-z\\s]*";
 		if (name.matches(regex)) {
 			return true;
@@ -24,6 +25,9 @@ public class RegistrationValidationImp implements RegistrationValidation {
 	}
 
 	public boolean validateSName(String sname) {
+		if(sname == null){
+			return false;
+		}
 		String regex = "^[A-Za-z\\s]*";
 		if (sname.matches(regex)) {
 			return true;
@@ -33,6 +37,9 @@ public class RegistrationValidationImp implements RegistrationValidation {
 	}
 
 	public boolean validateUsername(String user) {
+		if(user == null){
+			return false;
+		}
 		UserRequest request = new UserRequestImpl();
 		User tempUser = new User();
 		tempUser.setUsername(user);
@@ -44,6 +51,9 @@ public class RegistrationValidationImp implements RegistrationValidation {
 	}
 
 	public boolean validatePassword(String pass) {
+		if(pass == null){
+			return false;
+		}
 		if (pass.length() < 8) {
 			return false;
 		}
@@ -51,6 +61,9 @@ public class RegistrationValidationImp implements RegistrationValidation {
 	}
 
 	public boolean validateDOB(String dob) {
+		if(dob == null){
+			return false;
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date date;
 		try {
@@ -69,7 +82,9 @@ public class RegistrationValidationImp implements RegistrationValidation {
 	}
 
 	public boolean validateCard(String number) {
-
+		if(number == null){
+			return false;
+		}
 		if (isAmerican(number) || isVisa(number) || isMaster(number)) {
 			return true;
 		} else {
@@ -171,6 +186,9 @@ public class RegistrationValidationImp implements RegistrationValidation {
 	}
 
 	public boolean validateEXP(String expdate) {
+		if(expdate == null){
+			return false;
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date expirydate;
 		try {
@@ -187,6 +205,9 @@ public class RegistrationValidationImp implements RegistrationValidation {
 	}
 
 	public boolean validateCvv(String cvv) {
+		if(cvv == null){
+			return false;
+		}
 		String regex = "^[0-9\\s]{3}";
 		if (cvv.matches(regex)) {
 			return true;
