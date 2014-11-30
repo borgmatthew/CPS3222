@@ -1,10 +1,8 @@
 package com.assignment.functionalities;
 
-import com.assignment.DBObjects.User;
-import com.assignment.requests.UserRequestImpl;
 import com.assignment.validations.RegistrationValidationImp;
 
-public class RegistrationImp implements Registration {
+public class RegistrationImpl implements Registration {
 	private String message = "";
 
 	public boolean validateForm(String name, String sname, String username,
@@ -57,15 +55,6 @@ public class RegistrationImp implements Registration {
 
 	public String getMessage() {
 		return message;
-	}
-
-	public void addUser(String name, String sname, String username,
-			String password, String dob, String account, String card,
-			String expdate, String cvv) {
-		UserRequestImpl userRequest = new UserRequestImpl();
-		User newUser = new User(name, sname, username, password, dob, account,
-				card, expdate, cvv, 0, 0);
-		userRequest.createUser(newUser);
 	}
 
 }
