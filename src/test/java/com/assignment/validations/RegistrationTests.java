@@ -7,13 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.assignment.functionalities.Registration;
-import com.assignment.functionalities.RegistrationImp;
+import com.assignment.functionalities.RegistrationImpl;
 
 public class RegistrationTests {
 	Registration reg;
 	@Before
 	public void setUp() throws Exception {
-		reg=new RegistrationImp();
+		reg=new RegistrationImpl();
 	}
 
 	@After

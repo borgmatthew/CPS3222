@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>OBC - Betting</title>
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/betting.css">
 <script src="javascript/jquery-2.1.1.min.js"></script>
@@ -12,18 +12,17 @@
 </head>
 <body>
 	<%@ page
-		import="com.assignment.DBObjects.Bet,com.assignment.requests.BettingRequestsImpl, com.assignment.functionalities.BettingImp, com.assignment.functionalities.Betting"%>
+		import="com.assignment.functionalities.BettingImp, com.assignment.functionalities.Betting,com.assignment.util.Menu,com.assignment.util.MenuImpl"%>
 	<%
 		if (request.getSession(false).getAttribute("user") == null) {
 			response.sendRedirect("index.jsp");
 			return;
 		}
+	
+		Menu menu = new MenuImpl();
+		out.print(menu.getLoggedInMenu());
 	%>
-
-
-
-
-	<%@ include file="headerLoggedIn.jsp"%>
+	
 	<div id="middle_container">
 		<div id="main_content">
 			<div id="betting_form_placeholder">

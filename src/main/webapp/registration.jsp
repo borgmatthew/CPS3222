@@ -8,15 +8,20 @@
 <link rel="stylesheet" type="text/css" href="css/registration.css">
 <script src="javascript/jquery-2.1.1.min.js"></script>
 <script src="javascript/registrationPage.js"></script>
-<title>OBD - The Online Betting Company</title>
+<title>OBC - The Online Betting Company</title>
 </head>
 <body>
 
-	<%@ include file="headerLoggedOut.jsp"%>
+	<%@ page
+		import="com.assignment.util.Menu,com.assignment.util.MenuImpl"%>
+	<%
+		Menu menu = new MenuImpl();
+		out.print(menu.getLoggedOutMenu());
+	%>
 	<div id="middle_container">
 		<div id="main_content">
 			<div id="reg_form">
-				<form id="registrationForm" name="registrationform" method="POST" action="successfullRegistration.jsp">
+				<form id="registrationForm" name="registrationform" method="POST" action="register">
 					<div class="prompt">
 						<label id="firstNameLabel">First name</label> 
 						<input id="firstName" class="fields" type="text" name="firstname" /> 
@@ -38,7 +43,7 @@
 					</div>
 					<div class="prompt">
 						<label id="dobLabel">Date of Birth</label>
-						<input  class="fields" id='dob' type="date" name="dob" />
+						<input  class="fields" id='dob' type="text" name="dob" />
 						<span id="dob_error" class="status"></span>
 					</div>
 					<div class="prompt">
@@ -55,7 +60,7 @@
 					</div>
 					<div class="prompt">
 						<label id="creditExpiryLabel">Expiry date</label>
-						<input class="fields" id="expiry_date" type="date" name="expirydate" placeholder="card expiry date" />
+						<input class="fields" id="expiry_date" type="text" name="expirydate" placeholder="card expiry date" />
 						<span id="expiry_error" class="status"></span>
 					</div>
 					<div class="prompt">

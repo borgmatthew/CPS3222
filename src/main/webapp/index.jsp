@@ -9,7 +9,12 @@
 <title>The Online Betting Company</title>
 </head>
 <body>
-	<%@ include file="headerLoggedOut.jsp"%>
+	<%@ page
+		import="com.assignment.util.Menu,com.assignment.util.MenuImpl"%>
+	<%
+		Menu menu = new MenuImpl();
+		out.print(menu.getLoggedOutMenu());
+	%>
 	<div id="middle_container">
 		<div id="main_content">
 			<div id="content_holder">
@@ -67,11 +72,12 @@
 				</div>
 				<div id="login_section">
 					Login to OBC!<br>
-					<form name="login_form" id="login_form" method="POST" action="validateLogin.jsp">
-						<input type="text" id="username" placeholder="username"  name="user" /><br>
-						
-						<input type="password" id="password" placeholder="password" name="pass" /><br>
-						<input type="submit" id="login_button" value="Login">
+					<form name="login_form" id="login_form" method="POST"
+						action="login">
+						<input type="text" id="username" placeholder="username"
+							name="user" /><br> <input type="password" id="password"
+							placeholder="password" name="pass" /><br> <input
+							type="submit" id="login_button" value="Login">
 					</form>
 				</div>
 			</div>
