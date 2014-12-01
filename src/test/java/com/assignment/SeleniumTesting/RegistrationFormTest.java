@@ -11,9 +11,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.assignment.SeleniumTesting.PopulateForm;
-import com.assignment.SeleniumTesting.PopulateFormImp;
-
 public class RegistrationFormTest {
 	WebDriver browser;
 	PopulateForm form;
@@ -33,7 +30,7 @@ public class RegistrationFormTest {
 	public void validFormtest() {
 		
 		form.populate();
-		assertTrue(form.findById("parag").size()>0);
+		assertTrue(form.findById("message").size() > 0);
 		
 	}
 	@Test

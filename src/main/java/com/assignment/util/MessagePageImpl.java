@@ -9,7 +9,7 @@ public class MessagePageImpl implements MessagePage {
 				+ (new MenuImpl()).getLoggedOutMenu()
 				+ "<body><div id=\"middle_container\">"
 				+ "<div id=\"main_content\">"
-				+ "<div class=\"style\">"
+				+ "<div id=\"message\" class=\"style\">"
 				+ message
 				+ "</div>"
 				+ "</div></div></body></html>";
