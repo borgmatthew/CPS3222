@@ -16,7 +16,7 @@ public class User extends BasicDBObject{
 	private String expdate = "";
 	private String cvv = "";
 	private int attempts = 0;
-	private long lockTime;
+	private long lockTime = 0L;
 
 	public User(){
 	}
@@ -28,6 +28,7 @@ public class User extends BasicDBObject{
 		this.password = (String) fromObject.get("password");
 		this.dob = (String) fromObject.get("dob");
 		this.accounttype = (String) fromObject.get("type");
+		this.expdate = (String) fromObject.get("expiry");
 		this.creditcard = (String) fromObject.get("card_no");
 		this.cvv = (String) fromObject.get("cvv");
 		this.attempts = (Integer) fromObject.get("attempts");
@@ -162,5 +163,88 @@ public class User extends BasicDBObject{
 	public void setLockTime(long lockTime) {
 		this.lockTime = lockTime;
 		this.put("lockTime", lockTime);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+				+ ((accounttype == null) ? 0 : accounttype.hashCode());
+		result = prime * result + attempts;
+		result = prime * result
+				+ ((creditcard == null) ? 0 : creditcard.hashCode());
+		result = prime * result + ((cvv == null) ? 0 : cvv.hashCode());
+		result = prime * result + ((dob == null) ? 0 : dob.hashCode());
+		result = prime * result + ((expdate == null) ? 0 : expdate.hashCode());
+		result = prime * result + (int) (lockTime ^ (lockTime >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result
+				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((sname == null) ? 0 : sname.hashCode());
+		result = prime * result
+				+ ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (accounttype == null) {
+			if (other.accounttype != null)
+				return false;
+		} else if (!accounttype.equals(other.accounttype))
+			return false;
+		if (attempts != other.attempts)
+			return false;
+		if (creditcard == null) {
+			if (other.creditcard != null)
+				return false;
+		} else if (!creditcard.equals(other.creditcard))
+			return false;
+		if (cvv == null) {
+			if (other.cvv != null)
+				return false;
+		} else if (!cvv.equals(other.cvv))
+			return false;
+		if (dob == null) {
+			if (other.dob != null)
+				return false;
+		} else if (!dob.equals(other.dob))
+			return false;
+		if (expdate == null) {
+			if (other.expdate != null)
+				return false;
+		} else if (!expdate.equals(other.expdate))
+			return false;
+		if (lockTime != other.lockTime)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (sname == null) {
+			if (other.sname != null)
+				return false;
+		} else if (!sname.equals(other.sname))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
 	}
 }
