@@ -11,6 +11,7 @@ import com.assignment.mongodb.MongoDBActionsWrapper;
 import com.assignment.mongodb.MongoDBActionsWrapperImpl;
 import com.assignment.mongodb.MongoDBConnectionWrapper;
 import com.assignment.mongodb.MongoDBConnectionWrapperImpl;
+import com.assignment.util.Props;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
@@ -25,7 +26,7 @@ public class MongoDBActionsWrapperImplTest {
 
 	@Before
 	public void setUp() {
-		client = connectionsWrapper.connect("localhost", 27017);
+		client = connectionsWrapper.connect(Props.getProperty("host"), Integer.parseInt(Props.getProperty("port")));
 	}
 
 	@After
