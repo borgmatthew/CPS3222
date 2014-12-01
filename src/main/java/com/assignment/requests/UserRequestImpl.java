@@ -15,7 +15,6 @@ public class UserRequestImpl implements UserRequest {
 
 	public UserRequestImpl() {
 		dbWrapper = new MongoDBWrapperImpl(Props.getProperty("host"), Integer.parseInt(Props.getProperty("port")));
-		// TODO load properties from properties file
 	}
 	
 	public UserRequestImpl(MongoDBWrapper wrapper){
