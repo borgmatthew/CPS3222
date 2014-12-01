@@ -35,9 +35,4 @@ public class BettingRequestsImpl implements BettingRequests {
 		}
 		return result;
 	}
-
-	@Override
-	public boolean saveBet(Bet toSave) {
-		return dbWrapper.insert(Props.getProperty("betting_db"), Props.getProperty("betting_tbl"), toSave);
-	}
 }
