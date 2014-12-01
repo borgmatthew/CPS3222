@@ -1,4 +1,4 @@
-package com.assignment.validations;
+package com.assignment.functionalities;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

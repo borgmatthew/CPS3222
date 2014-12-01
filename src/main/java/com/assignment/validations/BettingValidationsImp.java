@@ -9,8 +9,6 @@ public class BettingValidationsImp implements BettingValidations{
 	
 	public boolean validateRisk(User user, String risk) {
 		if (isFreeUser(user)) {
-			//System.out.println("hawn dahal");
-			//Fejn dahal??
 			if(!risk.equals("Low")){
 				return false;
 			}
