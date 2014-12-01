@@ -6,6 +6,7 @@ import java.util.List;
 import com.assignment.DBObjects.Bet;
 import com.assignment.mongodb.MongoDBWrapper;
 import com.assignment.mongodb.MongoDBWrapperImpl;
+import com.assignment.util.Props;
 import com.mongodb.DBObject;
 
 public class BettingRequestsImpl implements BettingRequests {
@@ -13,8 +14,7 @@ public class BettingRequestsImpl implements BettingRequests {
 	MongoDBWrapper dbWrapper;
 	
 	public BettingRequestsImpl() {
-		dbWrapper = new MongoDBWrapperImpl("localhost", 27017);
-		// TODO load properties from properties file
+		dbWrapper = new MongoDBWrapperImpl(Props.getProperty("host"), Integer.parseInt(Props.getProperty("port")));
 	}
 	
 	public BettingRequestsImpl(MongoDBWrapper wrapper){
@@ -23,12 +23,12 @@ public class BettingRequestsImpl implements BettingRequests {
 	
 	@Override
 	public boolean createBet(Bet bet) {
-		return dbWrapper.insert("SoftwareTesting", "Bets", bet);
+		return dbWrapper.insert(Props.getProperty("betting_db"), Props.getProperty("betting_tbl"), bet);
 	}
 
 	@Override
 	public List<Bet> findBet(Bet toFind) {
-		List<DBObject> query = dbWrapper.find("SoftwareTesting", "Bets", toFind);
+		List<DBObject> query = dbWrapper.find(Props.getProperty("betting_db"), Props.getProperty("betting_tbl"), toFind);
 		List<Bet> result = new ArrayList<Bet>(query.size());
 		for(DBObject o : query){
 			result.add(new Bet(o));
@@ -38,6 +38,6 @@ public class BettingRequestsImpl implements BettingRequests {
 
 	@Override
 	public boolean saveBet(Bet toSave) {
-		return dbWrapper.insert("SoftwareTesting", "Bets", toSave);
+		return dbWrapper.insert(Props.getProperty("betting_db"), Props.getProperty("betting_tbl"), toSave);
 	}
 }
