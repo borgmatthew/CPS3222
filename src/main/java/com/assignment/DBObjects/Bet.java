@@ -6,10 +6,8 @@ import com.mongodb.DBObject;
 public class Bet extends BasicDBObject {
 
 	private static final long serialVersionUID = 1L;
-	private int betId;
 	private String risk;
 	private double amount;
-	private int userId;
 	private String user;
 
 	public Bet() {
@@ -17,18 +15,9 @@ public class Bet extends BasicDBObject {
 
 	public Bet(DBObject fromObject) {
 		this.amount = (Double) fromObject.get("amount");
-		this.betId = (Integer) fromObject.get("betId");
 		this.risk = (String) fromObject.get("risk");
-		this.userId = (Integer) fromObject.get("userId");
+		this.user = (String) fromObject.get("user");
 		this.put("_id", fromObject.get("_id"));
-		populateMap();
-	}
-
-	public Bet(int betId, int userId, String risk, double amount) {
-		this.betId = betId;
-		this.risk = risk;
-		this.amount = amount;
-		this.userId = userId;
 		populateMap();
 	}
 
@@ -42,25 +31,18 @@ public class Bet extends BasicDBObject {
 	}
 
 	public void populateMap() {
-		this.put("betId", betId);
 		this.put("risk", risk);
 		this.put("amount", amount);
-		this.put("userId", userId);
 		this.put("user", user);
-	}
-
-	public int getBetId() {
-		return betId;
 	}
 
 	public void setUser(String user) {
 		this.user = user;
 		this.put("user", user);
 	}
-
-	public void setBetId(int betId) {
-		this.betId = betId;
-		this.put("betId", betId);
+	
+	public String getUser(){
+		return user;
 	}
 
 	public String getRisk() {
@@ -80,14 +62,42 @@ public class Bet extends BasicDBObject {
 		this.amount = amount;
 		this.put("amount", amount);
 	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-		this.put("userId", userId);
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		long temp;
+		temp = Double.doubleToLongBits(amount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((risk == null) ? 0 : risk.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
 	}
 
-	public int getUserId() {
-		return userId;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bet other = (Bet) obj;
+		if (Double.doubleToLongBits(amount) != Double
+				.doubleToLongBits(other.amount))
+			return false;
+		if (risk == null) {
+			if (other.risk != null)
+				return false;
+		} else if (!risk.equals(other.risk))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
 	}
 
 }
