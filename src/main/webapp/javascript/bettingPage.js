@@ -11,7 +11,7 @@ $(document).ready(function(){
 		var amount = $('#ammount').val();
 		var risk = $("input[name=betrisk]:checked").val();
 		if(validateAmmount(amount)){
-			$.post("successfullBetting.jsp", {amm: amount, betrisk: risk}, function(data){
+			$.post("betting", {amm: amount, betrisk: risk}, function(data){
 				var parse = JSON.parse(data);
 				$('#Bett_error').html(parse.message);
 				if(parse.success == "true"){
