@@ -9,16 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.assignment.functionalities.Betting;
 import com.assignment.functionalities.BettingImp;
 
 public class BettingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private BettingImp betval;
+	private Betting betval;
 	private String message = "";
-	private boolean success = false;
 
 	public void init() throws ServletException {
 		betval = new BettingImp();
+	}
+	
+	public void setBettingImpl(Betting betting){
+		this.betval = betting;
 	}
 
 	private boolean validateBet(HttpServletRequest request) {
@@ -29,6 +33,8 @@ public class BettingServlet extends HttpServlet {
 		String risk = request.getParameter("betrisk");
 		if(risk == null){
 			risk = "";
+			message = "Invalid risk";
+			return result;
 		}
 		
 		Double amount = -1.0;
@@ -37,9 +43,11 @@ public class BettingServlet extends HttpServlet {
 		} catch (NumberFormatException nfe) {
 			message = "Invalid amount";
 			amount = -1.0;
+			return result;
 		} catch (NullPointerException npe) {
 			message = "Invalid amount";
 			amount = -1.0;
+			return result;
 		}
 		
 		if (!betval.validateBets(session.getAttribute("user").toString(),
@@ -49,7 +57,7 @@ public class BettingServlet extends HttpServlet {
 			betval.addBet(risk, amount, session.getAttribute("user")
 					.toString());
 			message = "Bet placed successfully";
-			success = true;
+			result = true;
 		}
 		return result;
 	}
@@ -63,7 +71,7 @@ public class BettingServlet extends HttpServlet {
 			return;
 		}
 		
-		validateBet(request);
+		boolean success = validateBet(request);
 		
 		PrintWriter out = response.getWriter();
 		out.println("{ \"success\" : \"" + success
