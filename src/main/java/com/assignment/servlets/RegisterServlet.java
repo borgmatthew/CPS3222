@@ -11,27 +11,29 @@ import javax.servlet.http.HttpServletResponse;
 import com.assignment.DBObjects.User;
 import com.assignment.functionalities.Registration;
 import com.assignment.functionalities.RegistrationImpl;
+import com.assignment.requests.UserRequest;
 import com.assignment.requests.UserRequestImpl;
 import com.assignment.util.MessagePageImpl;
 
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Registration registration;
+	private UserRequest userRequest;
 	private String message = "";
 
 	public void init() throws ServletException {
 		registration = new RegistrationImpl();
+		userRequest = new UserRequestImpl();
 	}
 
-	private void addUser(String name, String sname, String username,
-			String password, String dob, String account, String card,
-			String expdate, String cvv) {
-		UserRequestImpl userRequest = new UserRequestImpl();
-		User newUser = new User(name, sname, username, password, dob, account,
-				card, expdate, cvv, 0, 0);
-		userRequest.createUser(newUser);
+	public void setRegistration(Registration register) {
+		registration = register;
 	}
 	
+	public void setUserRequest(UserRequest request){
+		userRequest = request;
+	}
+
 	private void validateRegistration(HttpServletRequest request) {
 		String name = request.getParameter("firstname");
 		String sname = request.getParameter("lastname");
@@ -48,13 +50,13 @@ public class RegisterServlet extends HttpServlet {
 			message = registration.getMessage();
 		} else {
 			message = "Succesful registration. Please Login.";
-			addUser(name, sname, username, password, dob, account, card, expdate, cvv);
+			userRequest.createUser(new User(name, sname, username, password,
+					dob, account, card, expdate, cvv, 0, 0));
 		}
 	}
 
 	private String printMessagePage() {
-		return (new MessagePageImpl())
-				.printMessagePageLoggedOut(message);
+		return (new MessagePageImpl()).printMessagePageLoggedOut(message);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -20,6 +20,10 @@ public class LoginServlet extends HttpServlet {
 	public void init() throws ServletException {
 		login = new LoginImp();
 	}
+	
+	public void setLogin(Login login){
+		this.login = login;
+	}
 
 	private boolean isValidLogin(HttpServletRequest request) {
 		boolean result = false;
@@ -36,6 +40,7 @@ public class LoginServlet extends HttpServlet {
 		return (new MessagePageImpl()).printMessagePageLoggedOut("Wrong username or password Please Try again");
 	}
 
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -48,6 +53,7 @@ public class LoginServlet extends HttpServlet {
 		out.println(printErrorPage());
 	}
 	
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response){
 	}
 }

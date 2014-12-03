@@ -30,6 +30,10 @@ public class BettingValidationsImp implements BettingValidations{
 	}
 	
 	private boolean validateAmountPremium(List<Bet> bets, double amount){
+		if(amount < 0){
+			return false;
+		}
+		
 		double total = 0;
 		for(Bet b : bets){
 			total += b.getAmmount();
