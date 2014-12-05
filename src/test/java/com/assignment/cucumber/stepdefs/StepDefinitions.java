@@ -51,11 +51,11 @@ public void i_fill_in_a_form_with_correct_data_and_I_change_the_field_to_have_in
 	//throw new PendingException();
 }
 
-@Then("^I  should  be  told  that  the  data  in  \"(.*?)\"  is \"(.*?)\"$")
-public void i_should_be_told_that_the_data_in_is(String arg1, String arg2) throws Throwable {
+@Then("^I  should  be  told in \"(.*?)\"  that  the  data  in  \"(.*?)\"  is \"(.*?)\"$")
+public void i_should_be_told_in_that_the_data_in_is(String arg1, String arg2, String arg3) throws Throwable {
     // Write code here that turns the phrase above into concrete actions
-    assertEquals(form.findById(arg1).get(0).getText(),arg2);
-    //form.close();
+    assertEquals(form.findById(arg1).get(0).getText(),arg3);
+    form.close();
 	//throw new PendingException();
 }
 
