@@ -25,7 +25,7 @@ public class PopulateFormImp implements PopulateForm {
 		browser.findElement(By.id("userName")).sendKeys("ali.speed6@gmail.com");
 		browser.findElement(By.id("password")).sendKeys("Assignment");
 		browser.findElement(By.id("dob")).sendKeys("01/08/1991");
-		browser.findElement(By.id("creditcard")).sendKeys("4568820241600813");
+		browser.findElement(By.id("creditcard")).sendKeys("378282246310005");
 		browser.findElement(By.id("expiry_date")).sendKeys("01/08/2017");
 		browser.findElement(By.id("cvv")).sendKeys("123");
 		browser.findElement(By.id("submitButton")).submit();
