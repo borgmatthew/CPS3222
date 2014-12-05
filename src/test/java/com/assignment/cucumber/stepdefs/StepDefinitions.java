@@ -128,4 +128,26 @@ public void i_should_be_refused_access() throws Throwable {
     assertEquals(betform.getUrl(),"http://localhost:8080/Assignment/index.jsp");
 	//throw new PendingException();
 }
+
+
+@Given("^I am a user with a premium account$")
+public void i_am_a_user_with_a_premium_account() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+	browser = new FirefoxDriver();
+	logform=new PopulateLoginFormImp(browser);
+	logform.visitLogin();
+	logform.populateloginuserName("alz.speed6@gmail.com");
+	logform.populateloginpassword("Assignment");
+	logform.submit("login_button");
+	//throw new PendingException();
+}
+
+@Then("^I  should  be  told  that  I  have  reached  the  maximum cumulative betting amount$")
+public void i_should_be_told_that_I_have_reached_the_maximum_cumulative_betting_amount() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+	assertEquals(betform.findById("Bett_error").get(0).getText(),"Maximum cumulative amount reached");
+	//throw new PendingException();
+}
+
+
 }

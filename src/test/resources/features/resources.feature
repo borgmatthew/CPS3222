@@ -39,3 +39,21 @@ Scenario: denied access
 Given I am a user who has not yet logged on
 When I try to access the betting screen 
 Then I should be refused access
+
+Scenario: stopped
+Given I am a user with a premium account
+When I try to place a bet of 5000 euros
+Then I should be told the bet was successfully placed
+When I try to place a bet of 1 euros
+Then  I  should  be  told  that  I  have  reached  the  maximum cumulative betting amount 
+
+Scenario Outline: invalid risks
+Given I am a user with a free account
+When I try to place a "<risk>" bet of 5 euros
+Then  <error> 
+
+Examples:
+
+|risk     |error  |
+|free |      |
+|
