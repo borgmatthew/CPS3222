@@ -19,3 +19,10 @@ Examples:
 |dob           |Please enter date of birth |dob_error		|
 |creditcard    |Invalid card         |creditcard_error|
 |expiry_date   |Invalid Expirary date|expiry_error	|
+
+Scenario: Successful bet on free account
+
+Given I am a user with a free account
+When I try to place a bet of 5 euros
+Then I should be told the bet was successfully placed
+

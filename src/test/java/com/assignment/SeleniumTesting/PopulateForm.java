@@ -7,12 +7,14 @@ import org.openqa.selenium.WebElement;
 public interface PopulateForm {
 	
 	public void visit();
+	
 	public void close();
 	public void populate();
-	public void submit();
+	public void submit(String button);
 	public void clear(String field);
 	public List<WebElement> findById(String name);
 	public List<WebElement> findByClass(String classname);
+	
 	public  void populateName(String name);
 	public void populateEmptyName();
 	public void populateSName(String sname);

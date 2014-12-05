@@ -16,6 +16,7 @@ public class PopulateFormImp implements PopulateForm {
 	public void visit(){
 		browser.get("http://localhost:8080/Assignment/registration.jsp");
 	}
+	
 	public void close(){
 		browser.quit();
 	}
@@ -31,8 +32,8 @@ public class PopulateFormImp implements PopulateForm {
 		
 	}
 	
-	public void submit(){
-		browser.findElement(By.id("submitButton")).submit();
+	public void submit(String button){
+		browser.findElement(By.id(button)).submit();
 	}
 	public void clear(String field){
 		browser.findElement(By.id(field)).clear();
@@ -46,6 +47,8 @@ public class PopulateFormImp implements PopulateForm {
 	public List<WebElement> findByClass(String classname){
 		return browser.findElements(By.className("status"));
 	}
+	
+	
 	
 	public void populateName(String name){
 		browser.findElement(By.id("firstName")).sendKeys(name+="\t");
