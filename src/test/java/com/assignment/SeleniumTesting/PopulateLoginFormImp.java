@@ -14,10 +14,7 @@ public class PopulateLoginFormImp implements PopulateLoginForm{
 	}
 	
 	public void visitLogin(){
-		browser.get("http://localhost:8080/Assignment");
-	}
-	public void close(){
-		browser.quit();
+		browser.get("http://localhost:8080/Assignment/index.jsp");
 	}
 	
 	public void submit(String button){
@@ -33,11 +30,11 @@ public class PopulateLoginFormImp implements PopulateLoginForm{
 		return paragraph;
 	}
 	public void populateloginuserName(String usrname){
-		browser.findElement(By.id("username")).sendKeys(usrname+="\t");
+		browser.findElement(By.id("username")).sendKeys(usrname);
 
 	}
 	public void populateloginpassword(String pass){
-		browser.findElement(By.id("password")).sendKeys(pass+="\t");
+		browser.findElement(By.id("password")).sendKeys(pass);
 
 	}
 

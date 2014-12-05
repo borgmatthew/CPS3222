@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 
 public interface PopulateLoginForm {
 	public void visitLogin();
-	public void close();
 	public void submit(String button);
 	public void clear(String field);
 	public List<WebElement> findById(String name);

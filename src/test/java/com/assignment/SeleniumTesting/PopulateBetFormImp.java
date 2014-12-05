@@ -14,7 +14,7 @@ public class PopulateBetFormImp implements PopulateBetForm {
 		browser=brows;
 	}
 	public void populateammount(String ammount){
-		browser.findElement(By.id("ammount")).sendKeys(ammount+="\t");
+		browser.findElement(By.id("ammount")).sendKeys(ammount);
 	}
 	public void submit(String button){
 		browser.findElement(By.id(button)).submit();
