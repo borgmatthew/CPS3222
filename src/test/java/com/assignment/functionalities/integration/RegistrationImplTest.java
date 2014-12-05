@@ -1,6 +1,7 @@
 package com.assignment.functionalities.integration;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
@@ -54,6 +55,24 @@ public class RegistrationImplTest {
 		boolean result = reg.validateForm(name, sname, username, password, dob, type, card, exp, cvv);
 		//then
 		assertFalse(result);
+	}
+	
+	@Test
+	public void TestingValidateFormWithCorrectUserNameFieldTest() {
+		//given
+		String name="Alastair";
+		String sname="Vella";
+		String username="ali.speed6@gmail.com";
+		String password="Assignmentpass";
+		String dob="11/12/1991";
+		String type="free";
+		String card="378282246310005";
+		String exp="11/12/2017";
+		String cvv="123";
+		//when
+		boolean result = reg.validateForm(name, sname, username, password, dob, type, card, exp, cvv);
+		//then
+		assertTrue(result);
 	}
 
 }

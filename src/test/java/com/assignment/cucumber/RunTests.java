@@ -8,6 +8,6 @@ import cucumber.api.junit.Cucumber;
 
  
 @RunWith(Cucumber.class)
-@CucumberOptions(format={"pretty", "html:target/cucumber"}, glue = { "src.test.java.com.assignment.cucumber" }, features = { "src/test/resources/features" }, monochrome = true)
+@CucumberOptions(glue = { "src.test.java.com.assignment.cucumber" }, features = { "src/test/resources/features" }, monochrome = true)
 public class RunTests {
 }

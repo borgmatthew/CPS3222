@@ -1,6 +1,5 @@
 package com.assignment.SeleniumTesting;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -23,13 +22,13 @@ public class RegistrationFormTest {
 
 	@After
 	public void tearDown() throws Exception {
-		//form.close();
+		form.close();
 	}
 
 	@Test
 	public void validFormtest() {		
 		form.populate();
-		assertTrue(form.findById("message").size() > 0);		
+		assertEquals(form.findById("message").get(0).getText(), "Succesful registration. Please Login.");		
 	}
 	@Test
 	public void TestFormDoesNotAcceptNumbers(){
