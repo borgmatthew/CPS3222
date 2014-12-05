@@ -73,6 +73,7 @@ public class BettingServletTest {
 		doReturn("Low").when(request).getParameter("betrisk");
 		doReturn("1.0").when(request).getParameter("amm");
 		doReturn(true).when(bettingImpl).validateBets(anyString(), anyString(), anyDouble());
+		doReturn("Bet placed successfully").when(bettingImpl).getMessage();
 		//when
 		bettingServlet.doPost(request, response);
 		//then
@@ -112,6 +113,7 @@ public class BettingServletTest {
 		doReturn("Low").when(request).getParameter("betrisk");
 		doReturn("1.0").when(request).getParameter("amm");
 		doReturn(false).when(bettingImpl).validateBets(anyString(), anyString(), anyDouble());
+		doReturn("An error occured. Please try again.").when(bettingImpl).getMessage();
 		//when
 		bettingServlet.doPost(request, response);
 		//then

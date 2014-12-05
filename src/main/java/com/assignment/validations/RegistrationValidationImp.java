@@ -190,6 +190,7 @@ public class RegistrationValidationImp implements RegistrationValidation {
 			return false;
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
 		Date expirydate;
 		try {
 			expirydate = sdf.parse(expdate);
@@ -197,6 +198,7 @@ public class RegistrationValidationImp implements RegistrationValidation {
 			return false;
 		}
 		Date today = new Date();
+		
 		if (expirydate.after(today)) {
 			return true;
 		}

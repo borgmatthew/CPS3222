@@ -20,23 +20,23 @@ public class BettingServlet extends HttpServlet {
 	public void init() throws ServletException {
 		betval = new BettingImp();
 	}
-	
-	public void setBettingImpl(Betting betting){
+
+	public void setBettingImpl(Betting betting) {
 		this.betval = betting;
 	}
 
 	private boolean validateBet(HttpServletRequest request) {
 		boolean result = false;
-		
+
 		HttpSession session = request.getSession();
-		
+
 		String risk = request.getParameter("betrisk");
-		if(risk == null){
+		if (risk == null) {
 			risk = "";
 			message = "Invalid risk";
 			return result;
 		}
-		
+
 		Double amount = -1.0;
 		try {
 			amount = Double.parseDouble(request.getParameter("amm"));
@@ -49,16 +49,13 @@ public class BettingServlet extends HttpServlet {
 			amount = -1.0;
 			return result;
 		}
-		
-		if (!betval.validateBets(session.getAttribute("user").toString(),
-				risk, amount)) {
-			message = "An error occured. Please try again.";
-		} else {
-			betval.addBet(risk, amount, session.getAttribute("user")
-					.toString());
-			message = "Bet placed successfully";
+
+		if (betval.validateBets(session.getAttribute("user").toString(), risk,
+				amount)) {
+			betval.addBet(risk, amount, session.getAttribute("user").toString());
 			result = true;
 		}
+		message = betval.getMessage();
 		return result;
 	}
 
@@ -70,12 +67,12 @@ public class BettingServlet extends HttpServlet {
 			response.sendRedirect("index.jsp");
 			return;
 		}
-		
+
 		boolean success = validateBet(request);
-		
+
 		PrintWriter out = response.getWriter();
-		out.println("{ \"success\" : \"" + success
-				+ "\" , \"message\" : \"" + message + "\"}");
+		out.println("{ \"success\" : \"" + success + "\" , \"message\" : \""
+				+ message + "\"}");
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {

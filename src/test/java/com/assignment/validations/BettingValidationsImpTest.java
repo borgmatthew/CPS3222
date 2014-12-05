@@ -12,106 +12,99 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.assignment.DBObjects.Bet;
-import com.assignment.DBObjects.User;
 
 public class BettingValidationsImpTest {
 
 	private BettingValidations validation;
-	private User user;
 
 	@Before
 	public void setUp() throws Exception {
 		validation = new BettingValidationsImp();
-		user = new User();
 	}
 
 	@Test
 	public void testValidateRiskFreeUserNotLow() {
 		// given
-		user.setAccounttype("free");
 		// when
 		// then
-		assertFalse(validation.validateRisk(user, "Medium"));
+		assertFalse(validation.validateRiskFree("Medium"));
 	}
 
 	@Test
 	public void testValidateRiskFreeUserLowRisk() {
 		// given
-		user.setAccounttype("free");
 		// when
 		// then
-		assertTrue(validation.validateRisk(user, "Low"));
+		assertTrue(validation.validateRiskFree("Low"));
 	}
 	
 	@Test
-	public void testValidateRiskPremiumUser() {
-		// given
-		user.setAccounttype("premium");
-		// when
-		// then
-		assertTrue(validation.validateRisk(user, "Low"));
-	}
-	
-	@Test
-	public void testValidateAmountFreeUserLessThanThreeBets() {
+	public void testValidateBetLimitFreeUserLessThanThreeBets() {
 		// given
 		List<Bet> bets = new ArrayList<Bet>();
-		user.setAccounttype("free");
 		// when
 		// then
-		assertTrue(validation.validateAmount(user, 1.0, bets));
+		assertTrue(validation.validateBetLimitNumberFree(bets));
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Test
-	public void testValidateAmountFreeUserHasThreeBets() {
+	public void testValidateBetLimitFreeUserHasThreeBets() {
 		// given
-		user.setAccounttype("free");
 		List bets = mock(List.class);
 		doReturn(3).when(bets).size();
 		// when
 		// then
-		assertFalse(validation.validateAmount(user, 1.0, bets));
+		assertFalse(validation.validateBetLimitNumberFree(bets));
 	}
 	
 	@Test
 	public void testValidateAmountFreeUserNegativeBet() {
 		// given
-		List<Bet> bets = new ArrayList<Bet>();
-		user.setAccounttype("free");
 		// when
 		// then
-		assertFalse(validation.validateAmount(user, -1.0, bets));
+		assertFalse(validation.validateAmountLimitsFree(-1.0));
+	}
+	
+	@Test
+	public void testValidateAmountFreeUserInRangeBet() {
+		// given
+		// when
+		// then
+		assertTrue(validation.validateAmountLimitsFree(1.0));
 	}
 	
 	@Test
 	public void testValidateAmountFreeUserBetGreaterThanFive() {
 		// given
-		List<Bet> bets = new ArrayList<Bet>();
-		user.setAccounttype("free");
 		// when
 		// then
-		assertFalse(validation.validateAmount(user, 5.01, bets));
+		assertFalse(validation.validateAmountLimitsFree(5.01));
 	}
 	
 	@Test
 	public void testValidateAmountPremiumUserValidBet() {
 		// given
 		List<Bet> bets = new ArrayList<Bet>();
-		user.setAccounttype("premium");
 		// when
 		// then
-		assertTrue(validation.validateAmount(user, 2000, bets));
+		assertTrue(validation.validateCumulativeAmountPremium(bets, 2000));
+	}
+	
+	@Test
+	public void testValidateAmountLimitsPremiumPositiveAmount() {
+		// given
+		// when
+		// then
+		assertTrue(validation.validateAmountLimitsPremium(2000));
 	}
 	
 	@Test
 	public void testValidateAmountPremiumUserNegativeBet() {
 		// given
-		List<Bet> bets = new ArrayList<Bet>();
-		user.setAccounttype("premium");
 		// when
 		// then
-		assertFalse(validation.validateAmount(user, -2000, bets));
+		assertFalse(validation.validateAmountLimitsPremium(-2000));
 	}
 	
 	@Test
@@ -121,9 +114,8 @@ public class BettingValidationsImpTest {
 		Bet b = new Bet();
 		b.setAmount(5000);
 		bets.add(b);
-		user.setAccounttype("premium");
 		// when
 		// then
-		assertFalse(validation.validateAmount(user, 1, bets));
+		assertFalse(validation.validateCumulativeAmountPremium(bets, 1.0));
 	}
 }
