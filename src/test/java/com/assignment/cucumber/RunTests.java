@@ -3,10 +3,11 @@ package com.assignment.cucumber;
 
 import org.junit.runner.RunWith;
 
+import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
  
 @RunWith(Cucumber.class)
-@Cucumber.Options(format="pretty", glue = { "Stepdefs" }, features = { "src/test/java/resources/features" }, monochrome = true)
+@CucumberOptions(format="pretty", glue = { "StepDefinitions" }, features = { "Resources.feature" }, monochrome = true)
 public class RunTests {
 }
