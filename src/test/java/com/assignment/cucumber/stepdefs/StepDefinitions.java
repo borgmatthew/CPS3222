@@ -1,6 +1,7 @@
 package com.assignment.cucumber.stepdefs;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -104,4 +105,27 @@ public void i_should_be_told_that_I_have_reached_the_maximum_number_of_bets() th
 	//throw new PendingException();
 }
 
+
+@Given("^I am a user who has not yet logged on$")
+public void i_am_a_user_who_has_not_yet_logged_on() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+	browser = new FirefoxDriver();
+	betform=new PopulateBetFormImp(browser);
+	
+	//throw new PendingException();
+}
+
+@When("^I try to access the betting screen$")
+public void i_try_to_access_the_betting_screen() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+	betform.visit();
+	//throw new PendingException();
+}
+
+@Then("^I should be refused access$")
+public void i_should_be_refused_access() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    assertEquals(betform.getUrl(),"http://localhost:8080/Assignment/index.jsp");
+	//throw new PendingException();
+}
 }

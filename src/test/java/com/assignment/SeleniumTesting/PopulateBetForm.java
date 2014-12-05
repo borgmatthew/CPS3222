@@ -9,4 +9,6 @@ public interface PopulateBetForm {
 	public void submit(String button);
 	public List<WebElement> findById(String name);
 	public void close();
+	public void visit();
+	public String getUrl();
 }

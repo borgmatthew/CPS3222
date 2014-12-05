@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 public class PopulateBetFormImp implements PopulateBetForm {
 	WebDriver browser;
 	//Constructor
+	
 	public PopulateBetFormImp(WebDriver brows){
 		browser=brows;
 	}
@@ -22,8 +23,15 @@ public class PopulateBetFormImp implements PopulateBetForm {
 		List<WebElement> paragraph=browser.findElements(By.id(name));
 		return paragraph;
 	}
+	public void visit(){
+		browser.get("http://localhost:8080/Assignment/betting.jsp");
+	}
 	public void close(){
 		browser.quit();
+	}
+	
+	public String getUrl(){
+		return browser.getCurrentUrl();
 	}
 
 }
