@@ -28,7 +28,7 @@ public class RegistrationFormTest {
 	@Test
 	public void validFormtest() {		
 		form.populate();
-		assertEquals(form.findById("message").get(0).getText(), "Succesful registration. Please Login.");		
+		assertEquals("Succesful registration. Please Login.", form.findById("message").get(0).getText());		
 	}
 	@Test
 	public void TestFormDoesNotAcceptNumbers(){
