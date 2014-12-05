@@ -5,6 +5,8 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PopulateLoginFormImp implements PopulateLoginForm{
 	WebDriver browser;
@@ -13,12 +15,17 @@ public class PopulateLoginFormImp implements PopulateLoginForm{
 		browser=brows;
 	}
 	
+	private void waitForPageToLoad(){
+		new WebDriverWait(browser, 10).until(ExpectedConditions.elementToBeClickable(By.id("username")));
+	}
+	
 	public void visitLogin(){
 		browser.get("http://localhost:8080/Assignment/index.jsp");
+		waitForPageToLoad();
 	}
 	
 	public void submit(String button){
-		browser.findElement(By.id(button)).submit();
+		new WebDriverWait(browser, 10).until(ExpectedConditions.elementToBeClickable(By.id(button))).submit();
 	}
 	public void clear(String field){
 		browser.findElement(By.id(field)).clear();
@@ -30,11 +37,11 @@ public class PopulateLoginFormImp implements PopulateLoginForm{
 		return paragraph;
 	}
 	public void populateloginuserName(String usrname){
-		browser.findElement(By.id("username")).sendKeys(usrname);
+		new WebDriverWait(browser, 10).until(ExpectedConditions.elementToBeClickable(By.id("username"))).sendKeys(usrname);
 
 	}
 	public void populateloginpassword(String pass){
-		browser.findElement(By.id("password")).sendKeys(pass);
+		new WebDriverWait(browser, 10).until(ExpectedConditions.elementToBeClickable(By.id("password"))).sendKeys(pass);
 
 	}
 

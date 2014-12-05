@@ -8,7 +8,7 @@ public interface PopulateBetForm {
 	public void populateammount(String ammount);
 	public void submit(String button);
 	public List<WebElement> findById(String name);
-	public void close();
 	public void visit();
+	public void setRisk(String risk);
 	public String getUrl();
 }

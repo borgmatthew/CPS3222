@@ -29,10 +29,10 @@
 				<h1>Place your bet</h1>
 				<form id="betting_form" method="post">
 					<div id="risk_level">
-						<label>Risk level</label> <input type="radio" name="betrisk"
+						<label>Risk level</label> <input type="radio" id="low" name="betrisk"
 							checked="checked" value="Low">low <input id="medium"
 							type="radio" name="betrisk" value="Medium">medium <input
-							id="High" type="radio" name="betrisk" value="High">high
+							id="high" type="radio" name="betrisk" value="High">high
 					</div>
 					<div id="amount">
 						<label>Amount:</label> <input id="ammount" name="amm"

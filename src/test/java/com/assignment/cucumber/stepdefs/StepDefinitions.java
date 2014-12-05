@@ -30,14 +30,14 @@ public class StepDefinitions {
 	PopulateBetForm betform;
 
 	@Before
-	public void init() throws UnknownHostException{
-		deleteUserData();
+	public void init() {
 		browser = new FirefoxDriver();
 	}
 	
 	@After
-	public void tearDown() {
+	public void tearDown() throws UnknownHostException {
 		browser.quit();
+		deleteUserData();
 	}
 	
 	@Given("^I am a user trying to register$")
@@ -75,7 +75,7 @@ public class StepDefinitions {
 
 	@Given("^I am a user with a free account$")
 	public void i_am_a_user_with_a_free_account() throws Throwable {
-		createUser();
+		createFreeUser();
 		logform = new PopulateLoginFormImp(browser);
 		logform.visitLogin();
 		logform.populateloginuserName("ali.speed6@gmail.com");
@@ -119,6 +119,34 @@ public class StepDefinitions {
 		assertEquals(betform.getUrl(),
 				"http://localhost:8080/Assignment/index.jsp");
 	}
+	
+	@Given("^I am a user with a premium account$")
+	public void i_am_a_user_with_a_premium_account() throws Throwable {
+		createPremiumUser();
+		logform=new PopulateLoginFormImp(browser);
+		logform.visitLogin();
+		logform.populateloginuserName("ali.speed6@gmail.com");
+		logform.populateloginpassword("Assignment");
+		logform.submit("login_button");
+	}
+	
+	@Then("^I  should  be  told  that  I  have  reached  the  maximum cumulative betting amount$")
+	public void i_should_be_told_that_I_have_reached_the_maximum_cumulative_betting_amount() throws Throwable {
+		assertEquals(betform.findById("Bett_error").get(0).getText(),"Maximum cumulative amount reached");
+	}
+	
+	@When("^I try to place a \"(.*?)\" bet of (\\d+) euros$")
+	public void i_try_to_place_a_bet_of_euros(String arg1, int arg2) throws Throwable {
+		betform = new PopulateBetFormImp(browser);
+		betform.populateammount(arg2+"");
+		betform.setRisk(arg1);
+		betform.submit("submitButton");
+	}
+
+	@Then("^I should see Bet placed successfully$")
+	public void i_should_see_Bet_placed_successfully() throws Throwable {
+	    assertEquals("Bet placed successfully",betform.findById("Bett_error").get(0).getText());
+	}
 
 	public void deleteUserData() throws UnknownHostException{
 		User user = new User();
@@ -131,8 +159,15 @@ public class StepDefinitions {
 		client.close();
 	}
 	
-	public void createUser() throws UnknownHostException{
+	public void createFreeUser() throws UnknownHostException{
 		User user = new User("name", "surname", "ali.speed6@gmail.com", "Assignment", "11/08/1994", "free", "1234", "11/08/2015", "123", 0, 0L);
+		MongoClient client = new MongoClient("localhost", 27017);
+		client.getDB("SoftwareTesting").getCollection("Users").insert(user);
+		client.close();
+	}
+	
+	public void createPremiumUser() throws UnknownHostException{
+		User user = new User("name", "surname", "ali.speed6@gmail.com", "Assignment", "11/08/1994", "premium", "1234", "11/08/2015", "123", 0, 0L);
 		MongoClient client = new MongoClient("localhost", 27017);
 		client.getDB("SoftwareTesting").getCollection("Users").insert(user);
 		client.close();
