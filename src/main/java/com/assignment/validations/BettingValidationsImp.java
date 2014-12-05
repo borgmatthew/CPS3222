@@ -3,37 +3,22 @@ package com.assignment.validations;
 import java.util.List;
 
 import com.assignment.DBObjects.Bet;
-import com.assignment.DBObjects.User;
 
 public class BettingValidationsImp implements BettingValidations{
 	
-	public boolean validateRisk(User user, String risk) {
-		if (isFreeUser(user)) {
-			if(!risk.equals("Low")){
-				return false;
-			}
-		}
-		return true;
+	public boolean validateRiskFree(String risk) {
+		return risk.compareTo("Low") == 0;
 	}
 	
-	public boolean validateAmount(User user, double amount, List<Bet> bets){
-		if(isFreeUser(user)){
-			return validateAmountFree(bets, amount);
-		}
-		else{
-			return validateAmountPremium(bets, amount);
-		}
+	public boolean validateAmountLimitsFree(double amount){
+		return amount > 0 && amount <= 5;
 	}
 	
-	private boolean validateAmountFree(List<Bet> bets, double amount){
-		return bets.size() < 3 && amount > 0 && amount <= 5;
+	public boolean validateAmountLimitsPremium(double amount){
+		return amount > 0;
 	}
 	
-	private boolean validateAmountPremium(List<Bet> bets, double amount){
-		if(amount < 0){
-			return false;
-		}
-		
+	public boolean validateCumulativeAmountPremium(List<Bet> bets, double amount){
 		double total = 0;
 		for(Bet b : bets){
 			total += b.getAmmount();
@@ -44,8 +29,8 @@ public class BettingValidationsImp implements BettingValidations{
 		}
 		return true;
 	}
-	
-	private boolean isFreeUser(User user){
-		return user.getAccounttype().equals("free");
+
+	public boolean validateBetLimitNumberFree(List<Bet> allBets) {
+			return allBets.size() < 3;
 	}
 }
