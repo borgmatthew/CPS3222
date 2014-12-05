@@ -10,7 +10,8 @@
 </head>
 <body>
 	<%@ page
-		import="com.assignment.util.Menu,com.assignment.util.MenuImpl"%>
+	import="com.assignment.util.Menu"
+		import="com.assignment.util.MenuImpl"%>
 	<%
 		Menu menu = new MenuImpl();
 		out.print(menu.getLoggedOutMenu());

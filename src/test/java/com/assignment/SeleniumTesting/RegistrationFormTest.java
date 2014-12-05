@@ -23,15 +23,13 @@ public class RegistrationFormTest {
 
 	@After
 	public void tearDown() throws Exception {
-		form.close();
+		//form.close();
 	}
 
 	@Test
-	public void validFormtest() {
-		
+	public void validFormtest() {		
 		form.populate();
-		assertTrue(form.findById("message").size() > 0);
-		
+		assertTrue(form.findById("message").size() > 0);		
 	}
 	@Test
 	public void TestFormDoesNotAcceptNumbers(){
