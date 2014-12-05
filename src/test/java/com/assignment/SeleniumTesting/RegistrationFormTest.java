@@ -28,6 +28,7 @@ public class RegistrationFormTest {
 	@Test
 	public void validFormtest() {		
 		form.populate();
+		form.submit();
 		assertEquals("Succesful registration. Please Login.", form.findById("message").get(0).getText());		
 	}
 	@Test

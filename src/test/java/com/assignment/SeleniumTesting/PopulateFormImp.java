@@ -21,16 +21,22 @@ public class PopulateFormImp implements PopulateForm {
 	}
 	public void populate(){
 		browser.findElement(By.id("firstName")).sendKeys("Alastair");
-		browser.findElement(By.id("lastName")).sendKeys("Vella");
+		browser.findElement(By.id("lastName")).sendKeys("Vella");		
 		browser.findElement(By.id("userName")).sendKeys("all.speed6@gmail.com");
 		browser.findElement(By.id("password")).sendKeys("Assignment");
 		browser.findElement(By.id("dob")).sendKeys("01/08/1991");
 		browser.findElement(By.id("creditcard")).sendKeys("378282246310005");
 		browser.findElement(By.id("expiry_date")).sendKeys("01/08/2017");
 		browser.findElement(By.id("cvv")).sendKeys("123");
-		browser.findElement(By.id("submitButton")).submit();
+		
 	}
 	
+	public void submit(){
+		browser.findElement(By.id("submitButton")).submit();
+	}
+	public void clear(String field){
+		browser.findElement(By.id(field)).clear();
+	}
 	
 	
 	public List<WebElement> findById(String name){

@@ -9,6 +9,8 @@ public interface PopulateForm {
 	public void visit();
 	public void close();
 	public void populate();
+	public void submit();
+	public void clear(String field);
 	public List<WebElement> findById(String name);
 	public List<WebElement> findByClass(String classname);
 	public  void populateName(String name);

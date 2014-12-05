@@ -8,8 +8,8 @@ Then I should be told that the registration was successful
 
 Scenario Outline: Change field names
 Given I am a user trying to register
-When I fill in a form with correct data and I change the "fieldname" field to have incorrect input
-Then  I  should  be  told  that  the  data  in  "fieldname"  is "incorrect"
+When I fill in a form with correct data and I change the "<fieldname>" field to have incorrect input
+Then  I  should  be  told  that  the  data  in  "<fieldname>"  is "<incorrect>"
 
 Examples:
 

@@ -42,4 +42,21 @@ public void i_should_be_told_that_the_registration_was_successful() throws Throw
 	//throw new PendingException();
 }
 
+@When("^I fill in a form with correct data and I change the \"(.*?)\" field to have incorrect input$")
+public void i_fill_in_a_form_with_correct_data_and_I_change_the_field_to_have_incorrect_input(String arg1) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    form.populate();
+    form.clear(arg1);
+    form.findById(arg1).get(0).sendKeys("6\t \t");
+	//throw new PendingException();
+}
+
+@Then("^I  should  be  told  that  the  data  in  \"(.*?)\"  is \"(.*?)\"$")
+public void i_should_be_told_that_the_data_in_is(String arg1, String arg2) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    assertEquals(form.findById(arg1).get(0).getText(),arg2);
+    //form.close();
+	//throw new PendingException();
+}
+
 }
