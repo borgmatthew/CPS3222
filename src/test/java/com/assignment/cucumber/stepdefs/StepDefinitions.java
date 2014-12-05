@@ -91,7 +91,17 @@ public void i_try_to_place_a_bet_of_euros(int arg1) throws Throwable {
 public void i_should_be_told_the_bet_was_successfully_placed() throws Throwable {
     // Write code here that turns the phrase above into concrete actions
 	assertEquals(betform.findById("Bett_error").get(0).getText(),"Bet placed successfully");
-	betform.close();
+	//betform.close();
     //throw new PendingException();
 }
+
+
+@Then("^I  should  be  told  that  I  have  reached  the  maximum  number of bets$")
+public void i_should_be_told_that_I_have_reached_the_maximum_number_of_bets() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+	assertEquals(betform.findById("Bett_error").get(0).getText(),"Maximum number of bets reached");
+	betform.close();
+	//throw new PendingException();
+}
+
 }

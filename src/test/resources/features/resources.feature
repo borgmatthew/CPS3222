@@ -26,3 +26,11 @@ Given I am a user with a free account
 When I try to place a bet of 5 euros
 Then I should be told the bet was successfully placed
 
+Scenario: Ammount of free bets
+Given I am a user with a free account
+When I try to place a bet of 5 euros
+Then I should be told the bet was successfully placed
+When I try to place a bet of 5 euros
+Then I should be told the bet was successfully placed
+When I try to place a bet of 5 euros
+Then  I  should  be  told  that  I  have  reached  the  maximum  number of bets
