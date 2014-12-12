@@ -1,5 +1,5 @@
 package com.assignment.model;
 
 public enum States {
-	Homepage, Login, Register, Premium_Acc, Free_Acc;
+	Home_Page, Registration_Page, Betting_Page, Login_Error_Page, Registration_Message_Page;
 }
