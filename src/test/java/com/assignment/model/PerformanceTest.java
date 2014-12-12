@@ -2,8 +2,8 @@ package com.assignment.model;
 
 import static org.junit.Assert.assertEquals;
 import nz.ac.waikato.modeljunit.Action;
-import nz.ac.waikato.modeljunit.AllRoundTester;
 import nz.ac.waikato.modeljunit.FsmModel;
+import nz.ac.waikato.modeljunit.RandomTester;
 import nz.ac.waikato.modeljunit.Tester;
 import nz.ac.waikato.modeljunit.VerboseListener;
 
@@ -45,7 +45,7 @@ public class PerformanceTest implements FsmModel{
 	
 	@Test
 	public void runner(){
-		Tester t = new AllRoundTester(new PerformanceTest());
+		Tester t = new RandomTester(new PerformanceTest());
 		t.addListener(new VerboseListener());
 		t.generate(5);
 		t.buildGraph();
