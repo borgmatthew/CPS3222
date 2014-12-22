@@ -10,6 +10,7 @@ public interface PopulateForm {
 	
 	public void close();
 	public void populate();
+	public void populate(String user, String password, String type);
 	public void submit(String button);
 	public void clear(String field);
 	public List<WebElement> findById(String name);

@@ -7,7 +7,7 @@ public class MenuImpl implements Menu {
 		return includeCss() + "<div id=\"menu_bar\">"
 				+ "<div id=\"menu_wrapper\">"
 				+ "<div id=\"logo\">OBC - The Online Betting Company</div>"
-				+ "<div id=\"links\"><a href=\"logOut.jsp\">Logout</a></div>"
+				+ "<div id=\"links\"><a id=\"logout_link\" href=\"logOut.jsp\">Logout</a></div>"
 				+ "</div></div>";
 	}
 

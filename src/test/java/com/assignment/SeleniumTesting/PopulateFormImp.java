@@ -5,6 +5,8 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PopulateFormImp implements PopulateForm {
 	WebDriver browser;
@@ -20,6 +22,7 @@ public class PopulateFormImp implements PopulateForm {
 	public void close(){
 		browser.quit();
 	}
+	
 	public void populate(){
 		browser.findElement(By.id("firstName")).sendKeys("Alastair");
 		browser.findElement(By.id("lastName")).sendKeys("Vella");		
@@ -29,7 +32,20 @@ public class PopulateFormImp implements PopulateForm {
 		browser.findElement(By.id("creditcard")).sendKeys("378282246310005");
 		browser.findElement(By.id("expiry_date")).sendKeys("01/08/2017");
 		browser.findElement(By.id("cvv")).sendKeys("123");
-		
+	}
+	
+	public void populate(String user, String password, String type){
+		if(type.compareTo("premium") == 0){
+			new WebDriverWait(browser, 10).until(ExpectedConditions.elementToBeClickable(By.id("account1"))).click();
+		}
+		browser.findElement(By.id("firstName")).sendKeys("Alastair");
+		browser.findElement(By.id("lastName")).sendKeys("Vella");		
+		browser.findElement(By.id("userName")).sendKeys(user);
+		browser.findElement(By.id("password")).sendKeys(password);
+		browser.findElement(By.id("dob")).sendKeys("01/08/1991");
+		browser.findElement(By.id("creditcard")).sendKeys("378282246310005");
+		browser.findElement(By.id("expiry_date")).sendKeys("01/08/2017");
+		browser.findElement(By.id("cvv")).sendKeys("123");
 	}
 	
 	public void submit(String button){
