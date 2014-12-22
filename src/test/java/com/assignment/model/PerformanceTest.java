@@ -238,7 +238,7 @@ public class PerformanceTest implements FsmModel, Runnable {
 		this.before();
 		Tester t = new AllRoundTester(this);
 		t.addListener(new VerboseListener());
-		t.generate(500);
+		t.generate(100);
 		t.buildGraph();
 		this.after();
 	}
