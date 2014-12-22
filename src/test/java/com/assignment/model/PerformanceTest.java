@@ -29,9 +29,9 @@ public class PerformanceTest implements FsmModel, Runnable {
 	int userNo = 0;
 	private User user = null;
 
-	private Vector<Double> loadTimes;
+	private Vector<Long> loadTimes;
 
-	public PerformanceTest(Vector<Double> loadTimes) {
+	public PerformanceTest(Vector<Long> loadTimes) {
 		this.loadTimes = loadTimes;
 	}
 
@@ -62,7 +62,9 @@ public class PerformanceTest implements FsmModel, Runnable {
 	@Override
 	public void reset(boolean arg0) {
 		user = null;
+		long before = getTime();
 		browser.get("http://localhost:8080/Assignment/");
+		loadTimes.add(getTime() - before);
 	}
 
 	public boolean registerGuard() {
@@ -72,9 +74,11 @@ public class PerformanceTest implements FsmModel, Runnable {
 
 	@Action
 	public void register() {
+		long before = getTime();
 		browser.findElement(By.id("register_link")).click();
 		assertEquals("http://localhost:8080/Assignment/registration.jsp",
 				browser.getCurrentUrl());
+		loadTimes.add(getTime() - before);
 	}
 
 	public boolean proceedToLoginGuard() {
@@ -85,9 +89,11 @@ public class PerformanceTest implements FsmModel, Runnable {
 
 	@Action
 	public void proceedToLogin() {
+		long before = getTime();
 		browser.get("http://localhost:8080/Assignment/");
 		assertEquals("http://localhost:8080/Assignment/",
 				browser.getCurrentUrl());
+		loadTimes.add(getTime() - before);
 	}
 
 	public boolean submitDetailsGuard() {
@@ -111,9 +117,12 @@ public class PerformanceTest implements FsmModel, Runnable {
 		}
 		regForm.populate(username, password, type);
 		user.setAccounttype(type);
+		
+		long before = getTime(); 
 		regForm.submitForm();
 		assertEquals("http://localhost:8080/Assignment/register",
 				browser.getCurrentUrl());
+		loadTimes.add(getTime() - before);
 	}
 
 	public boolean validLoginGuard() {
@@ -130,9 +139,11 @@ public class PerformanceTest implements FsmModel, Runnable {
 		PopulateLoginForm login = new PopulateLoginFormImp(browser);
 		login.populateloginuserName(user.getUsername());
 		login.populateloginpassword(user.getPassword());
+		long before = getTime();
 		login.submit("login_button");
 		assertEquals("http://localhost:8080/Assignment/betting.jsp",
 				browser.getCurrentUrl());
+		loadTimes.add(getTime() - before);
 	}
 
 	public boolean placeBetGuard() {
@@ -157,9 +168,11 @@ public class PerformanceTest implements FsmModel, Runnable {
 			betForm.populateammount(randomAmount + "");
 			betForm.setRisk("high");
 		}
+		long before = getTime();
 		betForm.submit("submitButton");
 		assertEquals("http://localhost:8080/Assignment/betting.jsp",
 				browser.getCurrentUrl());
+		loadTimes.add(getTime() - before);
 	}
 
 	public boolean logoutGuard() {
@@ -173,10 +186,12 @@ public class PerformanceTest implements FsmModel, Runnable {
 
 	@Action
 	public void logout() {
+		long before = getTime();
 		browser.findElement(By.id("logout_link")).click();
 		user = null;
 		assertEquals("http://localhost:8080/Assignment/index.jsp",
 				browser.getCurrentUrl());
+		loadTimes.add(getTime() - before);
 	}
 
 	public boolean invalidLoginGuard() {
@@ -193,9 +208,12 @@ public class PerformanceTest implements FsmModel, Runnable {
 		PopulateLoginForm login = new PopulateLoginFormImp(browser);
 		login.populateloginuserName(user.getUsername());
 		login.populateloginpassword(user.getPassword() + " ");
+		
+		long before = getTime();
 		login.submit("login_button");
 		assertEquals("http://localhost:8080/Assignment/login",
 				browser.getCurrentUrl());
+		loadTimes.add(getTime() - before);
 	}
 
 	public void before() {
@@ -210,17 +228,18 @@ public class PerformanceTest implements FsmModel, Runnable {
 		userNo++;
 		return "iswed" + userNo;
 	}
+	
+	public long getTime(){
+		return System.currentTimeMillis();
+	}
 
 	@Override
 	public void run() {
-		System.out.println("Started");
-		//PerformanceTest ptest = new PerformanceTest();
 		this.before();
 		Tester t = new AllRoundTester(this);
 		t.addListener(new VerboseListener());
-		t.generate(1);
+		t.generate(500);
 		t.buildGraph();
 		this.after();
-		System.out.println("Finishing");
 	}
 }
