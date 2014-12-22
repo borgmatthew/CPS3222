@@ -12,7 +12,6 @@ import nz.ac.waikato.modeljunit.Tester;
 import nz.ac.waikato.modeljunit.VerboseListener;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.assignment.DBObjects.User;
@@ -25,7 +24,7 @@ import com.assignment.SeleniumTesting.PopulateLoginFormImp;
 
 public class PerformanceTest implements FsmModel, Runnable {
 
-	private WebDriver browser;
+	private FirefoxDriver browser;
 	int userNo = 0;
 	private User user = null;
 
@@ -217,7 +216,9 @@ public class PerformanceTest implements FsmModel, Runnable {
 	}
 
 	public void before() {
-		browser = new FirefoxDriver();
+		browser = new FirefoxDriver();//new HtmlUnitDriver(true);
+		//browser.setThrowExceptionOnFailingStatusCode(false);
+		//browser.setJavascriptEnabled(true);
 	}
 
 	public void after() {
