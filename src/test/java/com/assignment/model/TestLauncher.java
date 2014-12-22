@@ -12,6 +12,7 @@ public class TestLauncher {
 	
 	@Test
 	public void runner() {
+		long start_time=System.currentTimeMillis();
 		Vector<Long> loadTimes = new Vector<Long>();
 		ExecutorService executor = Executors.newFixedThreadPool(USERS);
 		for (int i = 0; i < USERS; i++) {
@@ -20,11 +21,13 @@ public class TestLauncher {
 		}
 		executor.shutdown();
 		while(!executor.isTerminated()){}
-		
+		long end_time=System.currentTimeMillis();
 		long total = 0;
 		for(long i : loadTimes){
 			total += i;
 		}
+		
+		System.out.println("Total execution time for the test: "+(start_time-end_time));
 		
 		System.out.println("Average response time per page: " + total/loadTimes.size());
 	}
