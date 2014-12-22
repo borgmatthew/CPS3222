@@ -3,14 +3,14 @@ package com.assignment.model;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Random;
+import java.util.Vector;
 
-import net.sourceforge.czt.modeljunit.Action;
-import net.sourceforge.czt.modeljunit.AllRoundTester;
-import net.sourceforge.czt.modeljunit.FsmModel;
-import net.sourceforge.czt.modeljunit.Tester;
-import net.sourceforge.czt.modeljunit.VerboseListener;
+import nz.ac.waikato.modeljunit.Action;
+import nz.ac.waikato.modeljunit.AllRoundTester;
+import nz.ac.waikato.modeljunit.FsmModel;
+import nz.ac.waikato.modeljunit.Tester;
+import nz.ac.waikato.modeljunit.VerboseListener;
 
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -23,11 +23,17 @@ import com.assignment.SeleniumTesting.PopulateFormImp;
 import com.assignment.SeleniumTesting.PopulateLoginForm;
 import com.assignment.SeleniumTesting.PopulateLoginFormImp;
 
-public class PerformanceTest implements FsmModel {
+public class PerformanceTest implements FsmModel, Runnable {
 
 	private WebDriver browser;
 	int userNo = 0;
 	private User user = null;
+
+	private Vector<Double> loadTimes;
+
+	public PerformanceTest(Vector<Double> loadTimes) {
+		this.loadTimes = loadTimes;
+	}
 
 	@Override
 	public States getState() {
@@ -63,7 +69,7 @@ public class PerformanceTest implements FsmModel {
 		States state = getState();
 		return state.equals(States.Home_Page);
 	}
-	
+
 	@Action
 	public void register() {
 		browser.findElement(By.id("register_link")).click();
@@ -76,7 +82,7 @@ public class PerformanceTest implements FsmModel {
 		return state.equals(States.Registration_Message_Page)
 				|| state.equals(States.Login_Error_Page);
 	}
-	
+
 	@Action
 	public void proceedToLogin() {
 		browser.get("http://localhost:8080/Assignment/");
@@ -87,7 +93,7 @@ public class PerformanceTest implements FsmModel {
 	public boolean submitDetailsGuard() {
 		return getState().equals(States.Registration_Page);
 	}
-	
+
 	@Action
 	public void submitDetails() {
 		PopulateForm regForm = new PopulateFormImp(browser);
@@ -118,7 +124,7 @@ public class PerformanceTest implements FsmModel {
 			return false;
 		}
 	}
-	
+
 	@Action
 	public void validLogin() {
 		PopulateLoginForm login = new PopulateLoginFormImp(browser);
@@ -137,7 +143,7 @@ public class PerformanceTest implements FsmModel {
 			return false;
 		}
 	}
-	
+
 	@Action
 	public void placeBet() {
 		PopulateBetForm betForm = new PopulateBetFormImp(browser);
@@ -164,7 +170,7 @@ public class PerformanceTest implements FsmModel {
 			return false;
 		}
 	}
-	
+
 	@Action
 	public void logout() {
 		browser.findElement(By.id("logout_link")).click();
@@ -181,7 +187,7 @@ public class PerformanceTest implements FsmModel {
 			return false;
 		}
 	}
-	
+
 	@Action
 	public void invalidLogin() {
 		PopulateLoginForm login = new PopulateLoginFormImp(browser);
@@ -200,19 +206,21 @@ public class PerformanceTest implements FsmModel {
 		browser.quit();
 	}
 
-	@Test
-	public void runner() {
-		PerformanceTest ptest = new PerformanceTest();
-		ptest.before();
-		Tester t = new AllRoundTester(ptest);
-		t.addListener(new VerboseListener());
-		t.generate(100);
-		t.buildGraph();
-		ptest.after();
-	}
-
 	public String generateUsername() {
 		userNo++;
 		return "iswed" + userNo;
+	}
+
+	@Override
+	public void run() {
+		System.out.println("Started");
+		//PerformanceTest ptest = new PerformanceTest();
+		this.before();
+		Tester t = new AllRoundTester(this);
+		t.addListener(new VerboseListener());
+		t.generate(1);
+		t.buildGraph();
+		this.after();
+		System.out.println("Finishing");
 	}
 }
