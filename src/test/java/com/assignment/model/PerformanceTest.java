@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Random;
 import java.util.Vector;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import nz.ac.waikato.modeljunit.Action;
 import nz.ac.waikato.modeljunit.AllRoundTester;
@@ -25,13 +26,14 @@ import com.assignment.SeleniumTesting.PopulateLoginFormImp;
 public class PerformanceTest implements FsmModel, Runnable {
 
 	private FirefoxDriver browser;
-	int userNo = 0;
+	AtomicInteger userNo;
 	private User user = null;
 
 	private Vector<Long> loadTimes;
 
-	public PerformanceTest(Vector<Long> loadTimes) {
+	public PerformanceTest(Vector<Long> loadTimes, AtomicInteger userNo) {
 		this.loadTimes = loadTimes;
+		this.userNo = userNo;
 	}
 
 	@Override
@@ -159,7 +161,7 @@ public class PerformanceTest implements FsmModel, Runnable {
 		PopulateBetForm betForm = new PopulateBetFormImp(browser);
 		Random random = new Random();
 		if (user.getAccounttype().compareTo("free") == 0) {
-			int randomAmount = random.nextInt(5) + 1;
+			int randomAmount = random.nextInt(6) + 1;
 			betForm.populateammount(randomAmount + "");
 			betForm.setRisk("low");
 		} else {
@@ -216,9 +218,7 @@ public class PerformanceTest implements FsmModel, Runnable {
 	}
 
 	public void before() {
-		browser = new FirefoxDriver();//new HtmlUnitDriver(true);
-		//browser.setThrowExceptionOnFailingStatusCode(false);
-		//browser.setJavascriptEnabled(true);
+		browser = new FirefoxDriver();
 	}
 
 	public void after() {
@@ -226,8 +226,7 @@ public class PerformanceTest implements FsmModel, Runnable {
 	}
 
 	public String generateUsername() {
-		userNo++;
-		return "iswed" + userNo;
+		return "iswed" + userNo.incrementAndGet();
 	}
 	
 	public long getTime(){
@@ -238,6 +237,7 @@ public class PerformanceTest implements FsmModel, Runnable {
 	public void run() {
 		this.before();
 		Tester t = new AllRoundTester(this);
+		
 		t.addListener(new VerboseListener());
 		t.generate(100);
 		t.buildGraph();

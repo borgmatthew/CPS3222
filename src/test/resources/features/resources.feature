@@ -53,7 +53,7 @@ Then  I  should  be  told  that  I  have  reached  the  maximum cumulative betti
 Scenario Outline: invalid risks
 Given I am a user with a free account
 When I try to place a "<risk>" bet of 5 euros
-Then I should see <message> 
+Then I should see "<message>" 
 
 Examples:
 

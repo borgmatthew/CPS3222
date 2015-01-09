@@ -143,9 +143,9 @@ public class StepDefinitions {
 		betform.submit("submitButton");
 	}
 
-	@Then("^I should see Bet placed successfully$")
-	public void i_should_see_Bet_placed_successfully() throws Throwable {
-	    assertEquals("Bet placed successfully",betform.findById("Bett_error").get(0).getText());
+	@Then("^I should see \"(.*?)\"$")
+	public void i_should_see_Bet_placed_successfully(String arg1) throws Throwable {
+	    assertEquals(arg1,betform.findById("Bett_error").get(0).getText());
 	}
 
 	public void deleteUserData() throws UnknownHostException{
