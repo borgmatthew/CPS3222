@@ -16,7 +16,7 @@ Examples:
 |fieldname     |incorrect            |errorMessage	|
 |firstName     |Invalid characters   |name_error	|
 |lastName      |Invalid characters   |surname_error	|
-|dob           |Please enter date of birth |dob_error		|
+|dob           |Please enter date of birth |dob_error|
 |creditcard    |Invalid card         |creditcard_error|
 |expiry_date   |Invalid Expirary date|expiry_error	|
 
