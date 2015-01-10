@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Random;
 import java.util.Vector;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import nz.ac.waikato.modeljunit.Action;
@@ -26,14 +27,20 @@ import com.assignment.SeleniumTesting.PopulateLoginFormImp;
 public class PerformanceTest implements FsmModel, Runnable {
 
 	private FirefoxDriver browser;
-	AtomicInteger userNo;
+	private AtomicInteger userNo, browsersOpened;
 	private User user = null;
+	private AtomicBoolean allThreadsReady;
+	private int users;
 
 	private Vector<Long> loadTimes;
 
-	public PerformanceTest(Vector<Long> loadTimes, AtomicInteger userNo) {
+	public PerformanceTest(Vector<Long> loadTimes, AtomicInteger userNo,
+			AtomicBoolean allThreadsReady, AtomicInteger browsersOpened, int users) {
 		this.loadTimes = loadTimes;
 		this.userNo = userNo;
+		this.allThreadsReady = allThreadsReady;
+		this.browsersOpened = browsersOpened;
+		this.users = users;
 	}
 
 	@Override
@@ -105,6 +112,7 @@ public class PerformanceTest implements FsmModel, Runnable {
 	public void submitDetails() {
 		PopulateForm regForm = new PopulateFormImp(browser);
 		String username = generateUsername();
+		System.out.println(username);
 		String password = "Assignment";
 		user = new User();
 		user.setUsername(username);
@@ -118,8 +126,8 @@ public class PerformanceTest implements FsmModel, Runnable {
 		}
 		regForm.populate(username, password, type);
 		user.setAccounttype(type);
-		
-		long before = getTime(); 
+
+		long before = getTime();
 		regForm.submitForm();
 		assertEquals("http://localhost:8080/Assignment/register",
 				browser.getCurrentUrl());
@@ -209,7 +217,7 @@ public class PerformanceTest implements FsmModel, Runnable {
 		PopulateLoginForm login = new PopulateLoginFormImp(browser);
 		login.populateloginuserName(user.getUsername());
 		login.populateloginpassword(user.getPassword() + " ");
-		
+
 		long before = getTime();
 		login.submit("login_button");
 		assertEquals("http://localhost:8080/Assignment/login",
@@ -219,6 +227,7 @@ public class PerformanceTest implements FsmModel, Runnable {
 
 	public void before() {
 		browser = new FirefoxDriver();
+		browsersOpened.getAndIncrement();
 	}
 
 	public void after() {
@@ -226,18 +235,26 @@ public class PerformanceTest implements FsmModel, Runnable {
 	}
 
 	public String generateUsername() {
-		return "iswed" + userNo.incrementAndGet();
+		return "iswed" + userNo.getAndIncrement();
 	}
-	
-	public long getTime(){
+
+	public long getTime() {
 		return System.currentTimeMillis();
 	}
 
 	@Override
 	public void run() {
 		this.before();
+		try {
+			while (allThreadsReady.get() == false || browsersOpened.get() != users) {
+				Thread.sleep(500);
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Tester t = new AllRoundTester(this);
-		
+
 		t.addListener(new VerboseListener());
 		t.generate(100);
 		t.buildGraph();

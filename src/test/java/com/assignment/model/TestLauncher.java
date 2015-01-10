@@ -4,6 +4,7 @@ import java.net.UnknownHostException;
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.After;
@@ -15,17 +16,21 @@ import com.mongodb.MongoClient;
 
 public class TestLauncher {
 	
-	private final int USERS = 100;
+	private final int USERS = 5;
+	private AtomicBoolean allThreadsStarted = new AtomicBoolean(false);
+	private AtomicInteger browsersOpened = new AtomicInteger(0);
 	
 	@Test
 	public void runner() {
 		long start_time=System.currentTimeMillis();
 		Vector<Long> loadTimes = new Vector<Long>();
+		AtomicInteger atomicInteger = new AtomicInteger(0);
 		ExecutorService executor = Executors.newFixedThreadPool(USERS);
 		for (int i = 0; i < USERS; i++) {
-			Runnable ptest = new PerformanceTest(loadTimes, new AtomicInteger(0));
+			Runnable ptest = new PerformanceTest(loadTimes, atomicInteger, allThreadsStarted, browsersOpened, USERS);
 			executor.execute(ptest);
 		}
+		allThreadsStarted.set(true);
 		executor.shutdown();
 		while(!executor.isTerminated()){}
 		long end_time=System.currentTimeMillis();
@@ -34,7 +39,7 @@ public class TestLauncher {
 			total += i;
 		}
 		
-		System.out.println("Total execution time for the test: "+(start_time-end_time));
+		System.out.println("Total execution time for the test: "+(end_time - start_time));
 		
 		System.out.println("Average response time per page: " + total/loadTimes.size());
 	}
