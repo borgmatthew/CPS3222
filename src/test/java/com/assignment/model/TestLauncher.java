@@ -16,7 +16,7 @@ import com.mongodb.MongoClient;
 
 public class TestLauncher {
 	
-	private final int USERS = 100;
+	private final int USERS = 50;
 	private AtomicBoolean allThreadsStarted = new AtomicBoolean(false);
 	private AtomicInteger browsersOpened = new AtomicInteger(0);
 	

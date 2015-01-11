@@ -112,11 +112,11 @@ public class PerformanceTest implements FsmModel, Runnable {
 	public void submitDetails() {
 		PopulateForm regForm = new PopulateFormImp(browser);
 		String username = generateUsername();
-		System.out.println(username);
 		String password = "Assignment";
 		user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
+		user.setAttempts(0);
 		double ran = Math.random();
 		String type;
 		if (ran < 0.75) {
@@ -136,7 +136,7 @@ public class PerformanceTest implements FsmModel, Runnable {
 
 	public boolean validLoginGuard() {
 		double ran = Math.random();
-		if (ran > 0.25 && getState().equals(States.Login)) {
+		if ((user != null && user.getAttempts() == 2) || (ran > 0.25 && getState().equals(States.Login))) {
 			return true;
 		} else {
 			return false;
@@ -205,7 +205,7 @@ public class PerformanceTest implements FsmModel, Runnable {
 
 	public boolean invalidLoginGuard() {
 		double ran = Math.random();
-		if (ran < 0.25 && getState().equals(States.Login)) {
+		if ((ran < 0.25 && getState().equals(States.Login)) && (user != null && user.getAttempts() != 2)) {
 			return true;
 		} else {
 			return false;
@@ -217,7 +217,8 @@ public class PerformanceTest implements FsmModel, Runnable {
 		PopulateLoginForm login = new PopulateLoginFormImp(browser);
 		login.populateloginuserName(user.getUsername());
 		login.populateloginpassword(user.getPassword() + " ");
-
+		user.setAttempts(user.getAttempts()+1);
+		
 		long before = getTime();
 		login.submit("login_button");
 		assertEquals("http://localhost:8080/Assignment/login",
