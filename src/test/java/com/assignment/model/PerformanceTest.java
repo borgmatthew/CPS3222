@@ -14,7 +14,7 @@ import nz.ac.waikato.modeljunit.Tester;
 import nz.ac.waikato.modeljunit.VerboseListener;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import com.assignment.DBObjects.User;
 import com.assignment.SeleniumTesting.PopulateBetForm;
@@ -26,7 +26,7 @@ import com.assignment.SeleniumTesting.PopulateLoginFormImp;
 
 public class PerformanceTest implements FsmModel, Runnable {
 
-	private FirefoxDriver browser;
+	private HtmlUnitDriver browser;
 	private AtomicInteger userNo, browsersOpened;
 	private User user = null;
 	private AtomicBoolean allThreadsReady;
@@ -226,7 +226,7 @@ public class PerformanceTest implements FsmModel, Runnable {
 	}
 
 	public void before() {
-		browser = new FirefoxDriver();
+		browser = new HtmlUnitDriver();
 		browsersOpened.getAndIncrement();
 	}
 
