@@ -55,7 +55,7 @@ public class User extends BasicDBObject{
 	public void populateMap(){
 		this.put("name", name);
 		this.put("surname", sname);
-		this.put("username", username);
+		//this.put("username", username);
 		this.put("password", password);
 		this.put("dob", dob);
 		this.put("type", accounttype);

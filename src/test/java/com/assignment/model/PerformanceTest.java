@@ -8,10 +8,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import nz.ac.waikato.modeljunit.Action;
-import nz.ac.waikato.modeljunit.AllRoundTester;
 import nz.ac.waikato.modeljunit.FsmModel;
+import nz.ac.waikato.modeljunit.GreedyTester;
 import nz.ac.waikato.modeljunit.Tester;
 import nz.ac.waikato.modeljunit.VerboseListener;
+import nz.ac.waikato.modeljunit.coverage.ActionCoverage;
+import nz.ac.waikato.modeljunit.coverage.StateCoverage;
+import nz.ac.waikato.modeljunit.coverage.TransitionCoverage;
+import nz.ac.waikato.modeljunit.coverage.TransitionPairCoverage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
@@ -136,7 +140,7 @@ public class PerformanceTest implements FsmModel, Runnable {
 
 	public boolean validLoginGuard() {
 		double ran = Math.random();
-		if ((user != null && user.getAttempts() == 2) || (ran > 0.25 && getState().equals(States.Login))) {
+		if ((user != null && user.getAttempts() <= 2) && (ran > 0.25 && getState().equals(States.Login))) {
 			return true;
 		} else {
 			return false;
@@ -254,11 +258,16 @@ public class PerformanceTest implements FsmModel, Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Tester t = new AllRoundTester(this);
-
+		Tester t = new GreedyTester(this);
+		
+		t.addCoverageMetric(new TransitionCoverage());
+		t.addCoverageMetric(new StateCoverage());
+		t.addCoverageMetric(new ActionCoverage());
+		t.addCoverageMetric(new TransitionPairCoverage());
 		t.addListener(new VerboseListener());
-		t.generate(100);
+		t.generate(100); 
 		t.buildGraph();
+		t.printCoverage();
 		this.after();
 	}
 }
