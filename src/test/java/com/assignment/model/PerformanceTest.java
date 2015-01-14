@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import nz.ac.waikato.modeljunit.Action;
 import nz.ac.waikato.modeljunit.FsmModel;
-import nz.ac.waikato.modeljunit.GreedyTester;
+import nz.ac.waikato.modeljunit.LookaheadTester;
 import nz.ac.waikato.modeljunit.Tester;
 import nz.ac.waikato.modeljunit.VerboseListener;
 import nz.ac.waikato.modeljunit.coverage.ActionCoverage;
@@ -258,14 +258,14 @@ public class PerformanceTest implements FsmModel, Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Tester t = new GreedyTester(this);
-		
+		LookaheadTester t = new LookaheadTester(this);
+		t.setDepth(1);
 		t.addCoverageMetric(new TransitionCoverage());
 		t.addCoverageMetric(new StateCoverage());
 		t.addCoverageMetric(new ActionCoverage());
 		t.addCoverageMetric(new TransitionPairCoverage());
 		t.addListener(new VerboseListener());
-		t.generate(100); 
+		t.generate(7); 
 		t.buildGraph();
 		t.printCoverage();
 		this.after();
